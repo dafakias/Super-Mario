@@ -50,6 +50,34 @@
          "spacing":0,
          "tilecount":21,
          "tileheight":16,
+         "tiles":
+            {
+             "13":
+                {
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":16.75,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":16.25,
+                             "x":-0.75,
+                             "y":-0.5
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "x":0,
+                     "y":0
+                    }
+                }
+            },
          "tilewidth":16
         }, 
         {
