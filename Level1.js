@@ -22,6 +22,8 @@ var player;
 var controls = {};
 var playerSpeed = 150;
 var jumpTimer = 0;
+var shootTime = 0;
+var bullets;
 
 
 var score = 0;
@@ -60,10 +62,23 @@ Game.Level1.prototype = {
             right: this.input.keyboard.addKey(Phaser.Keyboard.D),
             left: this.input.keyboard.addKey(Phaser.Keyboard.A),
             up: this.input.keyboard.addKey(Phaser.Keyboard.W),
+            shoot: this.input.keyboard.addKey(Phaser.Keyboard.UP),
         };
         
         
         enemy1 = new EnemyBird(0,game,player.x+350,player.y-450);
+        
+        bullets = game.add.group();
+        
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.ARCADE;
+        bullets.createMultiple(5,'bullet');
+        bullets.setAll('anchor.x',0.5);
+        bullets.setAll('anchor.y',0.5);
+        
+        bullets.setAll('outOfBoundsKill',true);
+        bullets.setAll('checkWorldBounds',true);
+        
     },
         
     update:function(){
@@ -102,6 +117,15 @@ Game.Level1.prototype = {
           //  this.resetPlayer();
        // }
         
+        if(controls.shoot.isDown){
+            this.shootBullet();
+        }
+        
+        if(checkOverlap(bullets,enemy1.bird)){
+            enemy1.bird.kill();
+        }
+        
+        
         scoreText.text = 'Score:' + score; 
         
     },    
@@ -114,8 +138,21 @@ Game.Level1.prototype = {
         map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
         score += 100;
         this.sound.play('coin');
-    }
+    },
     
+    
+    shootBullet:function(){
+      if(this.time.now > shootTime){
+        bullet = bullets.getFirstExists(false);
+            if(bullet){
+                bullet.reset(player.x,player.y);
+                bullet.body.velocity.y = -600;
+                
+                shootTime = this.time.now + 900;
+             }
+    
+      }
+    }
     
     
 }

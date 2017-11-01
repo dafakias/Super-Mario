@@ -29,6 +29,8 @@ Game.Preloader.prototype = {
         
         this.load.image('button','assets/button.png');
         
+        this.load.image('bullet','assets/bullet.png');
+        
         this.load.audio('coin','assets/coin.wav');
         
         this.load.audio('jump','assets/jump.wav');
