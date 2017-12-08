@@ -35,6 +35,16 @@ Game.Preloader.prototype = {
         
         this.load.audio('jump','assets/jump.wav');
         
+        this.load.image('coin25','assets/coin25.png');
+        
+        this.load.image('coin9','assets/coin9.png');
+        
+        this.load.image('coin1','assets/coin1.png');
+        
+        this.load.image('coin4','assets/coin4.png');
+        
+        this.load.image('coin36','assets/coin36.png');
+        
         
     },
     

@@ -1,4 +1,8 @@
 //var game = {};
+
+
+
+
 EnemyBird = function(index,game,x,y){
   this.bird = game.add.sprite(x,y,'bird');
   this.bird.anchor.setTo(0.5,0.5);
@@ -24,6 +28,9 @@ var playerSpeed = 150;
 var jumpTimer = 0;
 var shootTime = 0;
 var bullets;
+var min = 2;
+var max = 6;
+var x;
 
 
 var score = 0;
@@ -79,6 +86,18 @@ Game.Level1.prototype = {
         bullets.setAll('outOfBoundsKill',true);
         bullets.setAll('checkWorldBounds',true);
         
+        x = Math.floor(Math.random() * 6) + 1;
+        
+        
+        this.coinNumber1 = this.game.add.sprite(100, 50, 'coin25');
+        
+        this.coinNumber2 = this.game.add.sprite(170,50,'coin9');
+        
+        this.coinNumber3 = this.game.add.sprite(240,50,'coin4');
+        
+        this.coinNumber4 = this.game.add.sprite(310,50,'coin1');
+        
+        this.coinNumber5 = this.game.add.sprite(380,50,'coin36');
     },
         
     update:function(){
@@ -125,6 +144,45 @@ Game.Level1.prototype = {
             enemy1.bird.kill();
         }
         
+        if(checkOverlap(bullets,this.coinNumber1)){
+            if(x==5){
+            this.coinNumber1.kill();
+                score += 100;
+        this.sound.play('coin');
+            }
+        }
+        
+         if(checkOverlap(bullets,this.coinNumber2)){
+            if(x==3){
+            this.coinNumber2.kill();
+                score += 100;
+        this.sound.play('coin');
+            }
+        }
+        
+         if(checkOverlap(bullets,this.coinNumber3)){
+            if(x==2){
+            this.coinNumber3.kill();
+                score += 100;
+        this.sound.play('coin');
+            }
+        }
+        
+         if(checkOverlap(bullets,this.coinNumber5)){
+            if(x==6 || x==2 || x==3){
+            this.coinNumber5.kill();
+                score += 100;
+        this.sound.play('coin');
+            }
+        }
+        
+        if(checkOverlap(bullets,this.coinNumber4)){
+            if(x==1){
+            this.coinNumber4.kill();
+                score += 100;
+        this.sound.play('coin');
+            }
+        }
         
         scoreText.text = 'Score:' + score; 
         
@@ -164,6 +222,7 @@ function checkOverlap(spriteA,spriteB){
     
    return Phaser.Rectangle.intersects(boundsA,boundsB); 
 }
+
 
 
 
