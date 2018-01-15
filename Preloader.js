@@ -18,8 +18,8 @@ Game.Preloader.prototype = {
         
         //LOAD ALL ASSETS
         
-        this.load.tilemap('map','assets/Level1.csv');
-        this.load.image('tileset','assets/super_mario_tiles.png');
+        this.load.tilemap('map','assets/FirstLevel.csv');
+        this.load.image('tileset','assets/GoldBricks.png');
         
         this.load.spritesheet('player','assets/player.png',24,26);
         
@@ -34,6 +34,8 @@ Game.Preloader.prototype = {
         this.load.audio('coin','assets/coin.wav');
         
         this.load.audio('jump','assets/jump.wav');
+        
+        this.load.audio('stomp','assets/stomp.wav');
         
         this.load.image('coin25','assets/coin25.png');
         
