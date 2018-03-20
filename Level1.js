@@ -4,7 +4,8 @@
 
 
 EnemyBird = function(index,game,x,y){
-  this.bird = game.add.sprite(x,y,'bird');
+  this.bird = game.add.sprite(x,y,'turtle');
+    this.bird.scale.setTo(0.15);
   this.bird.anchor.setTo(0.5,0.5);
   this.bird.name = index.toString();
   game.physics.enable(this.bird,Phaser.Physics.ARCADE);
@@ -12,12 +13,14 @@ EnemyBird = function(index,game,x,y){
   this.bird.body.collideWorldBounds = true;   
   this.bird.body.allowGravity = false;    
     
-  this.birdTween = game.add.tween(this.bird).to({y: this.bird.y + 100},2000,'Linear',true,0,100,true);    
+  this.birdTween = game.add.tween(this.bird).to({x: this.bird.x + 100},2000,'Linear',true,0,100,true);    
 }
 
 
 var enemy1;
 var enemy2;
+var enemy3;
+var enemy4;
 
 
 Game.Level1 = function(game){};
@@ -38,37 +41,92 @@ var xText;
 
 var score = 0;
 var scoreText;
+var life = 3;
+var lifeText;
+var heart;
+var heart2;
+var coins;
+var coinNumber36;
+var coinNumber1;
+var coinNumber10;
+var coinNumber9;
+var coinNumber4;
+var coinNumber362;
+var coinNumber42;
+var coinNumber25;
+var coinNumber102;
+var coinNumber15;
+var coinNumber27;
+var coinNumber8;
+var coinNumber12;
+var coinNumber24;
+var coinNumber16;
+var coinNumber18;
+var coinNumber252;
+var coinNumber242;
+var coinNumber92;
+var music;
+var victory;
+var lose;
+var backround;
+var telos;
+var flag;
+var luckybox;
+var audioCoin;
+var audioStomp;
+
 
 
 Game.Level1.prototype = {
     
     create:function(game){
-       this.stage.backgroundColor = '#3A5963'; 
+       this.stage.backgroundColor = '#3A5963';
+        
+        backround = this.add.tileSprite(0,0,3200,800,'backround');
         
         this.physics.arcade.gravity.y = 1400;
         
-        map = this.add.tilemap('map',64,64);
-        map.addTilesetImage('tileset');
-        layer = map.createLayer(0);
+        map = this.add.tilemap('map');
+        map.addTilesetImage('GoldBricks','tileset');
+        layer = map.createLayer('Tile Layer 1');
         layer.resizeWorld();
         
-        map.setCollisionBetween(27,28);
-        map.setCollisionBetween(58,59);
-        map.setTileIndexCallback(2,this.resetPlayer,this);
-        map.setTileIndexCallback(55,this.getCoin,this);
-        map.setTileIndexCallback(61,this.getCoin2,this);
-        map.setTileIndexCallback(62,this.getCoin3,this);
-        map.setTileIndexCallback(63,this.getCoin4,this);
-        map.setTileIndexCallback(54,this.getCoin5,this);
-        map.setTileIndexCallback(53,this.getCoin6,this);
-        map.setTileIndexCallback(37,this.getCoin7,this);
-        map.setTileIndexCallback(47,this.getCoin8,this);
-        map.setTileIndexCallback(46,this.getCoin9,this);
-        map.setTileIndexCallback(39,this.getCoin10,this);
-        map.setTileIndexCallback(60,this.getCoin11,this);
-        map.setTileIndexCallback(45,this.getCoin12,this);
-        map.setTileIndexCallback(38,this.getCoin13,this);
-        map.setTileIndexCallback(8,this.showCoin25,this);
+        map.setCollisionBetween(28,29);
+        map.setCollisionBetween(59,60);
+        
+        
+        map.setTileIndexCallback(3,this.resetPlayer,this);
+        
+        map.setTileIndexCallback(56,this.getCoin,this);
+        
+        
+      
+        //map.setTileIndexCallback(63,this.getCoin3,this);
+        //map.setTileIndexCallback(64,this.getCoin4,this);
+        //map.setTileIndexCallback(55,this.getCoin5,this);
+        //map.setTileIndexCallback(54,this.getCoin6,this);
+        //map.setTileIndexCallback(38,this.getCoin7,this);
+        //map.setTileIndexCallback(48,this.getCoin8,this);
+        //map.setTileIndexCallback(47,this.getCoin9,this);
+        //map.setTileIndexCallback(40,this.getCoin10,this);
+        //map.setTileIndexCallback(61,this.getCoin11,this);
+        //map.setTileIndexCallback(46,this.getCoin12,this);
+        //map.setTileIndexCallback(39,this.getCoin13,this);
+        //map.setTileIndexCallback(9,this.showCoin25,this);
+        
+        map.setTileIndexCallback(4,this.speedPowerup,this);
+        
+        //music = this.add.audio('song');
+       // music.play();
+        victory = this.add.audio('victory');
+        lose = this.add.audio('lose');
+        audioCoin = this.add.audio('coin');
+        audioStomp = this.add.audio('stomp');
+        
+        
+        
+        //coins = game.add.group();
+        //map.createFromObjects('Object Layer 1',1,'coin',0,true,false,coins);
         
         player = this.add.sprite(100,500,'player');
         player.anchor.setTo(0.5,0.5);
@@ -79,8 +137,12 @@ Game.Level1.prototype = {
         this.camera.follow(player);
         player.body.collideWorldBounds = true;
         
+        
+        
         scoreText = game.add.text(15,200,'Score:0',{fontSize: '32px',fill : '#000'});
         xText = game.add.text(15,100,'x=',{fontSize: '32px',fill : '#000'});
+        lifeText = game.add.text(50,300,'l=',{fontSize: '32px',fill : '#000'});
+        
         
         
         controls = {
@@ -91,10 +153,10 @@ Game.Level1.prototype = {
         };
         
         
-        enemy1 = new EnemyBird(0,game,player.x+350,player.y-180);
-        enemy2 = new EnemyBird(0,game,player.x+650,player.y-180);
-        
-        
+        enemy1 = new EnemyBird(0,game,player.x+50,player.y +120);
+        enemy2 = new EnemyBird(0,game,player.x+830,player.y +120);
+        enemy3 = new EnemyBird(0,game,player.x+1750,player.y +120);
+        enemy4 = new EnemyBird(0,game,player.x+2150,player.y +120);
         
         bullets = game.add.group();
         
@@ -109,7 +171,17 @@ Game.Level1.prototype = {
         
         x = Math.floor(Math.random() * 6) + 1;
         xText.text = 'x= ' + x;
+        lifeText.text =  life;
+       
         
+        xText.fixedToCamera = true;
+        scoreText.fixedToCamera = true;
+        lifeText.fixedToCamera = true;
+        
+        heart = this.add.sprite(25,320,'heart');
+        heart.anchor.setTo(0.5,0.5);
+        heart.scale.setTo(0.5);
+        heart.fixedToCamera = true;
         
         //this.coinNumber1 = this.game.add.sprite(100, 50, 'coin25');
         
@@ -119,7 +191,113 @@ Game.Level1.prototype = {
         
         //this.coinNumber4 = this.game.add.sprite(310,50,'coin1');
         
-        //this.coinNumber5 = this.game.add.sprite(380,50,'coin36');
+        heart2 = this.add.sprite(1080,400,'heart');
+        heart2.scale.setTo(0.5);
+        this.physics.arcade.enable(heart2);
+        heart2.body.allowGravity = false;
+        
+        
+        coinNumber36 = this.game.add.sprite(380,550,'coin36');
+        coinNumber36.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber36);
+        coinNumber36.body.allowGravity = false;
+        
+        coinNumber1 = this.game.add.sprite(580,550,'coin1');
+        coinNumber1.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber1);
+        coinNumber1.body.allowGravity = false;
+        
+        coinNumber10 = this.game.add.sprite(310,380,'coin10');
+        coinNumber10.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber10);
+        coinNumber10.body.allowGravity = false;
+        
+         coinNumber9 = this.game.add.sprite(780,550,'coin9');
+        coinNumber9.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber9);
+        coinNumber9.body.allowGravity = false;
+        
+         coinNumber4 = this.game.add.sprite(980,550,'coin4');
+        coinNumber4.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber4);
+        coinNumber4.body.allowGravity = false;
+        
+        coinNumber362 = this.game.add.sprite(1180,550,'coin36');
+        coinNumber362.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber362);
+        coinNumber362.body.allowGravity = false;
+        
+         coinNumber42 = this.game.add.sprite(1680,550,'coin4');
+        coinNumber42.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber42);
+        coinNumber42.body.allowGravity = false;
+        
+        coinNumber25 = this.game.add.sprite(1480,550,'coin25');
+        coinNumber25.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber25);
+        coinNumber25.body.allowGravity = false;
+        
+        coinNumber102 = this.game.add.sprite(1300,380,'coin10');
+        coinNumber102.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber102);
+        coinNumber102.body.allowGravity = false;
+        
+        coinNumber15 = this.game.add.sprite(1470,380,'coin15');
+        coinNumber15.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber15);
+        coinNumber15.body.allowGravity = false;
+        
+         coinNumber27 = this.game.add.sprite(1600,380,'coin27');
+        coinNumber27.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber27);
+        coinNumber27.body.allowGravity = false;
+        
+         coinNumber8 = this.game.add.sprite(1750,380,'coin8');
+        coinNumber8.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber8);
+        coinNumber8.body.allowGravity = false;
+        
+        coinNumber12 = this.game.add.sprite(1950,550,'coin12');
+        coinNumber12.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber12);
+        coinNumber12.body.allowGravity = false;
+        
+        coinNumber24 = this.game.add.sprite(2150,550,'coin24');
+        coinNumber24.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber24);
+        coinNumber24.body.allowGravity = false;
+        
+        coinNumber16 = this.game.add.sprite(2350,550,'coin16');
+        coinNumber16.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber16);
+        coinNumber16.body.allowGravity = false;
+        
+        
+         coinNumber18 = this.game.add.sprite(2550,550,'coin18');
+        coinNumber18.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber18);
+        coinNumber18.body.allowGravity = false;
+        
+       // coinNumber252 = this.game.add.sprite(2750,550,'coin25');
+        //this.physics.arcade.enable(coinNumber252);
+        //coinNumber252.body.allowGravity = false;
+        
+         luckybox = this.game.add.sprite(2050,450,'luckybox');
+        this.physics.arcade.enable(luckybox);
+        luckybox.body.allowGravity = false;
+        
+         coinNumber92 = this.game.add.sprite(2050,300,'coin9');
+        coinNumber92.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber92);
+        coinNumber92.body.allowGravity = false;
+        coinNumber92.visible = false;
+        
+         flag = this.game.add.sprite(2780,530,'flag');
+        flag.scale.setTo(0.5);
+        this.physics.arcade.enable(flag);
+        flag.body.allowGravity = false;
+        
+        
     },
         
     update:function(){
@@ -127,8 +305,52 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,layer);
         this.physics.arcade.collide(player,enemy1.bird,this.resetPlayer);
         this.physics.arcade.collide(player,enemy2.bird,this.resetPlayer);
+         this.physics.arcade.collide(player,enemy3.bird,this.resetPlayer);
+         this.physics.arcade.collide(player,enemy4.bird,this.resetPlayer);
         
         player.body.velocity.x = 0;
+        
+        coinNumber36.angle +=1;
+        coinNumber1.angle +=1;
+        coinNumber10.angle +=1;
+        coinNumber9.angle +=1;
+        coinNumber4.angle +=1;
+        
+        this.physics.arcade.collide(player,coinNumber36,this.killCoin);
+        this.physics.arcade.collide(player,coinNumber1,this.killCoin1);
+        this.physics.arcade.collide(player,coinNumber10,this.killCoin10);
+        this.physics.arcade.collide(player,coinNumber9,this.killCoin9);
+        this.physics.arcade.collide(player,coinNumber4,this.killCoin4);
+        this.physics.arcade.collide(player,coinNumber362,this.killCoin);
+        this.physics.arcade.collide(player,coinNumber42,this.killCoin42);
+        this.physics.arcade.collide(player,coinNumber25,this.killCoin25);
+        this.physics.arcade.collide(player,coinNumber102,this.killCoin102);
+        this.physics.arcade.collide(player,coinNumber15,this.killCoin15);
+        this.physics.arcade.collide(player,coinNumber27,this.killCoin27);
+        this.physics.arcade.collide(player,coinNumber8,this.killCoin8);
+        this.physics.arcade.collide(player,coinNumber12,this.killCoin12);
+        this.physics.arcade.collide(player,coinNumber24,this.killCoin24);
+        this.physics.arcade.collide(player,coinNumber16,this.killCoin16);
+        this.physics.arcade.collide(player,coinNumber18,this.killCoin18);
+        this.physics.arcade.collide(player,coinNumber252,this.killCoin252);
+        this.physics.arcade.collide(player,heart2,this.killheart2);
+        this.physics.arcade.collide(player,luckybox,this.luckybox);
+        this.physics.arcade.collide(player,coinNumber92,this.killCoin92);
+        this.physics.arcade.collide(player,flag,this.killFlag);
+        
+        if(telos==1){
+            music.stop();
+            victory.play();
+            this.state.start('gameover');
+            
+        }
+        
+        if(life==0){
+            music.stop();
+            lose.play();
+            this.state.start('loss');
+        }
+         
         
         
         
@@ -159,20 +381,16 @@ Game.Level1.prototype = {
           //  this.resetPlayer();
        // }
         
-        if(controls.shoot.isDown){
-            this.shootBullet();
-        }
+       // if(controls.shoot.isDown){
+        //    this.shootBullet();
+       // }
         
         if(checkOverlap(bullets,enemy1.bird)){
             enemy1.bird.kill();
+            
         }
         
-        //if(checkOverlap(bullets,this.coinNumber1)){
-            //if(x==5){
-              //this.coinNumber1.kill();
-                //score += 100;
-        //this.sound.play('coin');
-            //}
+     
         //}
         
         // if(checkOverlap(bullets,this.coinNumber2)){
@@ -189,77 +407,192 @@ Game.Level1.prototype = {
     
     resetPlayer:function(){       
         player.reset(100,560);
+        life = life -1;
+         lifeText.text = life;
+        lose.play();
+        
     },
     
-    getCoin:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+    killFlag:function(){       
+       telos = 1;
+        
+    },
+    
+    killP:function(){
+        life = life - 1;
+         lifeText.text = life;
+        
+    },
+    
+    killCoin12:function(player,coinNumber12){
+       
         if(x==6 || x==2 || x==3){
-         score += 100;
+           coinNumber12.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber12.reset(1950,40);
         }
     },
     
-     getCoin2:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==2){
-         score += 100;
+     killheart2:function(player,heart2){
+       
+       life = life + 1;
+       lifeText.text = life;
+       heart2.kill();
+        
+    },
+    
+     luckybox:function(player,luckybox){
+       coinNumber92.visible = true;
+         luckybox.reset(2050,450);
+         },
+    
+     killCoin1:function(player,coinNumber1){
+       
+        if(x==1){
+         coinNumber1.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
-         else{
-            this.sound.play('stomp');
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber1.reset(580,40);
         }
     },
     
-    getCoin3:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+     killCoin252:function(player,coinNumber252){
+       
+        if(x==1){
+         coinNumber252.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber252.reset(2750,40);
+        }
+    },
+    
+    killCoin9:function(player,coinNumber9){
+        
         if(x==3){
-         score += 100;
+          coinNumber9.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber9.reset(780,40);
         }
     },
+    
+    killCoin92:function(player,coinNumber92){
+        
+        if(x==3){
+          coinNumber92.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber92.reset(2050,40);
+        }
+    },
+    
+     killCoin27:function(player,coinNumber27){
+        
+        if(x==3){
+          coinNumber27.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber27.reset(1600,40);
+        }
+      },       
+     
     
     getCoin4:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+       
         if(x==1){
          score += 100;
             scoreText.text = 'Score: ' + score;
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
     
-    getCoin5:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+    killCoin10:function(player,coinNumber10){
+        
         if(x==2 || x==5){
-         score += 100;
+         coinNumber10.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber10.reset(680,40);
         }
     },
     
-    getCoin6:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==3 || x==5){
-         score += 100;
+     killCoin102:function(player,coinNumber102){
+        
+        if(x==2 || x==5){
+         coinNumber102.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber102.reset(1300,40);
+        }
+    },
+    
+    killCoin15:function(player,coinNumber15){
+       
+        if(x==3 || x==5){
+         coinNumber15.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber15.reset(1470,40);
         }
     },
     
@@ -271,19 +604,72 @@ Game.Level1.prototype = {
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
     
-    getCoin8:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+    killCoin4:function(player,coinNumber4){
+        
         if(x==2 || x==4){
-         score += 100;
+          coinNumber4.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber4.reset(980,40);
+        }
+    },
+    
+     killCoin16:function(player,coinNumber16){
+        
+        if(x==2 || x==4){
+          coinNumber16.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber16.reset(2350,40);
+        }
+    },
+     killCoin42:function(player,coinNumber42){
+        
+        if(x==2 || x==4){
+          coinNumber42.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber42.reset(1680,40);
+        }
+    },
+    
+     killCoin8:function(player,coinNumber8){
+        
+        if(x==2 || x==4){
+          coinNumber8.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber8.reset(1750,40);
         }
     },
     
@@ -295,6 +681,8 @@ Game.Level1.prototype = {
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
@@ -307,6 +695,8 @@ Game.Level1.prototype = {
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
@@ -319,6 +709,8 @@ Game.Level1.prototype = {
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
@@ -331,26 +723,95 @@ Game.Level1.prototype = {
          this.sound.play('coin');
         }
         else{
+            life = life - 1;
+            lifeText.text = life;
             this.sound.play('stomp');
         }
     },
     
-    getCoin13:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==5){
-         score += 100;
+    killCoin24:function(player,coinNumber24){
+        if(x==2 || x==3 || x==6 || x==4){
+        coinNumber24.kill();
+        score += 100;
             scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
+        audioCoin.play();
         }
         else{
-            this.sound.play('stomp');
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber24.reset(2150,40);
         }
+    },
+    
+     killCoin18:function(player,coinNumber18){
+        if(x==2 || x==3 || x==6 || x==6){
+        coinNumber18.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber18.reset(2550,40);
+        }
+    },
+    
+    killCoin25:function(player,coinNumber25){
+       
+        if(x==5){
+         coinNumber25.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber25.reset(1480,40);
+        }
+    },
+    
+    killCoin:function(player,coinNumber36){
+        if(x==2 || x==3 || x==6){
+        coinNumber36.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber36.reset(380,40);
+        }
+    },
+    
+   
+    
+    speedPowerup:function(){
+        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
+        playerSpeed +=50;
+       
+        
+        this.time.events.add(Phaser.Timer.SECOND * 2, function(){
+            playerSpeed -=50;
+        });
     },
     
     //showCoin25:function(){
        // this.coinNumber1 = this.game.add.sprite(120, 80, 'coin25');
     //},
-    
+   hitcoin:function(player,tile){
+    tile.aplpha=0.2;
+     
+    layer.dirty = true;
+      
+    return false;
+},
     
     shootBullet:function(){
       if(this.time.now > shootTime){

@@ -12,6 +12,13 @@
     
     <script src = "Level1.js"></script>
     
+     <script src = "controls.js"></script>
+    
+    <script src = "gameover.js"></script>
+    
+    <script src = "loss.js"></script>
+    
+    <script src = "afigisi.js"></script>
     
     
     <body>
@@ -25,6 +32,10 @@
             game.state.add('Preloader',Game.Preloader);
             game.state.add('MainMenu',Game.MainMenu);
             game.state.add('Level1',Game.Level1);
+            game.state.add('controls',Game.controls);
+             game.state.add('gameover',Game.gameover);
+            game.state.add('loss',Game.loss);
+            game.state.add('afigisi',Game.afigisi);
             
             game.state.start('Boot');
         

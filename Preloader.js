@@ -18,7 +18,7 @@ Game.Preloader.prototype = {
         
         //LOAD ALL ASSETS
         
-        this.load.tilemap('map','assets/FirstLevel.csv');
+        this.load.tilemap('map','assets/FirstLevel.json',null,Phaser.Tilemap.TILED_JSON);
         this.load.image('tileset','assets/GoldBricks.png');
         
         this.load.spritesheet('player','assets/player.png',24,26);
@@ -46,6 +46,54 @@ Game.Preloader.prototype = {
         this.load.image('coin4','assets/coin4.png');
         
         this.load.image('coin36','assets/coin36.png');
+        
+        this.load.image('coin10','assets/coin10.png');
+        
+        this.load.image('coin15','assets/coin15.png');
+        
+        this.load.image('coin27','assets/coin27.png');
+        
+        this.load.image('coin8','assets/coin8.png');
+        
+        this.load.image('coin12','assets/coin12.png');
+        
+        this.load.image('coin24','assets/coin24.png');
+        
+        this.load.image('coin16','assets/coin16.png');
+        
+        this.load.image('coin18','assets/coin18.png');
+        
+        this.load.image('luckybox','assets/luckybox.png');
+        
+        this.load.image('flag','assets/flag.png');
+        
+        this.load.image('gameoverScreen','assets/gameoverScreen.png');
+        
+        this.load.image('lossScreen','assets/lossScreen.png');
+        
+        this.load.image('backround','assets/backround.png');
+        
+        this.load.image('turtle','assets/turtle.png');
+        
+        this.load.image('afigisiScreen','assets/afigisiScreen.png');
+        
+        this.load.image('afigisiScreen2','assets/afigisiScreen2.png');
+        
+        this.load.image('afigisiScreen3','assets/afigisiScreen3.png');
+        
+        this.load.image('backround2','assets/backround2.png');
+        
+        this.load.audio('song','assets/song.mp3');
+        
+        this.load.audio('victory','assets/victory.mp3');
+        
+         this.load.audio('lose','assets/lose.mp3');
+        
+        
+        
+        this.load.image('controlsScreen','assets/controlsScreen.png');
+        
+        this.load.image('heart','assets/heart.png');
         
         
     },
