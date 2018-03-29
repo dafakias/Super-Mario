@@ -37,7 +37,7 @@ var min = 2;
 var max = 6;
 var x;
 var xText;
-
+var r;
 
 var score = 0;
 var scoreText;
@@ -65,6 +65,16 @@ var coinNumber18;
 var coinNumber252;
 var coinNumber242;
 var coinNumber92;
+var coinNumber20;
+var coinNumber30;
+var coinNumber35;
+var coinNumber40;
+var coinNumber45;
+var coinNumber50;
+var key;
+var sum2=0;
+var sum3=0;
+var sum5=0;
 var music;
 var victory;
 var lose;
@@ -82,7 +92,7 @@ Game.Level1.prototype = {
     create:function(game){
        this.stage.backgroundColor = '#3A5963';
         
-        backround = this.add.tileSprite(0,0,3200,800,'backround');
+        backround = this.add.tileSprite(0,0,4000,800,'backround');
         
         this.physics.arcade.gravity.y = 1400;
         
@@ -146,10 +156,10 @@ Game.Level1.prototype = {
         
         
         controls = {
-            right: this.input.keyboard.addKey(Phaser.Keyboard.D),
-            left: this.input.keyboard.addKey(Phaser.Keyboard.A),
-            up: this.input.keyboard.addKey(Phaser.Keyboard.W),
-            shoot: this.input.keyboard.addKey(Phaser.Keyboard.UP),
+            right: this.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
+            left: this.input.keyboard.addKey(Phaser.Keyboard.LEFT),
+            up: this.input.keyboard.addKey(Phaser.Keyboard.UP),
+            shoot: this.input.keyboard.addKey(Phaser.Keyboard.w),
         };
         
         
@@ -169,7 +179,16 @@ Game.Level1.prototype = {
         bullets.setAll('outOfBoundsKill',true);
         bullets.setAll('checkWorldBounds',true);
         
-        x = Math.floor(Math.random() * 6) + 1;
+        r = Math.floor(Math.random() * 3) + 1;
+        if(r==1){
+            x=2;
+        }
+        if(r==2){
+            x=3;
+        }
+        if(r==3){
+            x=5;
+        }
         xText.text = 'x= ' + x;
         lifeText.text =  life;
        
@@ -183,6 +202,7 @@ Game.Level1.prototype = {
         heart.scale.setTo(0.5);
         heart.fixedToCamera = true;
         
+    
         //this.coinNumber1 = this.game.add.sprite(100, 50, 'coin25');
         
         //this.coinNumber2 = this.game.add.sprite(170,50,'coin9');
@@ -202,10 +222,10 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(coinNumber36);
         coinNumber36.body.allowGravity = false;
         
-        coinNumber1 = this.game.add.sprite(580,550,'coin1');
-        coinNumber1.anchor.setTo(0.5,0.5);
-        this.physics.arcade.enable(coinNumber1);
-        coinNumber1.body.allowGravity = false;
+        coinNumber50 = this.game.add.sprite(580,550,'coin50');
+        coinNumber50.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber50);
+        coinNumber50.body.allowGravity = false;
         
         coinNumber10 = this.game.add.sprite(310,380,'coin10');
         coinNumber10.anchor.setTo(0.5,0.5);
@@ -227,7 +247,7 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(coinNumber362);
         coinNumber362.body.allowGravity = false;
         
-         coinNumber42 = this.game.add.sprite(1680,550,'coin4');
+         coinNumber42 = this.game.add.sprite(2950,550,'coin4');
         coinNumber42.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber42);
         coinNumber42.body.allowGravity = false;
@@ -262,7 +282,7 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(coinNumber12);
         coinNumber12.body.allowGravity = false;
         
-        coinNumber24 = this.game.add.sprite(2150,550,'coin24');
+        coinNumber24 = this.game.add.sprite(3350,550,'coin24');
         coinNumber24.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber24);
         coinNumber24.body.allowGravity = false;
@@ -278,6 +298,33 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(coinNumber18);
         coinNumber18.body.allowGravity = false;
         
+         coinNumber20 = this.game.add.sprite(1680,550,'coin20');
+        coinNumber20.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber20);
+        coinNumber20.body.allowGravity = false;
+        
+        coinNumber30 = this.game.add.sprite(2750,550,'coin30');
+        coinNumber30.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber30);
+        coinNumber30.body.allowGravity = false;
+        
+        coinNumber35 = this.game.add.sprite(3550,550,'coin35');
+        coinNumber35.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber35);
+        coinNumber35.body.allowGravity = false;
+        
+        coinNumber40 = this.game.add.sprite(3150,550,'coin40');
+        coinNumber40.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber40);
+        coinNumber40.body.allowGravity = false;
+        
+        coinNumber45 = this.game.add.sprite(2150,550,'coin45');
+        coinNumber45.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber45);
+        coinNumber45.body.allowGravity = false;
+        
+        
+        
        // coinNumber252 = this.game.add.sprite(2750,550,'coin25');
         //this.physics.arcade.enable(coinNumber252);
         //coinNumber252.body.allowGravity = false;
@@ -285,6 +332,8 @@ Game.Level1.prototype = {
          luckybox = this.game.add.sprite(2050,450,'luckybox');
         this.physics.arcade.enable(luckybox);
         luckybox.body.allowGravity = false;
+        luckybox.body.immovable = true;
+       
         
          coinNumber92 = this.game.add.sprite(2050,300,'coin9');
         coinNumber92.anchor.setTo(0.5,0.5);
@@ -292,10 +341,21 @@ Game.Level1.prototype = {
         coinNumber92.body.allowGravity = false;
         coinNumber92.visible = false;
         
-         flag = this.game.add.sprite(2780,530,'flag');
+        key = this.game.add.sprite(3680,530,'key');
+        key.anchor.setTo(0.5,0.5);
+        key.scale.setTo(0.1);
+        this.physics.arcade.enable(key);
+        key.body.allowGravity = false;
+        key.visible = false;
+        
+        
+        
+        
+         flag = this.game.add.sprite(3680,530,'flag');
         flag.scale.setTo(0.5);
         this.physics.arcade.enable(flag);
         flag.body.allowGravity = false;
+        
         
         
     },
@@ -311,13 +371,13 @@ Game.Level1.prototype = {
         player.body.velocity.x = 0;
         
         coinNumber36.angle +=1;
-        coinNumber1.angle +=1;
+        coinNumber50.angle +=1;
         coinNumber10.angle +=1;
         coinNumber9.angle +=1;
         coinNumber4.angle +=1;
         
         this.physics.arcade.collide(player,coinNumber36,this.killCoin);
-        this.physics.arcade.collide(player,coinNumber1,this.killCoin1);
+        this.physics.arcade.collide(player,coinNumber50,this.killCoin50);
         this.physics.arcade.collide(player,coinNumber10,this.killCoin10);
         this.physics.arcade.collide(player,coinNumber9,this.killCoin9);
         this.physics.arcade.collide(player,coinNumber4,this.killCoin4);
@@ -336,19 +396,49 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,heart2,this.killheart2);
         this.physics.arcade.collide(player,luckybox,this.luckybox);
         this.physics.arcade.collide(player,coinNumber92,this.killCoin92);
+        this.physics.arcade.collide(player,coinNumber20,this.killCoin20);
+        this.physics.arcade.collide(player,coinNumber30,this.killCoin30);
+        this.physics.arcade.collide(player,coinNumber35,this.killCoin35);
+        this.physics.arcade.collide(player,coinNumber40,this.killCoin40);
+        this.physics.arcade.collide(player,coinNumber45,this.killCoin45);
+        
         this.physics.arcade.collide(player,flag,this.killFlag);
+         this.physics.arcade.collide(player,key,this.killFlag);
+        
+        
+        if(sum2>=10 || sum3>=7 || sum5>=7){
+            key.visible = true;
+            key.angle +=2;
+            flag.visible = false;
+        }
         
         if(telos==1){
             music.stop();
+            if(sum2>=10 || sum3>=7 || sum5>=7){
             victory.play();
             this.state.start('gameover');
-            
+            }
+        else{
+            lose.play();
+            this.state.start('loss');
+        }    
+            telos=0;
+            score=0;
+            life=3;
+            sum2=0;
+            sum3=0;
+            sum5=0;
         }
         
         if(life==0){
             music.stop();
             lose.play();
             this.state.start('loss');
+            life=3;
+            score=0;
+            sum2=0;
+            sum3=0;
+            sum5=0;
         }
          
         
@@ -405,12 +495,17 @@ Game.Level1.prototype = {
         
     },    
     
-    resetPlayer:function(){       
+    resetPlayer:function(player,enemy1){ 
+        if(player.body.touching.down){
+            enemy1.kill();
+         
+        }
+        else{
         player.reset(100,560);
         life = life -1;
          lifeText.text = life;
         lose.play();
-        
+        }
     },
     
     killFlag:function(){       
@@ -426,11 +521,17 @@ Game.Level1.prototype = {
     
     killCoin12:function(player,coinNumber12){
        
-        if(x==6 || x==2 || x==3){
+        if(x==2 || x==3){
            coinNumber12.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
         }
         else{
             life = life - 1;
@@ -453,19 +554,111 @@ Game.Level1.prototype = {
          luckybox.reset(2050,450);
          },
     
-     killCoin1:function(player,coinNumber1){
+     killCoin50:function(player,coinNumber50){
        
-        if(x==1){
-         coinNumber1.kill();
+        if(x==2 || x==5){
+         coinNumber50.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
         }
         else{
             life = life - 1;
             lifeText.text = life;
             audioStomp.play();
-            coinNumber1.reset(580,40);
+            coinNumber50.reset(580,40);
+        }
+    },
+    
+     killCoin30:function(player,coinNumber30){
+       
+        if(x==2 || x==3 || x==5){
+         coinNumber30.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber30.reset(2750,40);
+        }
+    },
+    
+     killCoin35:function(player,coinNumber35){
+       
+        if(x==5){
+         coinNumber35.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            sum5 +=1;
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber35.reset(3550,40);
+        }
+    },
+    
+     killCoin40:function(player,coinNumber40){
+       
+        if(x==2 || x==5){
+         coinNumber40.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber40.reset(3150,40);
+        }
+    },
+    
+     killCoin45:function(player,coinNumber45){
+       
+        if(x==3 || x==5){
+         coinNumber45.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==3){
+                sum3 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber45.reset(2150,40);
         }
     },
     
@@ -485,6 +678,28 @@ Game.Level1.prototype = {
         }
     },
     
+    killCoin20:function(player,coinNumber20){
+       
+        if(x==2 || x==5){
+         coinNumber20.kill();
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+        }
+        else{
+            life = life - 1;
+            lifeText.text = life;
+            audioStomp.play();
+            coinNumber20.reset(1680,40);
+        }
+    },
+    
     killCoin9:function(player,coinNumber9){
         
         if(x==3){
@@ -492,6 +707,7 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum3 +=1;
         }
         else{
             life = life - 1;
@@ -508,6 +724,7 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum3 +=1;
         }
         else{
             life = life - 1;
@@ -524,6 +741,7 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum3 +=1;
         }
         else{
             life = life - 1;
@@ -555,6 +773,12 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
         }
         else{
             life = life - 1;
@@ -571,6 +795,12 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
         }
         else{
             life = life - 1;
@@ -587,6 +817,12 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==3){
+                sum3 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
         }
         else{
             life = life - 1;
@@ -612,11 +848,12 @@ Game.Level1.prototype = {
     
     killCoin4:function(player,coinNumber4){
         
-        if(x==2 || x==4){
+        if(x==2){
           coinNumber4.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum2 +=1;
         }
         else{
             life = life - 1;
@@ -628,11 +865,12 @@ Game.Level1.prototype = {
     
      killCoin16:function(player,coinNumber16){
         
-        if(x==2 || x==4){
+        if(x==2){
           coinNumber16.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum2 +=1;
         }
         else{
             life = life - 1;
@@ -643,27 +881,29 @@ Game.Level1.prototype = {
     },
      killCoin42:function(player,coinNumber42){
         
-        if(x==2 || x==4){
+        if(x==2){
           coinNumber42.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum2 +=1;
         }
         else{
             life = life - 1;
             lifeText.text = life;
             audioStomp.play();
-            coinNumber42.reset(1680,40);
+            coinNumber42.reset(2950,40);
         }
     },
     
      killCoin8:function(player,coinNumber8){
         
-        if(x==2 || x==4){
+        if(x==2){
           coinNumber8.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum2 +=1;
         }
         else{
             life = life - 1;
@@ -730,26 +970,38 @@ Game.Level1.prototype = {
     },
     
     killCoin24:function(player,coinNumber24){
-        if(x==2 || x==3 || x==6 || x==4){
+        if(x==2 || x==3){
         coinNumber24.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
         }
         else{
             life = life - 1;
             lifeText.text = life;
             audioStomp.play();
-            coinNumber24.reset(2150,40);
+            coinNumber24.reset(3350,40);
         }
     },
     
      killCoin18:function(player,coinNumber18){
-        if(x==2 || x==3 || x==6 || x==6){
+        if(x==2 || x==3){
         coinNumber18.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
         }
         else{
             life = life - 1;
@@ -766,6 +1018,7 @@ Game.Level1.prototype = {
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            sum5 +=1;
         }
         else{
             life = life - 1;
@@ -776,11 +1029,17 @@ Game.Level1.prototype = {
     },
     
     killCoin:function(player,coinNumber36){
-        if(x==2 || x==3 || x==6){
+        if(x==2 || x==3){
         coinNumber36.kill();
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==2){
+                sum2 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
         }
         else{
             life = life - 1;

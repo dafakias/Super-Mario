@@ -63,9 +63,23 @@ Game.Preloader.prototype = {
         
         this.load.image('coin18','assets/coin18.png');
         
+        this.load.image('coin20','assets/coin20.png');
+        
+        this.load.image('coin30','assets/coin30.png');
+        
+        this.load.image('coin35','assets/coin35.png');
+        
+        this.load.image('coin40','assets/coin40.png');
+        
+        this.load.image('coin45','assets/coin45.png');
+        
+        this.load.image('coin50','assets/coin50.png');
+        
         this.load.image('luckybox','assets/luckybox.png');
         
         this.load.image('flag','assets/flag.png');
+        
+        this.load.image('key','assets/key.png');
         
         this.load.image('gameoverScreen','assets/gameoverScreen.png');
         
@@ -74,6 +88,8 @@ Game.Preloader.prototype = {
         this.load.image('backround','assets/backround.png');
         
         this.load.image('turtle','assets/turtle.png');
+        
+        this.load.image('playagain','assets/playagain.png');
         
         this.load.image('afigisiScreen','assets/afigisiScreen.png');
         
