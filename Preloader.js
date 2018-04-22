@@ -75,17 +75,31 @@ Game.Preloader.prototype = {
         
         this.load.image('coin50','assets/coin50.png');
         
+        this.load.image('coin21','assets/coin21.png');
+        
+        this.load.image('coin6','assets/coin6.png');
+        
+        this.load.image('coin14','assets/coin14.png');
+        
+        this.load.image('wall','assets/wall.jpeg');
+        
         this.load.image('luckybox','assets/luckybox.png');
+        
+        this.load.image('luckybox2','assets/luckybox2.png');
         
         this.load.image('flag','assets/flag.png');
         
         this.load.image('key','assets/key.png');
+        
+        this.load.spritesheet('raccoon','assets/raccoon.png',23.75,32.25);
         
         this.load.image('gameoverScreen','assets/gameoverScreen.png');
         
         this.load.image('lossScreen','assets/lossScreen.png');
         
         this.load.image('backround','assets/backround.png');
+        
+        this.load.image('backround3','assets/backround3.png');
         
         this.load.image('turtle','assets/turtle.png');
         
@@ -97,15 +111,57 @@ Game.Preloader.prototype = {
         
         this.load.image('afigisiScreen3','assets/afigisiScreen3.png');
         
+        this.load.image('afigisiScreen4','assets/afigisiScreen4.png');
+        
+        this.load.image('afigisiScreen5','assets/afigisiScreen5.png');
+        
+        this.load.image('afigisiScreen6','assets/afigisiScreen6.png');
+        
+        this.load.image('afigisiScreen7','assets/afigisiScreen7.png');
+        
+        this.load.image('luigiButton','assets/luigiButton2.png');
+        
+        this.load.image('marioButton','assets/marioButton2.png');
+        
         this.load.image('backround2','assets/backround2.png');
+        
+        this.load.image('elevator','assets/elevator.png');
+        
+        this.load.image('propel','assets/propel.png');
+        
+        this.load.image('brick','assets/brick.jpg');
+        
+        this.load.spritesheet('luigi','assets/luigi.png',28,35.5);
+        
+        this.load.spritesheet('super','assets/super.png',27,34);
+        
+        this.load.spritesheet('flame','assets/flame.png',35,60);
+        
+        this.load.spritesheet('goomba','assets/goomba.png',16,16);
+        
+        this.load.spritesheet('water','assets/water2.png',372.6,322);
+        
+        this.load.image('div2','assets/div2.png');
+        
+        this.load.image('div3','assets/div3.png');
+        
+        this.load.image('div5','assets/div5.png');
         
         this.load.audio('song','assets/song.mp3');
         
         this.load.audio('victory','assets/victory.mp3');
         
-         this.load.audio('lose','assets/lose.mp3');
+        this.load.audio('lose','assets/lose.mp3');
         
+        this.load.audio('helicopter','assets/helicopter.mp3');
         
+        this.load.audio('fall','assets/fall.mp3');
+        
+        this.load.audio('break','assets/break.mp3');
+        
+        this.load.audio('hit','assets/hit.mp3');
+        
+        this.load.audio('hitenemy','assets/hitenemy.mp3');
         
         this.load.image('controlsScreen','assets/controlsScreen.png');
         
