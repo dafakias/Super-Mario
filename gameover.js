@@ -16,7 +16,15 @@ Game.gameover.prototype = {
     create:function(game){
          music = this.add.audio('song');
         
-         gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen');
+        if(x==2){
+         gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen2');
+        }
+        if(x==3){
+         gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen3');
+        }
+        if(x==5){
+         gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen5');
+        }
         
           button2 = this.add.button(game.world.centerX -2370,50,'playagain',this.actionOnClick2,this);
      
@@ -44,16 +52,17 @@ Game.gameover.prototype = {
             sum3=0;
             sum5=0;
             i2=0;
+            lathos = 0;
         }
         
         if(x==2){
-        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς \n που διαιρούνται με το 2!';
+        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους 14 που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
        }
         if(x==3){
-        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς \n που διαιρούνται με το 3!';
+        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς από\nτους 14 που διαιρούνται με το 3! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
         }
         if(x==5){
-        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς \n που διαιρούνται με το 5!';
+        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς από\nτους 13 που διαιρούνται με το 5! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
         }
     },
     

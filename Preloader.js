@@ -93,7 +93,11 @@ Game.Preloader.prototype = {
         
         this.load.spritesheet('raccoon','assets/raccoon.png',23.75,32.25);
         
-        this.load.image('gameoverScreen','assets/gameoverScreen.png');
+        this.load.image('gameoverScreen2','assets/gameoverScreen2.png');
+        
+        this.load.image('gameoverScreen3','assets/gameoverScreen3.png');
+        
+        this.load.image('gameoverScreen5','assets/gameoverScreen5.png');
         
         this.load.image('lossScreen','assets/lossScreen.png');
         
