@@ -91,6 +91,12 @@ Game.Preloader.prototype = {
         
         this.load.image('key','assets/key.png');
         
+        this.load.image('lathos2','assets/lathos2.png');
+        
+        this.load.image('lathos3','assets/lathos3.png');
+        
+        this.load.image('lathos5','assets/lathos5.png');
+        
         this.load.spritesheet('raccoon','assets/raccoon.png',23.75,32.25);
         
         this.load.image('gameoverScreen2','assets/gameoverScreen2.png');

@@ -110,10 +110,15 @@ var break1;
 var hit;
 var hitenemy;
 var fall;
+var lathos2;
+var lathos3;
+var lathos5;
 var kappa = 0;
 var water;
 var backround2;
-
+var l5 = 0;
+var l2 = 0;
+var l3 = 0;
 
 Game.Level1.prototype = {
     
@@ -128,6 +133,13 @@ Game.Level1.prototype = {
         div2.visible = false;
         div3.visible = false;
         div5.visible = false;
+        
+         lathos2 = this.add.sprite(400,100,'lathos2');
+        lathos3 = this.add.sprite(400,100,'lathos3');
+        lathos5 = this.add.sprite(400,100,'lathos5');
+        lathos2.visible = false;
+        lathos3.visible = false;
+        lathos5.visible = false;
         
         this.physics.arcade.gravity.y = 1400;
         
@@ -351,18 +363,18 @@ Game.Level1.prototype = {
         
         
         if(tixi==1){
-            coinNumber36 = this.game.add.sprite(380,550,'coin36');
-            coinNumber50 = this.game.add.sprite(580,550,'coin50');
-            coinNumber10 = this.game.add.sprite(310,380,'coin10');
+            coinNumber36 = this.game.add.sprite(1750,380,'coin36');
+            coinNumber50 = this.game.add.sprite(4620,280,'coin50');
+            coinNumber10 = this.game.add.sprite(3650,100,'coin10');
             coinNumber9 = this.game.add.sprite(800,480,'coin9');
-            coinNumber4 = this.game.add.sprite(3650,100,'coin4');
+            coinNumber4 = this.game.add.sprite(310,380,'coin4');
             coinNumber362 = this.game.add.sprite(1180,550,'coin36');
             coinNumber452 = this.game.add.sprite(2750,550,'coin45');
             coinNumber25 = this.game.add.sprite(1480,550,'coin25');
             coinNumber102 = this.game.add.sprite(1300,380,'coin10');
             coinNumber15 = this.game.add.sprite(1470,380,'coin15');
             coinNumber27 = this.game.add.sprite(1600,380,'coin27');
-            coinNumber8 = this.game.add.sprite(1750,380,'coin8');
+            coinNumber8 = this.game.add.sprite(380,550,'coin8');
             coinNumber12 = this.game.add.sprite(1950,550,'coin12');
             coinNumber24 = this.game.add.sprite(3450,100,'coin24');
             coinNumber352 = this.game.add.sprite(2350,550,'coin35');
@@ -375,7 +387,7 @@ Game.Level1.prototype = {
             coinNumber92 = this.game.add.sprite(2050,300,'coin9');
             coinNumber21 = this.game.add.sprite(3800,410,'coin21');            
             coinNumber272 = this.game.add.sprite(4320,330,'coin27');            
-            coinNumber6 = this.game.add.sprite(4620,280,'coin6');            
+            coinNumber6 = this.game.add.sprite(580,550,'coin6');            
             coinNumber14 = this.game.add.sprite(4900,410,'coin14');            
             coinNumber252 = this.game.add.sprite(4000,300,'coin25');
 
@@ -385,28 +397,28 @@ Game.Level1.prototype = {
             coinNumber36 = this.game.add.sprite(1680,550,'coin36');
             coinNumber50 = this.game.add.sprite(800,480,'coin50');
             coinNumber10 = this.game.add.sprite(1180,550,'coin10');
-            coinNumber9 = this.game.add.sprite(3800,410,'coin9');
-            coinNumber4 = this.game.add.sprite(1950,550,'coin4');
+            coinNumber9 = this.game.add.sprite(580,550,'coin9');
+            coinNumber4 = this.game.add.sprite(310,380,'coin4');
             coinNumber362 = this.game.add.sprite(3600,410,'coin36');
-            coinNumber452 = this.game.add.sprite(2450,230,'coin4');
-            coinNumber25 = this.game.add.sprite(310,380,'coin25');
+            coinNumber452 = this.game.add.sprite(2450,230,'coin45');
+            coinNumber25 = this.game.add.sprite(1950,550,'coin25');
             coinNumber102 = this.game.add.sprite(4620,280,'coin10');
             coinNumber15 = this.game.add.sprite(2150,550,'coin15');
-            coinNumber27 = this.game.add.sprite(1300,380,'coin27');
-            coinNumber8 = this.game.add.sprite(3870,100,'coin8');
+            coinNumber27 = this.game.add.sprite(2750,550,'coin27');
+            coinNumber8 = this.game.add.sprite(380,550,'coin8');
             coinNumber12 = this.game.add.sprite(3450,100,'coin12');
             coinNumber24 = this.game.add.sprite(2790,290,'coin24');
-            coinNumber352 = this.game.add.sprite(1480,550,'coin16');
+            coinNumber352 = this.game.add.sprite(1480,550,'coin35');
             coinNumber18 = this.game.add.sprite(1600,380,'coin18');
             coinNumber20 = this.game.add.sprite(1470,380,'coin20');
             coinNumber30 = this.game.add.sprite(2350,550,'coin30');
             coinNumber35 = this.game.add.sprite(3650,100,'coin35');
             coinNumber40 = this.game.add.sprite(4900,410,'coin40');
-            coinNumber45 = this.game.add.sprite(380,550,'coin45');
+            coinNumber45 = this.game.add.sprite(3870,100,'coin45');
             coinNumber92 = this.game.add.sprite(2050,300,'coin9');
             coinNumber21 = this.game.add.sprite(1750,380,'coin21');            
-            coinNumber272 = this.game.add.sprite(580,550,'coin27');            
-            coinNumber6 = this.game.add.sprite(2750,550,'coin6');            
+            coinNumber272 = this.game.add.sprite(3800,410,'coin27');            
+            coinNumber6 = this.game.add.sprite(1300,380,'coin6');            
             coinNumber14 = this.game.add.sprite(4320,330,'coin14');            
             coinNumber252 = this.game.add.sprite(4000,300,'coin25');
 
@@ -637,6 +649,26 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,flag,this.killFlag);
          this.physics.arcade.collide(player,key,this.killFlag);
         
+        if(l5==1){
+             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+            lathos5.visible = false;
+                 l5 =0;
+        }); 
+        }
+        
+        if(l3==1){
+             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+            lathos3.visible = false;
+                 l3 =0;
+        }); 
+        }
+        
+        if(l2==1){
+             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+            lathos2.visible = false;
+                 l2 =0;
+        }); 
+        }
         
         if(sum2>=10 || sum3>=10 || sum5>=10){
             key.visible = true;
@@ -887,6 +919,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber12.kill();
             lathos +=1;
+            player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
         }
     },
     
@@ -910,6 +945,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber6.kill();
             lathos +=1;
+            player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
         }
     },
     
@@ -952,6 +990,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber50.kill();
             lathos +=1;
+            player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
         }
     },
     
@@ -996,6 +1037,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber21.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1014,6 +1065,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber272.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1032,6 +1093,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber35.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
         }
     },
     
@@ -1055,6 +1126,10 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber40.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+           
         }
     },
     
@@ -1078,6 +1153,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber45.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
         }
     },
     
@@ -1103,6 +1181,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber20.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
         }
     },
     
@@ -1121,6 +1202,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber9.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1140,6 +1231,16 @@ Game.Level1.prototype = {
             coinNumber92.kill();
           coinNumber92.reset(coinNumber92.x,1000);
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1159,6 +1260,16 @@ Game.Level1.prototype = {
             coinNumber252.kill();
             coinNumber252.reset(coinNumber252.x,1000);
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
         }
     },
     
@@ -1177,6 +1288,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber27.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
       },       
      
@@ -1215,6 +1336,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber10.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
         }
     },
     
@@ -1238,6 +1362,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber102.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
         }
     },
     
@@ -1261,6 +1388,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber15.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
         }
     },
     
@@ -1293,6 +1423,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber4.kill();
             lathos +=1;
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1311,6 +1451,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber14.kill();
             lathos +=1;
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1329,16 +1479,31 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber352.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
         }
     },
      killCoin452:function(player,coinNumber452){
         
-        if(x==5){
+        if(x==5 || x==3){
             coinNumber452.reset(coinNumber452.x,25);
         score += 100;
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
+            if(x==5){
             sum5 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
         }
         else{
         //    life = life - 1;
@@ -1346,6 +1511,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber452.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
         }
     },
     
@@ -1364,6 +1532,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber8.kill();
             lathos +=1;
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
+            if(x==5){
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
+            }
         }
     },
     
@@ -1442,6 +1620,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber24.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
         }
     },
     
@@ -1464,6 +1645,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber18.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
         }
     },
     
@@ -1482,6 +1666,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber25.kill();
             lathos +=1;
+            if(x==2){
+                player.reset(100,560);
+            lathos2.visible = true;
+            l2=1;
+            }
+            if(x==3){
+                player.reset(100,560);
+            lathos3.visible = true;
+            l3=1;
+            }
         }
     },
     
@@ -1504,6 +1698,9 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber36.kill();
             lathos +=1;
+                player.reset(100,560);
+            lathos5.visible = true;
+            l5=1;
         }
     },
     
