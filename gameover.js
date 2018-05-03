@@ -10,6 +10,7 @@ var music;
 var sum2Text;
 var sum3Text;
 var sum5Text;
+var sum10Text;
 
 
 Game.gameover.prototype = {
@@ -25,6 +26,9 @@ Game.gameover.prototype = {
         if(x==5){
          gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen5');
         }
+         if(x==10){
+         gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen10');
+        }
         
           button2 = this.add.button(game.world.centerX -2370,50,'playagain',this.actionOnClick2,this);
      
@@ -36,6 +40,9 @@ Game.gameover.prototype = {
        }
          if(x==5){
         sum5Text = game.add.text(50,250,'sum5=',{fontSize: '32px',fill : '#000'});
+       }
+        if(x==10){
+        sum10Text = game.add.text(50,250,'sum10=',{fontSize: '32px',fill : '#000'});
        }
        
         
@@ -51,30 +58,37 @@ Game.gameover.prototype = {
             sum2=0;
             sum3=0;
             sum5=0;
+            sum10=0;
             i2=0;
             lathos = 0;
         }
         
         if(x==2 && lathos!==1){
-        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους 15 που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
+        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους ' + s2 + ' που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
        }
         if(x==3 && lathos!==1){
-        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς από\nτους 15 που διαιρούνται με το 3! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
+        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς από\nτους ' + s3 + ' που διαιρούνται με το 3! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
         }
         if(x==5 && lathos!==1){
-        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς από\nτους 13 που διαιρούνται με το 5! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
+        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς από\nτους ' + s5 + ' που διαιρούνται με το 5! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
+        }
+        if(x==10 && lathos!==1){
+        sum10Text.text = 'Βρήκες σωστά ' + sum10 + ' αριθμούς από\nτους ' + s10 + ' που διαιρούνται με το 10! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
         }
         
         
         
         if(x==2 && lathos==1){
-        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους 15 που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
+        sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους ' + s2 + ' που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
        }
         if(x==3 && lathos==1){
-        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς από\nτους 15 που διαιρούνται με το 3! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
+        sum3Text.text = 'Βρήκες σωστά ' + sum3 + ' αριθμούς από\nτους ' + s3 + ' που διαιρούνται με το 3! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
         }
         if(x==5 && lathos==1){
-        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς από\nτους 13 που διαιρούνται με το 5! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
+        sum5Text.text = 'Βρήκες σωστά ' + sum5 + ' αριθμούς από\nτους ' + s5 + ' που διαιρούνται με το 5! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
+        }
+        if(x==10 && lathos==1){
+        sum10Text.text = 'Βρήκες σωστά ' + sum10 + ' αριθμούς από\nτους ' + s10 + ' που διαιρούνται με το 10! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
         }
     },
     

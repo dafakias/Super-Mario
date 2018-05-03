@@ -81,6 +81,64 @@ Game.Preloader.prototype = {
         
         this.load.image('coin14','assets/coin14.png');
         
+        this.load.image('coin22','assets/coin22.png');
+        
+        this.load.image('coin28','assets/coin28.png');
+        
+        this.load.image('coin33','assets/coin33.png');
+        
+        this.load.image('coin39','assets/coin39.png');
+        
+        this.load.image('coin48','assets/coin48.png');
+        
+        this.load.image('coin51','assets/coin51.png');
+        
+        this.load.image('coin55','assets/coin55.png');
+        
+        this.load.image('coin56','assets/coin56.png');
+        
+        this.load.image('coin58','assets/coin58.png');
+        
+        this.load.image('coin60','assets/coin60.png');
+        
+        this.load.image('coin62','assets/coin62.png');
+        
+        this.load.image('coin63','assets/coin63.png');
+        
+        this.load.image('coin64','assets/coin64.png');
+        
+        this.load.image('coin65','assets/coin65.png');
+        
+        this.load.image('coin69','assets/coin69.png');
+        
+        this.load.image('coin70','assets/coin70.png');
+        
+        this.load.image('coin75','assets/coin75.png');
+        
+        this.load.image('coin76','assets/coin76.png');
+        
+        this.load.image('coin80','assets/coin80.png');
+        
+        this.load.image('coin81','assets/coin81.png');
+        
+        this.load.image('coin84','assets/coin84.png');
+        
+        this.load.image('coin85','assets/coin85.png');
+        
+        this.load.image('coin87','assets/coin87.png');
+        
+        this.load.image('coin90','assets/coin90.png');
+        
+        this.load.image('coin93','assets/coin93.png');
+        
+        this.load.image('coin95','assets/coin95.png');
+        
+        this.load.image('coin98','assets/coin98.png');
+        
+        this.load.image('coin99','assets/coin99.png');
+        
+        this.load.image('coin100','assets/coin100.png');
+        
         this.load.image('wall','assets/wall.jpeg');
         
         this.load.image('luckybox','assets/luckybox.png');
@@ -97,6 +155,8 @@ Game.Preloader.prototype = {
         
         this.load.image('lathos5','assets/lathos5.png');
         
+        this.load.image('lathos10','assets/lathos10.png');
+        
         this.load.spritesheet('raccoon','assets/raccoon.png',23.75,32.25);
         
         this.load.image('gameoverScreen2','assets/gameoverScreen2.png');
@@ -105,6 +165,8 @@ Game.Preloader.prototype = {
         
         this.load.image('gameoverScreen5','assets/gameoverScreen5.png');
         
+        this.load.image('gameoverScreen10','assets/gameoverScreen10.png');
+        
         this.load.image('lossScreen','assets/lossScreen.png');
         
         this.load.image('backround','assets/backround.png');
@@ -112,6 +174,20 @@ Game.Preloader.prototype = {
         this.load.image('backround3','assets/backround3.png');
         
         this.load.image('turtle','assets/turtle.png');
+        
+        this.load.image('hint','assets/hint.png');
+        
+        this.load.image('hint2','assets/hint2.png');
+        
+        this.load.image('hint3','assets/hint3.png');
+        
+        this.load.image('hint5','assets/hint5.png');
+        
+        this.load.image('hint10','assets/hint10.png');
+        
+        this.load.image('teleport','assets/teleport.png');
+        
+        this.load.image('teleport2','assets/teleport2.png');
         
         this.load.image('playagain','assets/playagain.png');
         
@@ -128,6 +204,8 @@ Game.Preloader.prototype = {
         this.load.image('afigisiScreen6','assets/afigisiScreen6.png');
         
         this.load.image('afigisiScreen7','assets/afigisiScreen7.png');
+        
+        this.load.image('afigisiScreen8','assets/afigisiScreen8.png');
         
         this.load.image('luigiButton','assets/luigiButton2.png');
         
@@ -156,6 +234,8 @@ Game.Preloader.prototype = {
         this.load.image('div3','assets/div3.png');
         
         this.load.image('div5','assets/div5.png');
+        
+        this.load.image('div10','assets/div10.png');
         
         this.load.audio('song','assets/song.mp3');
         
