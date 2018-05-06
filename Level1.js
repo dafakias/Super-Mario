@@ -446,12 +446,12 @@ Game.Level1.prototype = {
         heart2.body.allowGravity = false;
         
         thesi2x = [580,1470,1680,2750,3870,4920,5030,5500,5680,6750,7400,7400,7400,7400,7400,7400]
-        thesi2y = [610,420,610,610,100,400,100,580,350,350,900,900,900,900,900,900]
+        thesi2y = [610,420,610,610,100,610,100,580,350,350,900,900,900,900,900,900]
         
         thesi3x = [330,1280,1480,2150,2790,3800,5280,5520,6350,7300,7400,7400,7400,7400,7400,7400]
         thesi3y = [420,610,610,610,290,410,330,350,250,610,900,900,900,900,900,900]
         
-        thesi5x = [380,1300,1600,2350,3450,4320,5000,5560,6100,6350,7400]
+        thesi5x = [380,1300,1600,2350,3450,4320,5100,5560,6100,6350,7400]
         thesi5y = [610,420,420,610,100,330,610,160,250,610,900]
         
         thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400]
@@ -973,13 +973,13 @@ Game.Level1.prototype = {
         hint.body.allowGravity = false;
         hint.body.immovable = true;
         
-        teleport = this.game.add.sprite(6700,630,'teleport');
+        teleport = this.game.add.sprite(6700,600,'teleport');
         teleport.scale.setTo(0.5);
         this.physics.arcade.enable(teleport);
         teleport.body.allowGravity = false;
         teleport.body.immovable = true;
         
-         teleport2 = this.game.add.sprite(6100,630,'teleport2');
+         teleport2 = this.game.add.sprite(6100,600,'teleport2');
         teleport2.scale.setTo(0.5);
         this.physics.arcade.enable(teleport2);
         teleport2.body.allowGravity = false;
