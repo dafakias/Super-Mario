@@ -175,6 +175,8 @@ var hint5;
 var hint10;
 var teleport;
 var teleport2;
+var facing = 'right';
+var bullet2;
 
 Game.Level1.prototype = {
     
@@ -443,17 +445,17 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(heart2);
         heart2.body.allowGravity = false;
         
-        thesi2x = [580,1470,1680,2750,3870,4930,5000,5500,5680,6750,7400,7400,7400,7400,7400,7400]
-        thesi2y = [610,420,610,610,100,410,100,580,350,350,900,900,900,900,900,900]
+        thesi2x = [580,1470,1680,2750,3870,4920,5030,5500,5680,6750,7400,7400,7400,7400,7400,7400]
+        thesi2y = [610,420,610,610,100,400,100,580,350,350,900,900,900,900,900,900]
         
-        thesi3x = [310,1280,1480,2150,2790,3800,5250,5520,6350,7300,7400,7400,7400,7400,7400,7400]
-        thesi3y = [420,610,610,610,290,410,380,350,250,610,900,900,900,900,900,900]
+        thesi3x = [330,1280,1480,2150,2790,3800,5280,5520,6350,7300,7400,7400,7400,7400,7400,7400]
+        thesi3y = [420,610,610,610,290,410,330,350,250,610,900,900,900,900,900,900]
         
-        thesi5x = [380,1300,1600,2350,3450,4320,5000,5480,6100,6200,7400]
-        thesi5y = [610,420,420,610,100,330,580,130,250,580,900]
+        thesi5x = [380,1300,1600,2350,3450,4320,5000,5560,6100,6350,7400]
+        thesi5y = [610,420,420,610,100,330,610,160,250,610,900]
         
-        thesi10x = [800,1750,1950,2450,3600,3650,4620,5320,5840,6840,7400]
-        thesi10y = [480,420,610,230,410,100,280,130,350,350,900]
+        thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400]
+        thesi10y = [480,420,610,230,410,100,280,160,610,350,900]
        // thesix = [
            // 310,380,580,800,1180,1300,1470,1480,1600,1680,1750,1950,2150,2350,2450,2750,2790,3450,3600,3650,3800,3870,4320,4620,4900,4990,5000,5250,5320,5480,5500,6100,5520,5680,5840,6200,6350,6650,6840,7300
         //]
@@ -1024,11 +1026,11 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(flag);
         flag.body.allowGravity = false;
         
-        weapon = this.game.add.weapon(1,'bullet');
+        weapon = this.game.add.weapon(1,'bullet2');
         weapon.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
         weapon.bulletLifespan = 400;
         weapon.bulletSpeed = 600;
-        weapon.trackSprite(player, 14, 0,true);
+        weapon.trackSprite(player, 14, 0,false);
         weapon.bulletGravity.y = -1400;
         
         
@@ -1043,6 +1045,12 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,enemy2.bird,this.resetPlayer);
          this.physics.arcade.collide(player,enemy3.bird,this.resetPlayer);
          this.physics.arcade.collide(player,enemy4.bird,this.resetPlayer);
+        this.physics.arcade.collide(weapon.bullets,enemy1.bird,this.killenemy);
+        this.physics.arcade.collide(weapon.bullets,enemy2.bird,this.killenemy);
+        this.physics.arcade.collide(weapon.bullets,enemy3.bird,this.killenemy);
+        this.physics.arcade.collide(weapon.bullets,enemy4.bird,this.killenemy);
+        this.physics.arcade.collide(weapon.bullets,goomba,this.killgoomba);
+        this.physics.arcade.collide(weapon.bullets,raccoon,this.killraccoon);
         this.physics.arcade.collide(player,flame,this.flame);
         this.physics.arcade.collide(player,flame2,this.flame);
         this.physics.arcade.collide(player,goomba,this.goomba);
@@ -1264,6 +1272,7 @@ Game.Level1.prototype = {
             player.animations.play('run');
             player.scale.setTo(1,1);
             player.body.velocity.x += playerSpeed;
+                facing = 'right';
             }
         }
         
@@ -1279,7 +1288,8 @@ Game.Level1.prototype = {
              else{
             player.animations.play('run');
             player.scale.setTo(-1,1);
-            player.body.velocity.x -= playerSpeed;             
+            player.body.velocity.x -= playerSpeed;
+                 facing = 'left';
              }
         }
         
@@ -1311,7 +1321,15 @@ Game.Level1.prototype = {
         
         if(controls.shoot.isDown){
           //  this.shootBullet();
-            weapon.fire();
+            //weapon.fire();
+            if(facing == 'right'){
+                weapon.fireAngle = Phaser.ANGLE_RIGHT;
+                weapon.fire();
+            }
+            if(facing =='left'){
+                weapon.fireAngle = Phaser.ANGLE_LEFT;
+                weapon.fire();
+            }
         }
         
         if(player.body.velocity.x == 0 && player.body.velocity.y ==0){
@@ -1356,6 +1374,21 @@ Game.Level1.prototype = {
         if(player.body.touching.down){
             player.reset(6800,560);
         }
+    },
+    
+    killenemy:function(enemy1){
+        enemy1.kill();
+        hitenemy.play();
+    },
+    
+    killgoomba:function(goomba){
+        goomba.kill();
+        hitenemy.play();
+    },
+    
+     killraccoon:function(raccoon){
+        raccoon.kill();
+        hitenemy.play();
     },
     
     resetPlayer:function(player,enemy1){ 

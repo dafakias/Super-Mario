@@ -31,6 +31,8 @@ Game.Preloader.prototype = {
         
         this.load.image('bullet','assets/bullet.png');
         
+        this.load.image('bullet2','assets/bullet2.png');
+        
         this.load.audio('coin','assets/coin.wav');
         
         this.load.audio('jump','assets/jump.wav');
@@ -206,6 +208,12 @@ Game.Preloader.prototype = {
         this.load.image('afigisiScreen7','assets/afigisiScreen7.png');
         
         this.load.image('afigisiScreen8','assets/afigisiScreen8.png');
+        
+        this.load.image('afigisiScreen9','assets/afigisiScreen9.png');
+        
+        this.load.image('afigisiScreen10','assets/afigisiScreen10.png');
+        
+        this.load.image('afigisiScreen11','assets/afigisiScreen11.png');
         
         this.load.image('luigiButton','assets/luigiButton2.png');
         

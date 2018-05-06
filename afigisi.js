@@ -11,6 +11,9 @@ var afigisiScreen5;
 var afigisiScreen6;
 var afigisiScreen7;
 var afigisiScreen8;
+var afigisiScreen9;
+var afigisiScreen10;
+var afigisiScreen11;
 var n=0;
 var pl;
 var music;
@@ -39,21 +42,36 @@ Game.afigisi.prototype = {
         });
         
          this.time.events.add(Phaser.Timer.SECOND * 12, function(){
+             afigisiScreen10 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen10');
+             afigisiScreen10.anchor.setTo(0.5,0.5);
+        });
+        
+         this.time.events.add(Phaser.Timer.SECOND * 16, function(){
              afigisiScreen6 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen6');
              afigisiScreen6.anchor.setTo(0.5,0.5);
         }); 
         
-         this.time.events.add(Phaser.Timer.SECOND * 16, function(){
+         this.time.events.add(Phaser.Timer.SECOND * 20, function(){
+             afigisiScreen9 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen9');
+             afigisiScreen9.anchor.setTo(0.5,0.5);
+        });
+        
+         this.time.events.add(Phaser.Timer.SECOND * 24, function(){
+             afigisiScreen11 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen11');
+             afigisiScreen11.anchor.setTo(0.5,0.5);
+        });
+        
+         this.time.events.add(Phaser.Timer.SECOND * 28, function(){
              afigisiScreen7 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen7');
              afigisiScreen7.anchor.setTo(0.5,0.5);
         }); 
         
-         this.time.events.add(Phaser.Timer.SECOND * 20, function(){
+         this.time.events.add(Phaser.Timer.SECOND * 32, function(){
              afigisiScreen3 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen3');
              afigisiScreen3.anchor.setTo(0.5,0.5);
         }); 
         
-        this.time.events.add(Phaser.Timer.SECOND * 24,function(){
+        this.time.events.add(Phaser.Timer.SECOND * 36,function(){
            afigisiScreen8 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen8');
              afigisiScreen8.anchor.setTo(0.5,0.5);
         n=3;

@@ -21,7 +21,7 @@ Game.loss.prototype = {
         
      
         
-         button = this.add.button(game.world.centerX -2060,-30,'playagain',this.actionOnClick,this);
+         button = this.add.button(450,-30,'playagain',this.actionOnClick,this);
        if(x==2){
         sum2Text = game.add.text(15,200,'sum2=',{fontSize: '32px',fill : '#000'});
        }
@@ -51,6 +51,10 @@ Game.loss.prototype = {
             music.play();
             i=0;
             lathos =0;
+            s2=0;
+            s3=0;
+            s5=0;
+            s10=0;
         }
        if(x==2 && sum2!==1 && lathos!==1){
         sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους ' + s2 + ' που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
