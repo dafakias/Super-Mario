@@ -11,7 +11,8 @@ var sum2Text;
 var sum3Text;
 var sum5Text;
 var sum10Text;
-
+var apotelesmataText;
+var pinakas;
 
 Game.gameover.prototype = {
     create:function(game){
@@ -44,7 +45,9 @@ Game.gameover.prototype = {
         if(x==10){
         sum10Text = game.add.text(50,250,'sum10=',{fontSize: '32px',fill : '#000'});
        }
-       
+       apotelesmataText = game.add.text(15,430,'Επέλεξες λάθος τους αριθμούς',{fontSize: '32px',fill : '#000'});
+     pinakas = apotelesmata.join(" , ");
+        apotelesmataText.text = 'Επέλεξες λάθος τους αριθμούς \n ' + pinakas;        
         
        // gameoverScreen = game.add.sprite(game.world.centerX -800,game.world.centerY + 25,'gameoverScreen');
         //gameoverScreen.anchor.setTo(0.5,0.5);
@@ -65,6 +68,7 @@ Game.gameover.prototype = {
             s3=0;
             s5=0;
             s10=0;
+            apotelesmata = []
         }
         
         if(x==2 && lathos!==1){
@@ -94,6 +98,7 @@ Game.gameover.prototype = {
         if(x==10 && lathos==1){
         sum10Text.text = 'Βρήκες σωστά ' + sum10 + ' αριθμούς από\nτους ' + s10 + ' που διαιρούνται με το 10! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμό';
         }
+        
     },
     
    

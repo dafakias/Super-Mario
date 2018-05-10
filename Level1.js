@@ -107,6 +107,16 @@ var coinNumber95;
 var coinNumber98;
 var coinNumber99;
 var coinNumber100;
+var coinNumber110;
+var coinNumber120;
+var coinNumber130;
+var coinNumber140;
+var coinNumber150;
+var coinNumber160;
+var coinNumber170;
+var coinNumber180;
+var coinNumber190;
+var coinNumber200;
 var div2;
 var div3;
 var div5;
@@ -177,6 +187,11 @@ var teleport;
 var teleport2;
 var facing = 'right';
 var bullet2;
+var heart3;
+var apotelesmata = []
+var heartbonus;
+var hs = 0;
+var ok=0;
 
 Game.Level1.prototype = {
     
@@ -207,14 +222,9 @@ Game.Level1.prototype = {
         hint5.visible = false;
         hint10.visible = false;
         
-         lathos2 = this.add.sprite(400,100,'lathos2');
-        lathos3 = this.add.sprite(400,100,'lathos3');
-        lathos5 = this.add.sprite(400,100,'lathos5');
-        lathos2.visible = false;
-        lathos3.visible = false;
-        lathos5.visible = false;
-        lathos10 = this.add.sprite(400,100,'lathos10');
-        lathos10.visible = false;
+         
+
+
         
         this.physics.arcade.gravity.y = 1400;
         
@@ -229,6 +239,7 @@ Game.Level1.prototype = {
         map.setCollisionBetween(50,51);
         map.setCollisionBetween(43,44);
         map.setTileIndexCallback(3,this.resetPlayer,this);
+        map.setTileIndexCallback(9,this.resetPlayer2,this);
         map.setTileIndexCallback(1,this.notFly);
         map.setTileIndexCallback(56,this.getCoin,this);
        
@@ -281,6 +292,9 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(player);
         this.camera.follow(player);
         player.body.collideWorldBounds = true;
+        
+        
+        
         
         flame = this.add.sprite(930,600,'flame');
         flame.anchor.setTo(0.5,0.5);
@@ -445,17 +459,22 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(heart2);
         heart2.body.allowGravity = false;
         
-        thesi2x = [580,1470,1680,2750,3870,4920,5030,5500,5680,6750,7400,7400,7400,7400,7400,7400]
-        thesi2y = [610,420,610,610,100,610,100,580,350,350,900,900,900,900,900,900]
+         heart3 = this.add.sprite(4100,400,'heart');
+        heart3.scale.setTo(0.5);
+        this.physics.arcade.enable(heart3);
+        heart3.body.allowGravity = false;
         
-        thesi3x = [330,1280,1480,2150,2790,3800,5280,5520,6350,7300,7400,7400,7400,7400,7400,7400]
-        thesi3y = [420,610,610,610,290,410,330,350,250,610,900,900,900,900,900,900]
+        thesi2x = [580,7400,1680,2750,7400,4920,5030,5500,5680,6750,7400,7400,7400,7400,7400,7400]
+        thesi2y = [610,900,610,610,900,610,100,580,350,350,900,900,900,900,900,900]
         
-        thesi5x = [380,1300,1600,2350,3450,4320,5100,5560,6100,6350,7400]
-        thesi5y = [610,420,420,610,100,330,610,160,250,610,900]
+        thesi3x = [380,1280,4320,2150,2790,3800,5280,5520,6350,7300,7400,7400,7400,7400,7400,7400]
+        thesi3y = [610,610,330,610,290,410,330,350,200,610,900,900,900,900,900,900]
         
-        thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400]
-        thesi10y = [480,420,610,230,410,100,280,160,610,350,900]
+        thesi5x = [7400,1300,1600,2350,3450,7400,5100,5560,6100,6350,7400]
+        thesi5y = [6900,420,420,610,100,900,610,160,200,610,900]
+        
+        thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400,7400,7400,7400,7400,1470,3870,5680,330,1480,7400]
+        thesi10y = [480,420,610,230,410,100,280,160,610,350,900,900,900,900,900,420,100,350,420,610,900]
        // thesix = [
            // 310,380,580,800,1180,1300,1470,1480,1600,1680,1750,1950,2150,2350,2450,2750,2790,3450,3600,3650,3800,3870,4320,4620,4900,4990,5000,5250,5320,5480,5500,6100,5520,5680,5840,6200,6350,6650,6840,7300
         //]
@@ -470,6 +489,70 @@ Game.Level1.prototype = {
         //if(tixi==1){
        
             h= Math.floor(Math.random() * 25);
+        
+        coinNumber110 = this.game.add.sprite(thesi10x[11],thesi10y[11],'coin110');
+        if(thesi10y[11]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber120 = this.game.add.sprite(thesi10x[12],thesi10y[12],'coin120');
+        if(thesi10y[12]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+            s3 +=1;
+        }
+        coinNumber130 = this.game.add.sprite(thesi10x[13],thesi10y[13],'coin130');
+        if(thesi10y[13]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber140 = this.game.add.sprite(thesi10x[14],thesi10y[14],'coin140');
+        if(thesi10y[14]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber150 = this.game.add.sprite(thesi10x[15],thesi10y[15],'coin150');
+        if(thesi10y[15]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+            s3 +=1;
+        }
+        coinNumber160 = this.game.add.sprite(thesi10x[16],thesi10y[16],'coin160');
+        if(thesi10y[2]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber170 = this.game.add.sprite(thesi10x[17],thesi10y[17],'coin170');
+        if(thesi10y[17]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber180 = this.game.add.sprite(thesi10x[18],thesi10y[18],'coin180');
+        if(thesi10y[18]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+            s3 +=1;
+        }
+        coinNumber190 = this.game.add.sprite(thesi10x[19],thesi10y[19],'coin190');
+        if(thesi10y[19]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
+        coinNumber200 = this.game.add.sprite(thesi10x[20],thesi10y[20],'coin200');
+        if(thesi10y[20]!=900){
+            s2 +=1;
+            s5 +=1;
+            s10 +=1;
+        }
             coinNumber36 = this.game.add.sprite(thesi2x[0],thesi2y[0],'coin36');
         if(thesi2y[0]!=900){
             s2 +=1;
@@ -730,11 +813,46 @@ Game.Level1.prototype = {
             s5 +=1;
         }
         
+         coinNumber110.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber110);
+        coinNumber110.body.allowGravity = false;
         
-
-
-              
+         coinNumber120.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber120);
+        coinNumber120.body.allowGravity = false;
         
+         coinNumber130.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber130);
+        coinNumber130.body.allowGravity = false;
+        
+         coinNumber140.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber140);
+        coinNumber140.body.allowGravity = false;
+        
+         coinNumber150.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber150);
+        coinNumber150.body.allowGravity = false;
+        
+         coinNumber160.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber160);
+        coinNumber160.body.allowGravity = false;
+        
+         coinNumber170.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber170);
+        coinNumber170.body.allowGravity = false;
+        
+         coinNumber180.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber180);
+        coinNumber180.body.allowGravity = false;
+        
+         coinNumber190.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber190);
+        coinNumber190.body.allowGravity = false;
+        
+         coinNumber200.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber200);
+        coinNumber200.body.allowGravity = false;
+
         coinNumber36.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber36);
         coinNumber36.body.allowGravity = false;
@@ -1009,7 +1127,22 @@ Game.Level1.prototype = {
         brick3.body.immovable = true;
         this.add.tween(brick3).to({x: brick3.x + 150},5000,'Linear',true,0,100,true);
         
+        lathos2 = this.add.sprite(900,100,'lathos2');
+        lathos3 = this.add.sprite(900,100,'lathos3');
+        lathos5 = this.add.sprite(900,100,'lathos5');
+        lathos2.visible = false;
+        lathos3.visible = false;
+        lathos5.visible = false;
+        lathos10 = this.add.sprite(900,100,'lathos10');
+        lathos10.visible = false;
+        lathos2.fixedToCamera = true;
+        lathos3.fixedToCamera = true;
+        lathos5.fixedToCamera = true;
+        lathos10.fixedToCamera = true;
         
+        heartbonus = this.add.sprite(600,100,'heartbonus');
+        heartbonus.visible = false;
+        heartbonus.fixedToCamera = true;
         
         key = this.game.add.sprite(7550,530,'key');
         key.anchor.setTo(0.5,0.5);
@@ -1033,7 +1166,7 @@ Game.Level1.prototype = {
         weapon.trackSprite(player, 14, 0,false);
         weapon.bulletGravity.y = -1400;
         
-        
+        this.input.onDown.add(this.jump2,this);
         
     },
         
@@ -1086,6 +1219,7 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,coinNumber18,this.killCoin18);
         this.physics.arcade.collide(player,coinNumber252,this.killCoin252);
         this.physics.arcade.collide(player,heart2,this.killheart2);
+        this.physics.arcade.collide(player,heart3,this.killheart3);
         this.physics.arcade.collide(player,luckybox,this.luckybox);
         this.physics.arcade.collide(player,luckybox2,this.luckybox2);
         this.physics.arcade.collide(player,hint,this.hint);
@@ -1130,6 +1264,16 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,coinNumber98,this.killCoin98);
         this.physics.arcade.collide(player,coinNumber99,this.killCoin99);
         this.physics.arcade.collide(player,coinNumber100,this.killCoin100);
+        this.physics.arcade.collide(player,coinNumber110,this.killCoin110);
+        this.physics.arcade.collide(player,coinNumber120,this.killCoin120);
+        this.physics.arcade.collide(player,coinNumber130,this.killCoin130);
+        this.physics.arcade.collide(player,coinNumber140,this.killCoin140);
+        this.physics.arcade.collide(player,coinNumber150,this.killCoin150);
+        this.physics.arcade.collide(player,coinNumber160,this.killCoin160);
+        this.physics.arcade.collide(player,coinNumber170,this.killCoin170);
+        this.physics.arcade.collide(player,coinNumber180,this.killCoin180);
+        this.physics.arcade.collide(player,coinNumber190,this.killCoin190);
+        this.physics.arcade.collide(player,coinNumber200,this.killCoin200);
         
         
          this.physics.arcade.collide(weapon.bullets,coinNumber36,this.weaponCoin);
@@ -1188,33 +1332,45 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(weapon.bullets,coinNumber98,this.weaponCoin);
         this.physics.arcade.collide(weapon.bullets,coinNumber99,this.weaponCoin);
         this.physics.arcade.collide(weapon.bullets,coinNumber100,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber110,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber120,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber130,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber140,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber150,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber160,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber170,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber180,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber190,this.weaponCoin);
+        this.physics.arcade.collide(weapon.bullets,coinNumber200,this.weaponCoin);
         
         this.physics.arcade.collide(player,flag,this.killFlag);
          this.physics.arcade.collide(player,key,this.killFlag);
         
+        
+        
         if(l5==1){
-             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+             this.time.events.add(Phaser.Timer.SECOND * 2, function(){
             lathos5.visible = false;
                  l5 =0;
         }); 
         }
         
         if(l10==1){
-             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+             this.time.events.add(Phaser.Timer.SECOND * 2, function(){
             lathos10.visible = false;
                  l10 =0;
         }); 
         }
         
         if(l3==1){
-             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+             this.time.events.add(Phaser.Timer.SECOND * 2, function(){
             lathos3.visible = false;
                  l3 =0;
         }); 
         }
         
         if(l2==1){
-             this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+             this.time.events.add(Phaser.Timer.SECOND * 2, function(){
             lathos2.visible = false;
                  l2 =0;
         }); 
@@ -1226,6 +1382,17 @@ Game.Level1.prototype = {
             flag.visible = false;
         }
         
+        
+        
+        if(hs==1){
+             this.time.events.add(Phaser.Timer.SECOND * 3, function(){
+            heartbonus.visible = false;
+                 hs =0;
+             });
+        }
+      
+          
+     
         if(telos==1){
             music.stop();
             if(sum2>=10 || sum3>=10 || sum5>=10 || sum10>=10){
@@ -1256,7 +1423,7 @@ Game.Level1.prototype = {
         
         }
          
-        
+ 
         
         
         if(controls.right.isDown){
@@ -1376,6 +1543,17 @@ Game.Level1.prototype = {
         }
     },
     
+    
+    
+   
+    
+    jump2:function(){
+         player.body.velocity.y = -800;
+            jumpTimer = this.time.now + 750;
+            player.animations.play('jump');
+            this.sound.play('jump');
+    },
+    
     killenemy:function(enemy1){
         enemy1.kill();
         hitenemy.play();
@@ -1389,6 +1567,13 @@ Game.Level1.prototype = {
      killraccoon:function(raccoon){
         raccoon.kill();
         hitenemy.play();
+    },
+    
+    resetPlayer2:function(){
+        player.reset(100,560);
+        life = life - 1;
+        lifeText.text = life;
+        lose.play();
     },
     
     resetPlayer:function(player,enemy1){ 
@@ -1503,14 +1688,21 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('12');
             //life = life - 1;
            // lifeText.text = life;
             audioStomp.play();
             coinNumber12.kill();
             lathos +=1;
-            player.reset(100,560);
+            player.reset(coinNumber12.x,coinNumber12.y);
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -1539,14 +1731,22 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
             //life = life - 1;
            // lifeText.text = life;
+            apotelesmata.push('6');
+            
             audioStomp.play();
             coinNumber6.kill();
             lathos +=1;
-            player.reset(100,560);
+            player.reset(coinNumber6.x,coinNumber6.y);
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -1564,6 +1764,15 @@ Game.Level1.prototype = {
        lifeText.text = life;
        hitenemy.play();
        heart2.kill();
+        
+    },
+    
+     killheart3:function(player,heart3){
+       
+       life = life + 1;
+       lifeText.text = life;
+       hitenemy.play();
+       heart3.kill();
         
     },
     
@@ -1609,14 +1818,21 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('50');
            // life = life - 1;
            // lifeText.text = life;
             audioStomp.play();
             coinNumber50.kill();
             lathos +=1;
-            player.reset(100,560);
+            player.reset(coinNumber50.x,coinNumber50.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -1641,8 +1857,15 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('30');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
@@ -1659,25 +1882,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('21');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber21.kill();
             lathos +=1;
+            player.reset(coinNumber21.x,coinNumber21.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -1692,25 +1920,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('22');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber22.kill();
             lathos +=1;
+           player.reset(coinNumber22.x,coinNumber22.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1725,25 +1958,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('28');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber28.kill();
             lathos +=1;
+             player.reset(coinNumber28.x,coinNumber28.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1758,25 +1996,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('33');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber33.kill();
             lathos +=1;
+            player.reset(coinNumber33.x,coinNumber33.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1791,25 +2034,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('39');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber39.kill();
             lathos +=1;
+            player.reset(coinNumber39.x,coinNumber39.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1829,20 +2077,26 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('48');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber48.kill();
             lathos +=1;
+            player.reset(coinNumber48.x,coinNumber48.y);
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1857,25 +2111,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('51');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber51.kill();
             lathos +=1;
+            player.reset(coinNumber51.x,coinNumber51.y);            
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1890,25 +2149,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('55');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber55.kill();
             lathos +=1;
+            player.reset(coinNumber55.x,coinNumber55.y);            
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1923,25 +2187,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('56');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber56.kill();
             lathos +=1;
+            player.reset(coinNumber56.x,coinNumber56.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -1956,25 +2225,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('58');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber58.kill();
             lathos +=1;
+            player.reset(coinNumber58.x,coinNumber58.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2000,8 +2274,15 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('60');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
@@ -2018,25 +2299,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('62');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber62.kill();
             lathos +=1;
+            player.reset(coinNumber62.x,coinNumber62.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2051,25 +2337,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('63');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber63.kill();
             lathos +=1;
+            player.reset(coinNumber63.x,coinNumber63.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2084,25 +2375,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('64');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber64.kill();
             lathos +=1;
+            player.reset(coinNumber64.x,coinNumber64.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2117,25 +2413,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('65');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber65.kill();
             lathos +=1;
+            player.reset(coinNumber65.x,coinNumber65.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2150,25 +2451,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('69');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber69.kill();
             lathos +=1;
+            player.reset(coinNumber69.x,coinNumber69.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2191,15 +2497,22 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('70');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber70.kill();
             lathos +=1;
             if(x==3){
-                player.reset(100,560);
+                player.reset(coinNumber70.x,coinNumber70.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -2219,20 +2532,26 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('75');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber75.kill();
             lathos +=1;
+            player.reset(coinNumber75.x,coinNumber75.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2247,25 +2566,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('76');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber76.kill();
             lathos +=1;
+            player.reset(coinNumber76.x,coinNumber76.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2288,15 +2612,22 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('80');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber80.kill();
             lathos +=1;
             if(x==3){
-                player.reset(100,560);
+                player.reset(coinNumber80.x,coinNumber80.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -2311,25 +2642,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('81');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber81.kill();
             lathos +=1;
+            player.reset(coinNumber81.x,coinNumber81.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2349,20 +2685,26 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('84');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber84.kill();
             lathos +=1;
+            player.reset(coinNumber84.x,coinNumber84.y);
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2377,25 +2719,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('85');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber85.kill();
             lathos +=1;
+            player.reset(coinNumber85.x,coinNumber85.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2410,25 +2757,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('87');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber87.kill();
             lathos +=1;
+            player.reset(coinNumber87.x,coinNumber87.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2454,8 +2806,15 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('90');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
@@ -2472,25 +2831,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('93');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber93.kill();
             lathos +=1;
+            player.reset(coinNumber93.x,coinNumber93.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2505,25 +2869,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('95');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber95.kill();
             lathos +=1;
+            player.reset(coinNumber95.x,coinNumber95.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2538,25 +2907,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('98');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber98.kill();
             lathos +=1;
+            player.reset(coinNumber98.x,coinNumber98.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2571,25 +2945,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('99');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber99.kill();
             lathos +=1;
+            player.reset(coinNumber99.x,coinNumber99.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
             lathos10.visible = true;
             l10=1;
             }
@@ -2612,15 +2991,399 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('100');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber100.kill();
             lathos +=1;
             if(x==3){
-                player.reset(100,560);
+                player.reset(coinNumber100.x,coinNumber100.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin110:function(player,coinNumber110){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber110.reset(coinNumber110.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('110');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber110.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber110.x,coinNumber110.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin120:function(player,coinNumber120){
+       
+        if(x==2 || x==5 || x==10 || x==3){
+            coinNumber120.reset(coinNumber120.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('120');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber120.kill();
+            lathos +=1;
+                player.reset(coinNumber120.x,coinNumber120.y);
+        }
+    },
+    
+     killCoin130:function(player,coinNumber130){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber130.reset(coinNumber130.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('130');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber130.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber130.x,coinNumber130.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin140:function(player,coinNumber140){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber140.reset(coinNumber140.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('140');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber140.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber140.x,coinNumber140.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin150:function(player,coinNumber150){
+       
+        if(x==2 || x==5 || x==10 || x==3){
+            coinNumber150.reset(coinNumber150.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('150');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber150.kill();
+            lathos +=1;
+                player.reset(coinNumber150.x,coinNumber150.y);
+        }
+    },
+    
+     killCoin160:function(player,coinNumber160){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber160.reset(coinNumber160.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('160');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber160.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber160.x,coinNumber160.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin170:function(player,coinNumber170){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber170.reset(coinNumber170.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('170');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber170.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber170.x,coinNumber170.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin180:function(player,coinNumber180){
+       
+        if(x==2 || x==5 || x==10 || x==3){
+            coinNumber180.reset(coinNumber180.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('180');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber180.kill();
+            lathos +=1;
+                player.reset(coinNumber180.x,coinNumber180.y);
+        }
+    },
+    
+     killCoin190:function(player,coinNumber190){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber190.reset(coinNumber190.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('190');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber190.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber190.x,coinNumber190.y);
+            lathos3.visible = true;
+            l3=1;
+            }
+        }
+    },
+    
+     killCoin200:function(player,coinNumber200){
+       
+        if(x==2 || x==5 || x==10){
+            coinNumber200.reset(coinNumber200.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('200');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber200.kill();
+            lathos +=1;
+            if(x==3){
+                player.reset(coinNumber200.x,coinNumber200.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -2635,25 +3398,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('27');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber272.kill();
             lathos +=1;
+            player.reset(coinNumber272.x,coinNumber272.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2668,25 +3436,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('35');
           //  life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber35.kill();
             lathos +=1;
+            player.reset(coinNumber35.x,coinNumber35.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2709,14 +3482,21 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('40');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber40.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber40.x,coinNumber40.y);
             lathos3.visible = true;
             l3=1;
            
@@ -2736,20 +3516,26 @@ Game.Level1.prototype = {
             if(x==5){
                 sum5 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('45');
           //  life = life - 1;
           //  lifeText.text = life;
             audioStomp.play();
             coinNumber45.kill();
             lathos +=1;
-                player.reset(100,560);
+            player.reset(coinNumber45.x,coinNumber45.y);
             if(x==2){
             lathos2.visible = true;
             l2=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2774,14 +3560,21 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('20');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber20.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber20.x,coinNumber20.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -2795,25 +3588,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('9');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber9.kill();
             lathos +=1;
+            player.reset(coinNumber9.x,coinNumber9.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2828,26 +3626,31 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('9');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber92.kill();
-          coinNumber92.reset(coinNumber92.x,1000);
+            player.reset(coinNumber92.x,coinNumber92.y);
+            coinNumber92.reset(8500,1000);
             lathos +=1;
-            if(x==2){
-                player.reset(100,560);
+           if(x==2){
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2862,26 +3665,31 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('25');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber252.kill();
-            coinNumber252.reset(coinNumber252.x,1000);
+            player.reset(coinNumber252.x,coinNumber252.y);
+            coinNumber252.reset(8600,1000);
             lathos +=1;
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2896,25 +3704,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum3 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('27');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber27.kill();
             lathos +=1;
+            player.reset(coinNumber27.x,coinNumber27.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -2952,14 +3765,21 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('10');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber10.kill();
             lathos +=1;
-                player.reset(100,560);
+            player.reset(coinNumber10.x,coinNumber10.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -2981,14 +3801,21 @@ Game.Level1.prototype = {
             if(x==10){
                 sum10 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('10');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber102.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber102.x,coinNumber102.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -3007,14 +3834,21 @@ Game.Level1.prototype = {
             if(x==5){
                 sum5 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('15');
          //   life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber15.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber15.x,coinNumber15.y);
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3048,25 +3882,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('4');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber4.kill();
             lathos +=1;
+            player.reset(coinNumber4.x,coinNumber4.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -3081,25 +3920,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('14');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber14.kill();
             lathos +=1;
+            player.reset(coinNumber14.x,coinNumber14.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -3114,25 +3958,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('35');
        //     life = life - 1;
        //     lifeText.text = life;
             audioStomp.play();
             coinNumber352.kill();
             lathos +=1;
+            player.reset(coinNumber352.x,coinNumber352.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -3151,14 +4000,21 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('45');
         //    life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber452.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber452.x,coinNumber452.y);
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3178,25 +4034,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum2 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('8');
        //     life = life - 1;
         //    lifeText.text = life;
             audioStomp.play();
             coinNumber8.kill();
             lathos +=1;
+            player.reset(coinNumber8.x,coinNumber8.y);
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==5){
-                player.reset(100,560);
             lathos5.visible = true;
             l5=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -3271,14 +4132,21 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('24');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber24.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber24.x,coinNumber24.y);
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -3302,14 +4170,21 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('18');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber18.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber18.x,coinNumber18.y);
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -3329,25 +4204,30 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             sum5 +=1;
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('25');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber25.kill();
             lathos +=1;
+            player.reset(coinNumber25.x,coinNumber25.y);
             if(x==2){
-                player.reset(100,560);
             lathos2.visible = true;
             l2=1;
             }
             if(x==3){
-                player.reset(100,560);
             lathos3.visible = true;
             l3=1;
             }
             if(x==10){
-                player.reset(100,560);
                 lathos10.visible = true;
                 l10=1;
             }
@@ -3366,14 +4246,21 @@ Game.Level1.prototype = {
             if(x==3){
                 sum3 +=1;
             }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
         }
         else{
+            apotelesmata.push('36');
          //   life = life - 1;
          //   lifeText.text = life;
             audioStomp.play();
             coinNumber36.kill();
             lathos +=1;
-                player.reset(100,560);
+                player.reset(coinNumber36.x,coinNumber36.y);
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -3398,6 +4285,10 @@ Game.Level1.prototype = {
         }
         return a,b;
     },
+    
+   
+       
+   
     
    
     

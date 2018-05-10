@@ -141,6 +141,28 @@ Game.Preloader.prototype = {
         
         this.load.image('coin100','assets/coin100.png');
         
+        this.load.image('coin110','assets/coin110.png');
+        
+        this.load.image('coin120','assets/coin120.png');
+        
+        this.load.image('coin130','assets/coin130.png');
+        
+        this.load.image('coin140','assets/coin140.png');
+        
+        this.load.image('coin150','assets/coin150.png');
+        
+        this.load.image('coin160','assets/coin160.png');
+        
+        this.load.image('coin170','assets/coin170.png');
+        
+        this.load.image('coin180','assets/coin180.png');
+        
+        this.load.image('coin190','assets/coin190.png');
+        
+        this.load.image('coin200','assets/coin200.png');
+        
+        this.load.image('heartbonus','assets/heartbonus.png');
+        
         this.load.image('wall','assets/wall.jpeg');
         
         this.load.image('luckybox','assets/luckybox.png');
@@ -227,9 +249,9 @@ Game.Preloader.prototype = {
         
         this.load.image('brick','assets/brick.jpg');
         
-        this.load.spritesheet('luigi','assets/luigi.png',28,35.5);
+        this.load.spritesheet('luigi','assets/luigi2.png',36.39,46.14);
         
-        this.load.spritesheet('super','assets/super.png',27,34);
+        this.load.spritesheet('super','assets/super3.png',35.0909,44);
         
         this.load.spritesheet('flame','assets/flame.png',35,60);
         
