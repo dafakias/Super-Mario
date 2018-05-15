@@ -29,6 +29,8 @@ Game.Preloader.prototype = {
         
         this.load.image('button','assets/button.png');
         
+        this.load.image('skipButton','assets/skipButton.png');
+        
         this.load.image('bullet','assets/bullet.png');
         
         this.load.image('bullet2','assets/bullet2.png');
@@ -160,6 +162,8 @@ Game.Preloader.prototype = {
         this.load.image('coin190','assets/coin190.png');
         
         this.load.image('coin200','assets/coin200.png');
+        
+        this.load.image('coin300','assets/coin300.png');
         
         this.load.image('heartbonus','assets/heartbonus.png');
         

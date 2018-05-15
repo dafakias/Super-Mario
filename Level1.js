@@ -117,6 +117,7 @@ var coinNumber170;
 var coinNumber180;
 var coinNumber190;
 var coinNumber200;
+var coinNumber300;
 var div2;
 var div3;
 var div5;
@@ -192,6 +193,11 @@ var apotelesmata = []
 var heartbonus;
 var hs = 0;
 var ok=0;
+var wk=0;
+var wk2=0;
+var wk3=0;
+var wk5=0;
+var wk10=0;
 
 Game.Level1.prototype = {
     
@@ -852,11 +858,16 @@ Game.Level1.prototype = {
          coinNumber200.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber200);
         coinNumber200.body.allowGravity = false;
+        
+         coinNumber300 = this.game.add.sprite(7410,480,'coin300');
+        coinNumber300.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(coinNumber300);
+        coinNumber300.body.allowGravity = false;
+        coinNumber300.visible = false;
 
         coinNumber36.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber36);
         coinNumber36.body.allowGravity = false;
-        
         coinNumber50.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber50);
         coinNumber50.body.allowGravity = false;
@@ -1274,74 +1285,76 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,coinNumber180,this.killCoin180);
         this.physics.arcade.collide(player,coinNumber190,this.killCoin190);
         this.physics.arcade.collide(player,coinNumber200,this.killCoin200);
+        this.physics.arcade.collide(player,coinNumber300,this.killCoin300);
         
         
-         this.physics.arcade.collide(weapon.bullets,coinNumber36,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber50,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber10,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber9,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber4,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber362,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber452,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber25,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber102,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber15,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber27,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber8,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber12,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber24,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber352,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber18,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber252,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber92,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber20,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber30,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber35,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber40,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber45,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber21,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber272,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber6,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber14,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber22,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber28,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber33,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber39,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber48,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber51,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber55,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber56,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber58,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber60,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber62,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber63,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber64,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber65,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber69,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber70,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber75,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber76,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber80,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber81,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber84,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber85,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber87,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber90,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber93,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber95,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber98,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber99,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber100,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber110,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber120,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber130,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber140,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber150,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber160,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber170,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber180,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber190,this.weaponCoin);
-        this.physics.arcade.collide(weapon.bullets,coinNumber200,this.weaponCoin);
+         this.physics.arcade.collide(weapon.bullets,coinNumber36,this.weaponCoin36);
+        this.physics.arcade.collide(weapon.bullets,coinNumber50,this.weaponCoin50);
+        this.physics.arcade.collide(weapon.bullets,coinNumber10,this.weaponCoin10);
+        this.physics.arcade.collide(weapon.bullets,coinNumber9,this.weaponCoin9);
+        this.physics.arcade.collide(weapon.bullets,coinNumber4,this.weaponCoin4);
+        this.physics.arcade.collide(weapon.bullets,coinNumber362,this.weaponCoin362);
+        this.physics.arcade.collide(weapon.bullets,coinNumber452,this.weaponCoin452);
+        this.physics.arcade.collide(weapon.bullets,coinNumber25,this.weaponCoin25);
+        this.physics.arcade.collide(weapon.bullets,coinNumber102,this.weaponCoin102);
+        this.physics.arcade.collide(weapon.bullets,coinNumber15,this.weaponCoin15);
+        this.physics.arcade.collide(weapon.bullets,coinNumber27,this.weaponCoin27);
+        this.physics.arcade.collide(weapon.bullets,coinNumber8,this.weaponCoin8);
+        this.physics.arcade.collide(weapon.bullets,coinNumber12,this.weaponCoin12);
+        this.physics.arcade.collide(weapon.bullets,coinNumber24,this.weaponCoin24);
+        this.physics.arcade.collide(weapon.bullets,coinNumber352,this.weaponCoin352);
+        this.physics.arcade.collide(weapon.bullets,coinNumber18,this.weaponCoin18);
+        this.physics.arcade.collide(weapon.bullets,coinNumber252,this.weaponCoin252);
+        this.physics.arcade.collide(weapon.bullets,coinNumber92,this.weaponCoin92);
+        this.physics.arcade.collide(weapon.bullets,coinNumber20,this.weaponCoin20);
+        this.physics.arcade.collide(weapon.bullets,coinNumber30,this.weaponCoin30);
+        this.physics.arcade.collide(weapon.bullets,coinNumber35,this.weaponCoin35);
+        this.physics.arcade.collide(weapon.bullets,coinNumber40,this.weaponCoin40);
+        this.physics.arcade.collide(weapon.bullets,coinNumber45,this.weaponCoin45);
+        this.physics.arcade.collide(weapon.bullets,coinNumber21,this.weaponCoin21);
+        this.physics.arcade.collide(weapon.bullets,coinNumber272,this.weaponCoin272);
+        this.physics.arcade.collide(weapon.bullets,coinNumber6,this.weaponCoin6);
+        this.physics.arcade.collide(weapon.bullets,coinNumber14,this.weaponCoin14);
+        this.physics.arcade.collide(weapon.bullets,coinNumber22,this.weaponCoin22);
+        this.physics.arcade.collide(weapon.bullets,coinNumber28,this.weaponCoin28);
+        this.physics.arcade.collide(weapon.bullets,coinNumber33,this.weaponCoin33);
+        this.physics.arcade.collide(weapon.bullets,coinNumber39,this.weaponCoin39);
+        this.physics.arcade.collide(weapon.bullets,coinNumber48,this.weaponCoin48);
+        this.physics.arcade.collide(weapon.bullets,coinNumber51,this.weaponCoin51);
+        this.physics.arcade.collide(weapon.bullets,coinNumber55,this.weaponCoin55);
+        this.physics.arcade.collide(weapon.bullets,coinNumber56,this.weaponCoin56);
+        this.physics.arcade.collide(weapon.bullets,coinNumber58,this.weaponCoin58);
+        this.physics.arcade.collide(weapon.bullets,coinNumber60,this.weaponCoin60);
+        this.physics.arcade.collide(weapon.bullets,coinNumber62,this.weaponCoin62);
+        this.physics.arcade.collide(weapon.bullets,coinNumber63,this.weaponCoin63);
+        this.physics.arcade.collide(weapon.bullets,coinNumber64,this.weaponCoin64);
+        this.physics.arcade.collide(weapon.bullets,coinNumber65,this.weaponCoin65);
+        this.physics.arcade.collide(weapon.bullets,coinNumber69,this.weaponCoin69);
+        this.physics.arcade.collide(weapon.bullets,coinNumber70,this.weaponCoin70);
+        this.physics.arcade.collide(weapon.bullets,coinNumber75,this.weaponCoin75);
+        this.physics.arcade.collide(weapon.bullets,coinNumber76,this.weaponCoin76);
+        this.physics.arcade.collide(weapon.bullets,coinNumber80,this.weaponCoin80);
+        this.physics.arcade.collide(weapon.bullets,coinNumber81,this.weaponCoin81);
+        this.physics.arcade.collide(weapon.bullets,coinNumber84,this.weaponCoin84);
+        this.physics.arcade.collide(weapon.bullets,coinNumber85,this.weaponCoin85);
+        this.physics.arcade.collide(weapon.bullets,coinNumber87,this.weaponCoin87);
+        this.physics.arcade.collide(weapon.bullets,coinNumber90,this.weaponCoin90);
+        this.physics.arcade.collide(weapon.bullets,coinNumber93,this.weaponCoin93);
+        this.physics.arcade.collide(weapon.bullets,coinNumber95,this.weaponCoin95);
+        this.physics.arcade.collide(weapon.bullets,coinNumber98,this.weaponCoin98);
+        this.physics.arcade.collide(weapon.bullets,coinNumber99,this.weaponCoin99);
+        this.physics.arcade.collide(weapon.bullets,coinNumber100,this.weaponCoin100);
+        this.physics.arcade.collide(weapon.bullets,coinNumber110,this.weaponCoin110);
+        this.physics.arcade.collide(weapon.bullets,coinNumber120,this.weaponCoin120);
+        this.physics.arcade.collide(weapon.bullets,coinNumber130,this.weaponCoin130);
+        this.physics.arcade.collide(weapon.bullets,coinNumber140,this.weaponCoin140);
+        this.physics.arcade.collide(weapon.bullets,coinNumber150,this.weaponCoin150);
+        this.physics.arcade.collide(weapon.bullets,coinNumber160,this.weaponCoin160);
+        this.physics.arcade.collide(weapon.bullets,coinNumber170,this.weaponCoin170);
+        this.physics.arcade.collide(weapon.bullets,coinNumber180,this.weaponCoin180);
+        this.physics.arcade.collide(weapon.bullets,coinNumber190,this.weaponCoin190);
+        this.physics.arcade.collide(weapon.bullets,coinNumber200,this.weaponCoin200);
+        this.physics.arcade.collide(weapon.bullets,coinNumber300,this.weaponCoin300);
         
         this.physics.arcade.collide(player,flag,this.killFlag);
          this.physics.arcade.collide(player,key,this.killFlag);
@@ -1526,11 +1539,640 @@ Game.Level1.prototype = {
        // this.sound.play('coin');
             //}
         //}
-        
+        if(wk==5){
+            coinNumber300.visible = true;
+        }
         
         
     },    
     
+    weaponCoin36:function(coinNumber36){
+        coinNumber36.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin362:function(coinNumber362){
+        coinNumber362.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin10:function(coinNumber10){
+        coinNumber10.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+        }
+    },
+     weaponCoin50:function(coinNumber50){
+        coinNumber50.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+        }
+    },
+     weaponCoin9:function(coinNumber9){
+        coinNumber9.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+     weaponCoin4:function(coinNumber4){
+        coinNumber4.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin452:function(coinNumber452){
+        coinNumber452.kill();
+        if(x==2 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin25:function(coinNumber25){
+        coinNumber25.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+        }
+    },
+    weaponCoin102:function(coinNumber102){
+        coinNumber102.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+        }
+    },
+    weaponCoin15:function(coinNumber15){
+        coinNumber15.kill();
+        if(x==2 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin27:function(coinNumber27){
+        coinNumber27.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin8:function(coinNumber8){
+        coinNumber8.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==3){
+                wk3=1;
+            }
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin24:function(coinNumber24){
+        coinNumber24.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin12:function(coinNumber12){
+        coinNumber12.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin92:function(coinNumber92){
+        coinNumber92.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+            if(wk==5 && x==2){
+                wk2=1;
+            }
+            if(wk==5 && x==5){
+                wk5=1;
+            }
+            if(wk==5 && x==10){
+                wk10=1;
+            }
+        }
+    },
+    weaponCoin352:function(coinNumber352){
+        coinNumber352.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin18:function(coinNumber18){
+        coinNumber18.kill();
+        if(x==3 || x==2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin252:function(coinNumber252){
+        coinNumber252.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin20:function(coinNumber20){
+        coinNumber20.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin30:function(coinNumber30){
+        coinNumber30.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin40:function(coinNumber40){
+        coinNumber40.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin35:function(coinNumber35){
+        coinNumber35.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin45:function(coinNumber45){
+        coinNumber45.kill();
+        if(x==2 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin21:function(coinNumber21){
+        coinNumber21.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin272:function(coinNumber272){
+        coinNumber272.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin6:function(coinNumber6){
+        coinNumber6.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin14:function(coinNumber14){
+        coinNumber14.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin22:function(coinNumber22){
+        coinNumber22.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin28:function(coinNumber28){
+        coinNumber28.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin33:function(coinNumber33){
+        coinNumber33.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin39:function(coinNumber39){
+        coinNumber39.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin48:function(coinNumber48){
+        coinNumber48.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin51:function(coinNumber51){
+        coinNumber51.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin55:function(coinNumber55){
+        coinNumber55.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin56:function(coinNumber56){
+        coinNumber56.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin58:function(coinNumber58){
+        coinNumber58.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin60:function(coinNumber60){
+        coinNumber60.kill();
+        if(x==5 || x==10 || x==3 || x==2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin62:function(coinNumber62){
+        coinNumber62.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin63:function(coinNumber63){
+        coinNumber63.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin64:function(coinNumber64){
+        coinNumber64.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin65:function(coinNumber65){
+        coinNumber65.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin69:function(coinNumber69){
+        coinNumber69.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin70:function(coinNumber70){
+        coinNumber70.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin75:function(coinNumber75){
+        coinNumber75.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin76:function(coinNumber76){
+        coinNumber76.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin80:function(coinNumber80){
+        coinNumber80.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin81:function(coinNumber81){
+        coinNumber81.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin84:function(coinNumber84){
+        coinNumber84.kill();
+        if(x==5 || x==10){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin85:function(coinNumber85){
+        coinNumber85.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin87:function(coinNumber87){
+        coinNumber87.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin90:function(coinNumber90){
+        coinNumber90.kill();
+                life +=1;
+                lifeText.text = life;
+            wk +=1;
+           },
+     weaponCoin93:function(coinNumber93){
+        coinNumber93.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin95:function(coinNumber95){
+        coinNumber95.kill();
+        if(x!=5){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin98:function(coinNumber98){
+        coinNumber98.kill();
+        if(x!=2){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin99:function(coinNumber99){
+        coinNumber99.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin100:function(coinNumber100){
+        coinNumber100.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin110:function(coinNumber110){
+        coinNumber110.kill();
+        if(x!=3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin120:function(coinNumber120){
+        coinNumber120.kill();
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           },
+     weaponCoin130:function(coinNumber130){
+        coinNumber130.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin140:function(coinNumber140){
+        coinNumber140.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin150:function(coinNumber150){
+        coinNumber150.kill();
+                 life +=1;
+                lifeText.text = life;
+            wk +=1;
+    },
+     weaponCoin160:function(coinNumber160){
+        coinNumber160.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin170:function(coinNumber170){
+        coinNumber170.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin180:function(coinNumber180){
+        coinNumber180.kill();
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+    },
+     weaponCoin190:function(coinNumber190){
+        coinNumber190.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+     weaponCoin200:function(coinNumber200){
+        coinNumber200.kill();
+        if(x==3){
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           }
+    },
+    weaponCoin300:function(coinNumber300){
+        coinNumber300.kill();
+        
+             life +=1;
+                lifeText.text = life;
+            wk +=1;
+           
+    },
     teleport:function(player,teleport){
         if(player.body.touching.down){
             player.reset(6200,560);
@@ -1570,7 +2212,30 @@ Game.Level1.prototype = {
     },
     
     resetPlayer2:function(){
-        player.reset(100,560);
+        if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            }
         life = life - 1;
         lifeText.text = life;
         lose.play();
@@ -1583,7 +2248,30 @@ Game.Level1.prototype = {
          
         }
         else{
-        player.reset(100,560);
+            if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            }
         life = life -1;
          lifeText.text = life;
         lose.play();
@@ -1597,7 +2285,30 @@ Game.Level1.prototype = {
          
         }
         else{
-        player.reset(100,560);
+       if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            }
         life = life -1;
          lifeText.text = life;
         lose.play();
@@ -1611,7 +2322,30 @@ Game.Level1.prototype = {
          
         }
         else{
-        player.reset(100,560);
+        if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            };
         life = life -1;
          lifeText.text = life;
         lose.play();
@@ -1663,13 +2397,60 @@ Game.Level1.prototype = {
     
     
     flame:function(player,flame){
-        player.reset(100,560);
+        if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            }
         life = life -1;
         lifeText.text = life;
         lose.play();
     },
     
     killP:function(){
+        if(player.x<=1000){
+                 player.reset(100,560);
+            }
+            if(player.x>1000 && player.x<=2050){
+                player.reset(1020,560);
+            }
+            if(player.x>2050 && player.x<=3000){
+                player.reset(2050,560);
+            }
+            if(player.x>3000 && player.x<=4300){
+                player.reset(3000,560);
+            }
+            if(player.x>4300 && player.x<=4900){
+                player.reset(4100,560);
+            }
+            if(player.x>4900 && player.x<=5800){
+                player.reset(4900,560);
+            }
+            if(player.x>5800 && player.x<=6400){
+                player.reset(5800,300);
+            }
+            if(player.x>6400){
+                player.reset(6400,150);
+            }
         life = life - 1;
          lifeText.text = life;
         
@@ -1716,7 +2497,7 @@ Game.Level1.prototype = {
     
     weaponCoin:function(c){
         c.kill();
-    },
+        },
   
      killCoin6:function(player,coinNumber6){
        
@@ -3389,6 +4170,42 @@ Game.Level1.prototype = {
             }
         }
     },
+     killCoin300:function(player,coinNumber300){
+       
+        if(x==2 || x==5 || x==10 || x==3){
+            coinNumber300.reset(coinNumber300.x,25);
+        score += 100;
+            scoreText.text = 'Score: ' + score;
+        audioCoin.play();
+            if(x==2){
+            sum2 +=1;
+            }
+            if(x==5){
+                sum5 +=1;
+            }
+            if(x==10){
+                sum10 +=1;
+            }
+            if(x==3){
+                sum3 +=1;
+            }
+            if(sum2==5 || sum3==5 || sum5==5 || sum10==5){
+                life +=1;
+                lifeText.text = life;
+                heartbonus.visible = true;
+                hs=1;
+            }
+        }
+        else{
+            apotelesmata.push('150');
+          //  life = life - 1;
+          //  lifeText.text = life;
+            audioStomp.play();
+            coinNumber300.kill();
+            lathos +=1;
+                player.reset(coinNumber300.x,coinNumber300.y);
+        }
+    },
     
     killCoin272:function(player,coinNumber272){
        
@@ -4286,7 +5103,7 @@ Game.Level1.prototype = {
         return a,b;
     },
     
-   
+  
        
    
     
