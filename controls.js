@@ -7,17 +7,17 @@ var controlsScreen;
 
 Game.controls.prototype = {
     create:function(game){
+        this.stage.backgroundColor = "#000000";
+         controlsScreen = game.add.sprite(650,500,'controlsScreen');
+        controlsScreen.anchor.setTo(0.5,0.5);
         
-        
-        
-        this.createButton(game,"Play",game.world.centerX,game.world.centerY - 370, 300, 100, function(){
+        this.createButton(game,"Play",650,50, 300, 100, function(){
             this.state.start('afigisi');
         });
         
         
         
-        controlsScreen = game.add.sprite(game.world.centerX,game.world.centerY + 50,'controlsScreen');
-        controlsScreen.anchor.setTo(0.5,0.5);
+       
   
     },
     

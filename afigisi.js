@@ -15,6 +15,7 @@ var afigisiScreen9;
 var afigisiScreen10;
 var afigisiScreen11;
 var n=0;
+var ke=1;
 var pl;
 var music;
 var mybutton;
@@ -28,7 +29,7 @@ Game.afigisi.prototype = {
      
         
          //this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen');
+             afigisiScreen = game.add.sprite(750,420,'afigisiScreen');
              afigisiScreen.anchor.setTo(0.5,0.5);
         
         
@@ -50,7 +51,7 @@ Game.afigisi.prototype = {
          if(n==0){
              
              this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen2 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen2');
+             afigisiScreen2 = game.add.sprite(750,420,'afigisiScreen2');
              afigisiScreen2.anchor.setTo(0.5,0.5);
                  if(n!=8){
                  n=10;
@@ -60,7 +61,7 @@ Game.afigisi.prototype = {
         if(n==10){
        
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen5 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen5');
+             afigisiScreen5 = game.add.sprite(750,420,'afigisiScreen5');
              afigisiScreen5.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=11;
@@ -69,7 +70,7 @@ Game.afigisi.prototype = {
         }
        if(n==11){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen10 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen10');
+             afigisiScreen10 = game.add.sprite(750,420,'afigisiScreen10');
              afigisiScreen10.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=12;
@@ -78,7 +79,7 @@ Game.afigisi.prototype = {
        }
         if(n==12){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen6 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen6');
+             afigisiScreen6 = game.add.sprite(750,420,'afigisiScreen6');
              afigisiScreen6.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=13;
@@ -87,7 +88,7 @@ Game.afigisi.prototype = {
         }
         if(n==13){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen9 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen9');
+             afigisiScreen9 = game.add.sprite(750,420,'afigisiScreen9');
              afigisiScreen9.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=14;
@@ -96,7 +97,7 @@ Game.afigisi.prototype = {
         }
         if(n==14){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen11 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen11');
+             afigisiScreen11 = game.add.sprite(750,420,'afigisiScreen11');
              afigisiScreen11.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=15;
@@ -105,7 +106,7 @@ Game.afigisi.prototype = {
         }
         if(n==15){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen7 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen7');
+             afigisiScreen7 = game.add.sprite(750,420,'afigisiScreen7');
              afigisiScreen7.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=16;
@@ -114,7 +115,7 @@ Game.afigisi.prototype = {
         }
         if(n==16){
          this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen3 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen3');
+             afigisiScreen3 = game.add.sprite(750,420,'afigisiScreen3');
              afigisiScreen3.anchor.setTo(0.5,0.5);
              if(n!=8){
                  n=17;
@@ -123,7 +124,7 @@ Game.afigisi.prototype = {
         }
         if(n==17){
         this.time.events.add(Phaser.Timer.SECOND * 4,function(){
-           afigisiScreen8 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen8');
+           afigisiScreen8 = game.add.sprite(750,420,'afigisiScreen8');
              afigisiScreen8.anchor.setTo(0.5,0.5);
         n=3;
         });
@@ -131,28 +132,28 @@ Game.afigisi.prototype = {
            // this.createButton(game,"Skip Intro",game.world.centerX,game.world.centerY + 100, 300, 100, function(){
              //n=8;
         //});
-        mybutton = game.add.button(game.world.centerX - 300,game.world.centerY + 100 , 'skipButton', this.actionOnClick, this, 2, 1, 0);
+        mybutton = game.add.button(350,520 , 'skipButton', this.actionOnClick, this, 2, 1, 0);
         if(n==8){
            
               this.time.events.add(Phaser.Timer.SECOND * 4,function(){
-           afigisiScreen8 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen8');
+           afigisiScreen8 = game.add.sprite(750,420,'afigisiScreen8');
              afigisiScreen8.anchor.setTo(0.5,0.5);
         n=3;
         });
         }
         
         if(n==4){
-            afigisiScreen4 = game.add.sprite(game.world.centerX +100,game.world.centerY + 25,'afigisiScreen4');
+            afigisiScreen4 = game.add.sprite(750,420,'afigisiScreen4');
              afigisiScreen4.anchor.setTo(0.5,0.5);
         n=2;
         }
        if(n==2){
-            this.createButton2(game,"Mario",game.world.centerX-500,game.world.centerY - 230, 268, 338, function(){
+            this.createButton2(game,"Mario",140,170, 268, 338, function(){
             this.state.start('Level1');
                 pl = 1;
                });
            
-           this.createButton3(game,"Luigi",game.world.centerX-100,game.world.centerY - 230, 268, 338, function(){
+           this.createButton3(game,"Luigi",540,170, 268, 338, function(){
             this.state.start('Level1');
                pl = 2;
         });
@@ -163,22 +164,22 @@ Game.afigisi.prototype = {
     
     
     if(n==3){
-         this.createButton(game,"2",game.world.centerX+400,game.world.centerY - 300, 300, 100, function(){
+         this.createButton(game,"2",1050,100, 300, 100, function(){
             x=2;
              n=4;
         });
         
-         this.createButton(game,"3",game.world.centerX+400,game.world.centerY - 150, 300, 100, function(){
+         this.createButton(game,"3",1050,250, 300, 100, function(){
             x=3;
              n=4;
         });
         
-         this.createButton(game,"5",game.world.centerX+400,game.world.centerY , 300, 100, function(){
+         this.createButton(game,"5",1050,400 , 300, 100, function(){
             x=5;
              n=4;
         });
         
-         this.createButton(game,"10",game.world.centerX+400,game.world.centerY + 150 , 300, 100, function(){
+         this.createButton(game,"10",1050,550 , 300, 100, function(){
             x=10;
              n=4;
         });

@@ -175,10 +175,10 @@ var thesi10x;
 var thesi10y;
 var weapon;
 var c;
-var s2 = 0;
-var s3 = 1;
-var s5 = 1;
-var s10 = 0;
+var s2 = 1;
+var s3 = 2;
+var s5 = 2;
+var s10 = 1;
 var hint;
 var hint2;
 var hint3;
@@ -477,9 +477,9 @@ Game.Level1.prototype = {
         thesi3y = [610,610,330,610,290,410,330,350,200,610,900,900,900,900,900,900]
         
         thesi5x = [7400,1300,1600,2350,3450,7400,5100,5560,6100,6350,7400]
-        thesi5y = [6900,420,420,610,100,900,610,160,200,610,900]
+        thesi5y = [900,420,420,610,100,900,610,160,200,610,900]
         
-        thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400,7400,7400,7400,7400,1470,3870,5680,330,1480,7400]
+        thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400,7400,7400,7400,7400,1470,3870,7150,330,1480,7400]
         thesi10y = [480,420,610,230,410,100,280,160,610,350,900,900,900,900,900,420,100,350,420,610,900]
        // thesix = [
            // 310,380,580,800,1180,1300,1470,1480,1600,1680,1750,1950,2150,2350,2450,2750,2790,3450,3600,3650,3800,3870,4320,4620,4900,4990,5000,5250,5320,5480,5500,6100,5520,5680,5840,6200,6350,6650,6840,7300
@@ -529,7 +529,7 @@ Game.Level1.prototype = {
             s3 +=1;
         }
         coinNumber160 = this.game.add.sprite(thesi10x[16],thesi10y[16],'coin160');
-        if(thesi10y[2]!=900){
+        if(thesi10y[16]!=900){
             s2 +=1;
             s5 +=1;
             s10 +=1;
@@ -662,10 +662,11 @@ Game.Level1.prototype = {
         }
             coinNumber45 = this.game.add.sprite(thesi5x[5],thesi5y[5],'coin45');
         if(thesi5y[5]!=900){
-            s10 +=1;
+            s5 +=1;
             s3 +=1;
         }
             coinNumber92 = this.game.add.sprite(2050,300,'coin9');
+        
             coinNumber21 = this.game.add.sprite(thesi3x[6],thesi3y[6],'coin21');
         if(thesi3y[6]!=900){
             s3 +=1;
@@ -730,6 +731,7 @@ Game.Level1.prototype = {
             coinNumber28 = this.game.add.sprite(thesi2x[13],thesi2y[13],'coin28');
         if(thesi2y[13]!=900){
             s3 +=1;
+            s2 +=1;
         }
             coinNumber39 = this.game.add.sprite(thesi3x[11],thesi3y[11],'coin39');
         if(thesi3y[11]!=900){
@@ -816,7 +818,7 @@ Game.Level1.prototype = {
         }
             coinNumber99 = this.game.add.sprite(thesi3x[5],thesi3y[5],'coin99');
         if(thesi3y[5]!=900){
-            s5 +=1;
+            s3 +=1;
         }
         
          coinNumber110.anchor.setTo(0.5,0.5);
@@ -1540,11 +1542,13 @@ Game.Level1.prototype = {
             //}
         //}
         if(wk==5){
-            coinNumber300.visible = true;
-        }
+            coinNumber300.visible=true;
+           }
         
         
-    },    
+    },
+    
+   
     
     weaponCoin36:function(coinNumber36){
         coinNumber36.kill();
@@ -4178,7 +4182,7 @@ Game.Level1.prototype = {
             scoreText.text = 'Score: ' + score;
         audioCoin.play();
             if(x==2){
-            sum2 +=1;
+                sum2 +=1;
             }
             if(x==5){
                 sum5 +=1;

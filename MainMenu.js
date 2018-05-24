@@ -8,19 +8,21 @@ var backround2;
 
 Game.MainMenu.prototype = {
     create:function(game){
-        
+     
         backround2 = this.add.tileSprite(0,0,1300,800,'backround2');
+         titlescreen = game.add.sprite(650,200,'titlescreen');
+        titlescreen.anchor.setTo(0.5,0.5);
+       
         
-        this.createButton(game,"Play",game.world.centerX,game.world.centerY + 32, 300, 100, function(){
+        this.createButton(game,"Play",650,450, 300, 100, function(){
             this.state.start('afigisi');
         });
         
-         this.createButton(game,"Controls",game.world.centerX,game.world.centerY + 192, 300, 100, function(){
+         this.createButton(game,"Controls",650,600, 300, 100, function(){
             this.state.start('controls');
         });
         
-        titlescreen = game.add.sprite(game.world.centerX,game.world.centerY - 192,'titlescreen');
-        titlescreen.anchor.setTo(0.5,0.5);
+       
   
     },
     

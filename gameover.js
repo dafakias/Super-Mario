@@ -56,8 +56,8 @@ Game.gameover.prototype = {
     
     update:function(game){
         if(i2==1){
-            this.state.start('Level1');
-             music.play();
+            this.state.start('MainMenu');
+             //music.play();
             sum2=0;
             sum3=0;
             sum5=0;
@@ -68,7 +68,9 @@ Game.gameover.prototype = {
             s3=0;
             s5=0;
             s10=0;
+            wk =0;
             apotelesmata = []
+            n=17;
         }
         
         if(x==2 && lathos!==1){
