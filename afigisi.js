@@ -29,8 +29,7 @@ Game.afigisi.prototype = {
      
         
          //this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen = game.add.sprite(750,420,'afigisiScreen');
-             afigisiScreen.anchor.setTo(0.5,0.5);
+             
         
         
             
@@ -46,12 +45,20 @@ Game.afigisi.prototype = {
     
     update:function(game){
       
-   
+      if(n==0){
+          //this.time.events.add(Phaser.Timer.SECOND * 4, function(){
+          afigisiScreen = game.add.sprite(750,420,'afigisiScreen');
+             afigisiScreen.anchor.setTo(0.5,0.5);
+               if(n!=8){
+                 n=20;
+                 }
+        //}); 
+      }
         
-         if(n==0){
+         if(n==20){
              
              this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             afigisiScreen2 = game.add.sprite(750,420,'afigisiScreen2');
+               afigisiScreen2 = game.add.sprite(750,420,'afigisiScreen2');
              afigisiScreen2.anchor.setTo(0.5,0.5);
                  if(n!=8){
                  n=10;
@@ -133,13 +140,14 @@ Game.afigisi.prototype = {
              //n=8;
         //});
         mybutton = game.add.button(350,520 , 'skipButton', this.actionOnClick, this, 2, 1, 0);
+        
         if(n==8){
            
-              this.time.events.add(Phaser.Timer.SECOND * 4,function(){
+             // this.time.events.add(Phaser.Timer.SECOND * 4,function(){
            afigisiScreen8 = game.add.sprite(750,420,'afigisiScreen8');
              afigisiScreen8.anchor.setTo(0.5,0.5);
         n=3;
-        });
+        //});
         }
         
         if(n==4){
@@ -221,9 +229,13 @@ Game.afigisi.prototype = {
         
         txt.anchor.setTo(0.5,0.5);
     },
-    actionOnClick:function(){
-        n=8;
+    actionOnClick:function(game){
+        music.stop();
+        this.state.start('afigisi');
         mybutton.visible = false;
+        
+        n=8;
+      
     }
     
    
