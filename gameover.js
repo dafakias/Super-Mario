@@ -57,7 +57,7 @@ Game.gameover.prototype = {
     update:function(game){
         if(i2==1){
             this.state.start('MainMenu');
-             //music.play();
+             life = 3;
             sum2=0;
             sum3=0;
             sum5=0;

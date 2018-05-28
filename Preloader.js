@@ -241,6 +241,14 @@ Game.Preloader.prototype = {
         
         this.load.image('afigisiScreen11','assets/afigisiScreen11.png');
         
+        this.load.image('lossScreen2','assets/lossScreen2.png');
+        
+        this.load.image('lossScreen3','assets/lossScreen3.png');
+        
+        this.load.image('lossScreen5','assets/lossScreen5.png');
+        
+        this.load.image('lossScreen10','assets/lossScreen10.png');
+        
         this.load.image('luigiButton','assets/luigiButton2.png');
         
         this.load.image('marioButton','assets/marioButton2.png');

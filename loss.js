@@ -19,11 +19,23 @@ var titlescreen2;
 Game.loss.prototype = {
     create:function(game){
          music = this.add.audio('song');
-        
+       
+            
+        if(life==0){
         lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen');
-        
-         
-        
+        }
+        if(life!=0 && x==2){
+            lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen2');
+        }
+        if(life!=0 && x==3){
+            lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen3');
+        }
+        if(life!=0 && x==5){
+            lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen5');
+        } 
+        if(life!=0 && x==10){
+            lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen10');
+        }
          button = this.add.button(450,-30,'playagain',this.actionOnClick,this);
        if(x==2){
         sum2Text = game.add.text(15,200,'sum2=',{fontSize: '32px',fill : '#000'});
@@ -48,13 +60,14 @@ Game.loss.prototype = {
     },
     
     update:function(game){
+         
         if(i==1){
             this.state.start('MainMenu');
             sum2=0;
             sum3=0;
             sum5=0;
             sum10=0;
-            //music.play();
+            life = 3;
             i=0;
             lathos =0;
             s2=0;

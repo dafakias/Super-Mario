@@ -1420,7 +1420,7 @@ Game.Level1.prototype = {
         }    
             telos=0;
             score=0;
-            life=3;
+            //life=3;
             //sum2=0;
             //sum3=0;
             //sum5=0;
@@ -1430,7 +1430,7 @@ Game.Level1.prototype = {
             music.stop();
             lose.play();
             this.state.start('loss');
-            life=3;
+            //life=3;
             score=0;
             //sum2=0;
             //sum3=0;
