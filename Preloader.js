@@ -21,6 +21,8 @@ Game.Preloader.prototype = {
         this.load.tilemap('map','assets/FirstLevel.json',null,Phaser.Tilemap.TILED_JSON);
         this.load.image('tileset','assets/GoldBricks.png');
         
+        this.load.tilemap('map2','assets/lathosLevel.json',null,Phaser.Tilemap.TILED_JSON);
+        
         this.load.spritesheet('player','assets/player.png',24,26);
         
         this.load.image('bird','assets/bird.png'); 
@@ -298,6 +300,18 @@ Game.Preloader.prototype = {
         this.load.image('controlsScreen','assets/controlsScreen.png');
         
         this.load.image('heart','assets/heart.png');
+        
+        this.load.image('portal','assets/portal.png');
+        
+        this.load.image('epilogi2','assets/epilogi2.png');
+        
+        this.load.image('epilogi3','assets/epilogi3.png');
+        
+        this.load.image('epilogi5','assets/epilogi5.png');
+        
+        this.load.image('epilogi10','assets/epilogi10.png');
+        
+        this.load.image('mariodark','assets/mariodark.jpg');
         
         
     },

@@ -198,14 +198,35 @@ var wk2=0;
 var wk3=0;
 var wk5=0;
 var wk10=0;
+var lathosekkinisi = false;
+var epil2 = 0;
+var epil3 = 0;
+var epil5 = 0;
+var epil10 = 0;
+var portal;
+var arxi =0;
+var newx=0;
+var newy=0;
+var teleport3;
+var teleport4;
+var teleport5;
+var teleport6;
+var epilogi2;
+var epilogi3;
+var epilogi5;
+var epilogi10;
+var mariodark;
+var number;
+var numberText;
 
 Game.Level1.prototype = {
     
     create:function(game){
-       this.stage.backgroundColor = '#3A5963';
+       this.stage.backgroundColor = "#000000";
         
         backround = this.add.tileSprite(0,0,4000,800,'backround');
-        backround2 = this.add.tileSprite(3800,0,4000,800,'backround3');
+        backround2 = this.add.tileSprite(3800,0,4100,800,'backround3');
+        mariodark = this.add.tileSprite(8200,0,1400,800,'mariodark');
         div2 = this.add.sprite(500,100,'div2');
         div3 = this.add.sprite(500,100,'div3');
         div5 = this.add.sprite(500,100,'div5');
@@ -1164,7 +1185,60 @@ Game.Level1.prototype = {
         key.body.allowGravity = false;
         key.visible = false;
         
+        portal = this.game.add.sprite(8470,0,'portal');
+        this.physics.arcade.enable(portal);
+        portal.body.allowGravity = false;
+        portal.body.immovable = true;
         
+        teleport3 = this.game.add.sprite(8750,430,'teleport');
+        this.physics.arcade.enable(teleport3);
+        teleport3.body.allowGravity = false;
+        teleport3.body.immovable = true;
+        
+        teleport4 = this.game.add.sprite(8990,430,'teleport');
+        this.physics.arcade.enable(teleport4);
+        teleport4.body.allowGravity = false;
+        teleport4.body.immovable = true;
+        
+        teleport5 = this.game.add.sprite(9230,430,'teleport');
+        this.physics.arcade.enable(teleport5);
+        teleport5.body.allowGravity = false;
+        teleport5.body.immovable = true;
+        
+        teleport6 = this.game.add.sprite(9470,430,'teleport');
+        this.physics.arcade.enable(teleport6);
+        teleport6.body.allowGravity = false;
+        teleport6.body.immovable = true;
+        
+       if(x!=2){
+        epilogi2 = this.game.add.sprite(8800,400,'epilogi2');
+        epilogi2.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(epilogi2);
+        epilogi2.body.allowGravity = false;
+       }
+        
+        if(x!=3){
+        epilogi3 = this.game.add.sprite(9020,400,'epilogi3');
+        epilogi3.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(epilogi3);
+        epilogi3.body.allowGravity = false;
+        }
+        
+        if(x!=5){
+        epilogi5 = this.game.add.sprite(9260,400,'epilogi5');
+        epilogi5.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(epilogi5);
+        epilogi5.body.allowGravity = false;
+        }
+        
+        if(x!=10){
+        epilogi10 = this.game.add.sprite(9500,400,'epilogi10');
+        epilogi10.anchor.setTo(0.5,0.5);
+        this.physics.arcade.enable(epilogi10);
+        epilogi10.body.allowGravity = false;
+        }
+        
+         numberText = game.add.text(8600,0,'number=',{fontSize: '32px',fill : '#fff'});
         
         
          flag = this.game.add.sprite(7550,530,'flag');
@@ -1361,6 +1435,52 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,flag,this.killFlag);
          this.physics.arcade.collide(player,key,this.killFlag);
         
+        this.physics.arcade.collide(player,epilogi2,this.check2);
+        this.physics.arcade.collide(player,epilogi3,this.check3);
+        this.physics.arcade.collide(player,epilogi5,this.check5);
+        this.physics.arcade.collide(player,epilogi10,this.check10);
+        this.physics.arcade.collide(player,teleport3);
+        this.physics.arcade.collide(player,teleport4);
+        this.physics.arcade.collide(player,teleport5);
+        this.physics.arcade.collide(player,teleport6);
+        
+        if(arxi==1){
+            arxi=0;
+            epil2=0;
+            epil3=0;
+            epil5=0;
+            epil10=0;
+            this.physics.arcade.gravity.y = 1400;
+            lathosekkinisi = false;
+            player.reset(newx,newy);
+            if(x==10){
+            epilogi2.reset(8800,400);
+            epilogi3.reset(9020,400);
+            epilogi5.reset(9260,400);
+            }
+            if(x==2){
+            epilogi3.reset(9020,400);
+            epilogi5.reset(9260,400);
+            epilogi10.reset(9500,400);
+            }
+            if(x==3){
+            epilogi2.reset(8800,400);
+            epilogi5.reset(9260,400);
+            epilogi10.reset(9500,400);
+            }
+            if(x==5){
+            epilogi2.reset(8800,400);
+            epilogi3.reset(9020,400);
+            epilogi10.reset(9500,400);
+            }
+            //this.state.resume('Level1');
+            //this.state.start('Level1');
+        }
+        
+        if(lathosekkinisi==true){
+           this.physics.arcade.gravity.y = 1000;
+             numberText.text = 'Ο αριθμός ' + number + ' δεν διαιρείται με το ' + x + ' αλλά με \n κάποιον από τους παρακάτω. Προσπάθησε \n να τον βρεις για να προχωρήσεις ';
+        }
         
         
         if(l5==1){
@@ -2488,6 +2608,14 @@ Game.Level1.prototype = {
             coinNumber12.kill();
             lathos +=1;
             player.reset(coinNumber12.x,coinNumber12.y);
+            lathosekkinisi = true;
+            epil2 =1;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=12;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -2532,6 +2660,14 @@ Game.Level1.prototype = {
             coinNumber6.kill();
             lathos +=1;
             player.reset(coinNumber6.x,coinNumber6.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil3 = 1;
+            newx=player.x;
+            newy=player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=6;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -2618,6 +2754,14 @@ Game.Level1.prototype = {
             coinNumber50.kill();
             lathos +=1;
             player.reset(coinNumber50.x,coinNumber50.y);
+            lathosekkinisi = true;
+            epil2 =1;
+            epil5 = 1;
+            epil10 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
             lathos3.visible = true;
             l3=1;
         }
@@ -2682,6 +2826,13 @@ Game.Level1.prototype = {
             coinNumber21.kill();
             lathos +=1;
             player.reset(coinNumber21.x,coinNumber21.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=21;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -2720,6 +2871,13 @@ Game.Level1.prototype = {
             coinNumber22.kill();
             lathos +=1;
            player.reset(coinNumber22.x,coinNumber22.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=22;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -2758,6 +2916,13 @@ Game.Level1.prototype = {
             coinNumber28.kill();
             lathos +=1;
              player.reset(coinNumber28.x,coinNumber28.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=28;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -2796,6 +2961,13 @@ Game.Level1.prototype = {
             coinNumber33.kill();
             lathos +=1;
             player.reset(coinNumber33.x,coinNumber33.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=33;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -2834,6 +3006,13 @@ Game.Level1.prototype = {
             coinNumber39.kill();
             lathos +=1;
             player.reset(coinNumber39.x,coinNumber39.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=39;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -2877,6 +3056,14 @@ Game.Level1.prototype = {
             coinNumber48.kill();
             lathos +=1;
             player.reset(coinNumber48.x,coinNumber48.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=48;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -2910,7 +3097,14 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber51.kill();
             lathos +=1;
-            player.reset(coinNumber51.x,coinNumber51.y);            
+            player.reset(coinNumber51.x,coinNumber51.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=51;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -2948,7 +3142,14 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber55.kill();
             lathos +=1;
-            player.reset(coinNumber55.x,coinNumber55.y);            
+            player.reset(coinNumber55.x,coinNumber55.y);
+             lathosekkinisi = true;
+            epil5 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=55;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -2987,6 +3188,13 @@ Game.Level1.prototype = {
             coinNumber56.kill();
             lathos +=1;
             player.reset(coinNumber56.x,coinNumber56.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=56;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3025,6 +3233,13 @@ Game.Level1.prototype = {
             coinNumber58.kill();
             lathos +=1;
             player.reset(coinNumber58.x,coinNumber58.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=58;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3099,6 +3314,13 @@ Game.Level1.prototype = {
             coinNumber62.kill();
             lathos +=1;
             player.reset(coinNumber62.x,coinNumber62.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=62;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3137,6 +3359,13 @@ Game.Level1.prototype = {
             coinNumber63.kill();
             lathos +=1;
             player.reset(coinNumber63.x,coinNumber63.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=63;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3175,6 +3404,13 @@ Game.Level1.prototype = {
             coinNumber64.kill();
             lathos +=1;
             player.reset(coinNumber64.x,coinNumber64.y);
+             lathosekkinisi = true;
+            epil2 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=64;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3213,6 +3449,13 @@ Game.Level1.prototype = {
             coinNumber65.kill();
             lathos +=1;
             player.reset(coinNumber65.x,coinNumber65.y);
+             lathosekkinisi = true;
+            epil5 =1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=65;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3251,6 +3494,13 @@ Game.Level1.prototype = {
             coinNumber69.kill();
             lathos +=1;
             player.reset(coinNumber69.x,coinNumber69.y);
+             lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=69;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3296,8 +3546,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber70.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=70;
             if(x==3){
-                player.reset(coinNumber70.x,coinNumber70.y);
+               // player.reset(coinNumber70.x,coinNumber70.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -3332,6 +3591,14 @@ Game.Level1.prototype = {
             coinNumber75.kill();
             lathos +=1;
             player.reset(coinNumber75.x,coinNumber75.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil5=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=75;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3366,6 +3633,13 @@ Game.Level1.prototype = {
             coinNumber76.kill();
             lathos +=1;
             player.reset(coinNumber76.x,coinNumber76.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=76;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3411,8 +3685,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber80.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=80;
             if(x==3){
-                player.reset(coinNumber80.x,coinNumber80.y);
+                //player.reset(coinNumber80.x,coinNumber80.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -3442,6 +3725,13 @@ Game.Level1.prototype = {
             coinNumber81.kill();
             lathos +=1;
             player.reset(coinNumber81.x,coinNumber81.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=81;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3485,6 +3775,14 @@ Game.Level1.prototype = {
             coinNumber84.kill();
             lathos +=1;
             player.reset(coinNumber84.x,coinNumber84.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil2=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=84;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -3519,6 +3817,13 @@ Game.Level1.prototype = {
             coinNumber85.kill();
             lathos +=1;
             player.reset(coinNumber85.x,coinNumber85.y);
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=85;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3557,6 +3862,13 @@ Game.Level1.prototype = {
             coinNumber87.kill();
             lathos +=1;
             player.reset(coinNumber87.x,coinNumber87.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=87;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3631,6 +3943,13 @@ Game.Level1.prototype = {
             coinNumber93.kill();
             lathos +=1;
             player.reset(coinNumber93.x,coinNumber93.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=93;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3669,6 +3988,13 @@ Game.Level1.prototype = {
             coinNumber95.kill();
             lathos +=1;
             player.reset(coinNumber95.x,coinNumber95.y);
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=95;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3707,6 +4033,13 @@ Game.Level1.prototype = {
             coinNumber98.kill();
             lathos +=1;
             player.reset(coinNumber98.x,coinNumber98.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=98;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -3745,6 +4078,13 @@ Game.Level1.prototype = {
             coinNumber99.kill();
             lathos +=1;
             player.reset(coinNumber99.x,coinNumber99.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=99;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -3790,8 +4130,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber100.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=100;
             if(x==3){
-                player.reset(coinNumber100.x,coinNumber100.y);
+                //player.reset(coinNumber100.x,coinNumber100.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -3828,8 +4177,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber110.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=110;
             if(x==3){
-                player.reset(coinNumber110.x,coinNumber110.y);
+               // player.reset(coinNumber110.x,coinNumber110.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -3903,8 +4261,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber130.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=130;
             if(x==3){
-                player.reset(coinNumber130.x,coinNumber130.y);
+                //player.reset(coinNumber130.x,coinNumber130.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -3941,8 +4308,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber140.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=140;
             if(x==3){
-                player.reset(coinNumber140.x,coinNumber140.y);
+               // player.reset(coinNumber140.x,coinNumber140.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -4016,8 +4392,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber160.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5 =1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=160;
             if(x==3){
-                player.reset(coinNumber160.x,coinNumber160.y);
+                //player.reset(coinNumber160.x,coinNumber160.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -4054,8 +4439,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber170.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=170;
             if(x==3){
-                player.reset(coinNumber170.x,coinNumber170.y);
+               // player.reset(coinNumber170.x,coinNumber170.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -4129,8 +4523,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber190.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=190;
             if(x==3){
-                player.reset(coinNumber190.x,coinNumber190.y);
+                //player.reset(coinNumber190.x,coinNumber190.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -4167,8 +4570,17 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber200.kill();
             lathos +=1;
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=200;
             if(x==3){
-                player.reset(coinNumber200.x,coinNumber200.y);
+               // player.reset(coinNumber200.x,coinNumber200.y);
             lathos3.visible = true;
             l3=1;
             }
@@ -4234,6 +4646,13 @@ Game.Level1.prototype = {
             coinNumber272.kill();
             lathos +=1;
             player.reset(coinNumber272.x,coinNumber272.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=27;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4272,6 +4691,13 @@ Game.Level1.prototype = {
             coinNumber35.kill();
             lathos +=1;
             player.reset(coinNumber35.x,coinNumber35.y);
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=35;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4317,7 +4743,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber40.kill();
             lathos +=1;
-                player.reset(coinNumber40.x,coinNumber40.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=40;
+                //player.reset(coinNumber40.x,coinNumber40.y);
             lathos3.visible = true;
             l3=1;
            
@@ -4352,6 +4787,14 @@ Game.Level1.prototype = {
             coinNumber45.kill();
             lathos +=1;
             player.reset(coinNumber45.x,coinNumber45.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil5=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=45;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4395,7 +4838,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber20.kill();
             lathos +=1;
-                player.reset(coinNumber20.x,coinNumber20.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=20;
+               // player.reset(coinNumber20.x,coinNumber20.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -4424,6 +4876,13 @@ Game.Level1.prototype = {
             coinNumber9.kill();
             lathos +=1;
             player.reset(coinNumber9.x,coinNumber9.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=9;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4461,6 +4920,13 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber92.kill();
             player.reset(coinNumber92.x,coinNumber92.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=9;
             coinNumber92.reset(8500,1000);
             lathos +=1;
            if(x==2){
@@ -4502,6 +4968,13 @@ Game.Level1.prototype = {
             player.reset(coinNumber252.x,coinNumber252.y);
             coinNumber252.reset(8600,1000);
             lathos +=1;
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=25;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4540,6 +5013,13 @@ Game.Level1.prototype = {
             coinNumber27.kill();
             lathos +=1;
             player.reset(coinNumber27.x,coinNumber27.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=27;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4600,7 +5080,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber10.kill();
             lathos +=1;
-            player.reset(coinNumber10.x,coinNumber10.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=10;
+            //player.reset(coinNumber10.x,coinNumber10.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -4636,7 +5125,16 @@ Game.Level1.prototype = {
             audioStomp.play();
             coinNumber102.kill();
             lathos +=1;
-                player.reset(coinNumber102.x,coinNumber102.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            epil5=1;
+            epil10=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=10;
+                //player.reset(coinNumber102.x,coinNumber102.y);
             lathos3.visible = true;
             l3=1;
         }
@@ -4670,6 +5168,14 @@ Game.Level1.prototype = {
             coinNumber15.kill();
             lathos +=1;
                 player.reset(coinNumber15.x,coinNumber15.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil5=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=15;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4718,6 +5224,13 @@ Game.Level1.prototype = {
             coinNumber4.kill();
             lathos +=1;
             player.reset(coinNumber4.x,coinNumber4.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=4;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -4756,6 +5269,13 @@ Game.Level1.prototype = {
             coinNumber14.kill();
             lathos +=1;
             player.reset(coinNumber14.x,coinNumber14.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=14;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -4794,6 +5314,13 @@ Game.Level1.prototype = {
             coinNumber352.kill();
             lathos +=1;
             player.reset(coinNumber352.x,coinNumber352.y);
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=35;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4836,6 +5363,14 @@ Game.Level1.prototype = {
             coinNumber452.kill();
             lathos +=1;
                 player.reset(coinNumber452.x,coinNumber452.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil5=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=45;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -4870,6 +5405,13 @@ Game.Level1.prototype = {
             coinNumber8.kill();
             lathos +=1;
             player.reset(coinNumber8.x,coinNumber8.y);
+            lathosekkinisi = true;
+            epil2 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=8;
             if(x==3){
             lathos3.visible = true;
             l3=1;
@@ -4968,6 +5510,14 @@ Game.Level1.prototype = {
             coinNumber24.kill();
             lathos +=1;
                 player.reset(coinNumber24.x,coinNumber24.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil2=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=24;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -5006,6 +5556,14 @@ Game.Level1.prototype = {
             coinNumber18.kill();
             lathos +=1;
                 player.reset(coinNumber18.x,coinNumber18.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil2=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=18;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -5040,6 +5598,13 @@ Game.Level1.prototype = {
             coinNumber25.kill();
             lathos +=1;
             player.reset(coinNumber25.x,coinNumber25.y);
+            lathosekkinisi = true;
+            epil5 = 1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=25;
             if(x==2){
             lathos2.visible = true;
             l2=1;
@@ -5082,6 +5647,14 @@ Game.Level1.prototype = {
             coinNumber36.kill();
             lathos +=1;
                 player.reset(coinNumber36.x,coinNumber36.y);
+            lathosekkinisi = true;
+            epil3 = 1;
+            epil2=1;
+            newx = player.x;
+            newy = player.y;
+            player.reset(8500,200);
+            fall.play();
+            number=36;
             if(x==5){
             lathos5.visible = true;
             l5=1;
@@ -5090,6 +5663,47 @@ Game.Level1.prototype = {
                 lathos10.visible = true;
                 l10=1;
             }
+        }
+    },
+    
+    check2:function(){
+        epilogi2.kill();
+        if(epil2==1){
+            audioCoin.play();
+            arxi =1;
+        }
+        else{
+            audioStomp.play();
+        }
+    },
+    check3:function(){
+        epilogi3.kill();
+        if(epil3==1){
+            audioCoin.play();
+            arxi=1;
+        }
+        else{
+            audioStomp.play();
+        }
+    },
+    check5:function(){
+        epilogi5.kill();
+        if(epil5==1){
+            audioCoin.play();
+            arxi=1;
+        }
+        else{
+            audioStomp.play();
+        }
+    },
+    check10:function(){
+        epilogi10.kill();
+        if(epil10==1){
+            audioCoin.play();
+            arxi=1;
+        }
+        else{
+            audioStomp.play();
         }
     },
     
