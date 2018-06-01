@@ -252,7 +252,7 @@ Game.Level1.prototype = {
          
 
 
-        
+        this.physics.arcade.TILE_BIAS =32;
         this.physics.arcade.gravity.y = 1400;
         
         map = this.add.tilemap('map');
