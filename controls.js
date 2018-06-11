@@ -2,15 +2,17 @@ Game.controls = function(game){
     
 };
 
-
-var controlsScreen;
+//Αυτό είναι το state της οθόνης παρουσίασης πλήκτρων
+var controlsScreen;//Μεταβλητή που εκχωρείται το sprite των πλήκτρων
 
 Game.controls.prototype = {
     create:function(game){
+       //Ορισμός του sprite των πλήκτρων και του backround
         this.stage.backgroundColor = "#000000";
          controlsScreen = game.add.sprite(650,500,'controlsScreen');
         controlsScreen.anchor.setTo(0.5,0.5);
-        
+        //Δημιουργία του κουμπιού Play από την συνάρτηση CreateButton
+        //Όταν το κουμπί πατηθεί, οδηγεί τον χρήστη στο state της αφήγησης
         this.createButton(game,"Play",650,50, 300, 100, function(){
             this.state.start('afigisi');
         });
@@ -24,6 +26,7 @@ Game.controls.prototype = {
     update:function(game){
         
     },
+    //Συνάρτηση δημιουργίας κουμπιού
     createButton:function(game,string,x,y,w,h,callback){
         var button1 = game.add.button(x,y,'button',callback,this,2,1,0);
         

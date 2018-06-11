@@ -1,8 +1,8 @@
 Game.afigisi = function(game){
     
 };
-
-
+//Αποτελεί το state της αφήγησης
+//Περιέχουν τα sprite των εικόνων της αφήγησης
 var afigisiScreen;
 var afigisiScreen2;
 var afigisiScreen3;
@@ -16,35 +16,26 @@ var afigisiScreen10;
 var afigisiScreen11;
 var n=0;
 var ke=1;
-var pl;
+var pl;//Μεταβλητή που αλλάζει ανάλογα ποιον χαρακτήρα επιλέξει ο χρήστης
 var music;
 var mybutton;
 
 Game.afigisi.prototype = {
     create:function(game){
         
-        
+        //Προσθήκη και εκκίνηση ήχου
          music = this.add.audio('song');
          music.play();
      
         
-         //this.time.events.add(Phaser.Timer.SECOND * 4, function(){
-             
-        
-        
-            
-        
-        //this.time.events.add(Phaser.Timer.SECOND * 28,function(){
-           
-        //});
-        
+         
        
        
   
     },
     
     update:function(game){
-      
+      //Διαδοχική παρουσίαση των εικόνων της αφήγησης ανά 4 δευτερόλεπτα
       if(n==0){
           //this.time.events.add(Phaser.Timer.SECOND * 4, function(){
           afigisiScreen = game.add.sprite(750,420,'afigisiScreen');
@@ -136,11 +127,10 @@ Game.afigisi.prototype = {
         n=3;
         });
         }
-           // this.createButton(game,"Skip Intro",game.world.centerX,game.world.centerY + 100, 300, 100, function(){
-             //n=8;
-        //});
+         //Δημιουργία Skip Button κουμπιού. Γίνεται μέσα στην update γιατί αλλιώς δεν φαίνεται με την
+        //εναλλαγή των εικόνων
         mybutton = game.add.button(350,520 , 'skipButton', this.actionOnClick, this, 2, 1, 0);
-        
+        //Όταν πατηθεί το Skip Button το n γίνεται 8 και εμφανίζει την οθόνη επιλογής αριθμού
         if(n==8){
            
              // this.time.events.add(Phaser.Timer.SECOND * 4,function(){
@@ -149,12 +139,15 @@ Game.afigisi.prototype = {
         n=3;
         //});
         }
-        
+        //Το n γίνεται 4 όταν επιλεχθεί ένας αριθμός και εμφανίζει την οθόνη επιλογής χαρακτήρα
         if(n==4){
             afigisiScreen4 = game.add.sprite(750,420,'afigisiScreen4');
              afigisiScreen4.anchor.setTo(0.5,0.5);
         n=2;
         }
+        //Το n γίνεται 2 όταν εμφανιστεί η οθόνη επιλογή χαρακτήρα και 
+        //δημιουργεί τα κουμπιά επιλογής χαρακτήρα
+        //Όταν αυτά πατηθούν, ο χρήστης μεταφέρεται στο state της κυρίως πίστας
        if(n==2){
             this.createButton2(game,"Mario",140,170, 268, 338, function(){
             this.state.start('Level1');
@@ -170,7 +163,7 @@ Game.afigisi.prototype = {
             this.state.start('Level1');
         }
     
-    
+    //Το n γίνεται 3 όταν εμφανίζεται η οθόνη επιλογής αριθμού και δημιουργεί τα κουμπιά αριθμών
     if(n==3){
          this.createButton(game,"2",1050,100, 300, 100, function(){
             x=2;
@@ -229,6 +222,7 @@ Game.afigisi.prototype = {
         
         txt.anchor.setTo(0.5,0.5);
     },
+    //Καλείται όταν πατηθεί το Skip Button
     actionOnClick:function(game){
         music.stop();
         this.state.start('afigisi');

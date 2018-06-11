@@ -1,23 +1,23 @@
 Game.gameover = function(game){
     
 };
+//Αποτελεί το state που ενεργοποιείται όταν ο χρήστης βρει το κλειδί
 
-
-var gameoverScreen;
-var button2;
-var i2;
-var music;
-var sum2Text;
-var sum3Text;
-var sum5Text;
-var sum10Text;
-var apotelesmataText;
-var pinakas;
+var gameoverScreen;//Μεταβλητή του spite της αντίστοιχης εικόνας ανάλογα με τον αριθμό
+var button2;//Κουμπί Play Again
+var i2;//Μεταβλητή ελέγχου αν πατήθηκε το κουμπί Play Again
+var music;//Περιέχει τον ήχο
+var sum2Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 2
+var sum3Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 3
+var sum5Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 5
+var sum10Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 10
+var apotelesmataText;//Περιέχει το κείμενο που αποτελείται από τον πίνακα συγκεκριμένων λάθος αριθμών
+var pinakas;//Περιέχει τους συγκεκριμένους λάθος αριθμούς
 
 Game.gameover.prototype = {
     create:function(game){
          music = this.add.audio('song');
-        
+        //Επιλογή της κατάλληλης εικόνας ανάλογα με τον αριθμό
         if(x==2){
          gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen2');
         }
@@ -30,9 +30,9 @@ Game.gameover.prototype = {
          if(x==10){
          gameoverScreen = this.add.tileSprite(0,0,3200,800,'gameoverScreen10');
         }
-        
+          //Δημιουργία του κουμπιού Play Again
           button2 = this.add.button(400,50,'playagain',this.actionOnClick2,this);
-     
+         //Ορισμός φόντου, γραμματοσειράς και σημείου που θα εμφανιστεί το κείμενο
           if(x==2){
         sum2Text = game.add.text(50,250,'sum2=',{fontSize: '32px',fill : '#000'});
        }
@@ -55,6 +55,8 @@ Game.gameover.prototype = {
     },
     
     update:function(game){
+        //Αν πατηθεί το Play Again, o χρήστης μεταφέρεται στο state του αρχικού μενού 
+        //Επίσης γίνονται μηδενισμοί κάποιων μεταβλητών για αποφυγή προβλήματος στην επανεκκίνηση της πίστας
         if(i2==1){
             this.state.start('MainMenu');
              life = 3;
@@ -72,7 +74,8 @@ Game.gameover.prototype = {
             apotelesmata = []
             n=17;
         }
-        
+        //Εμφάνιση των αποτελεσμάτων σύμφωνα με τα Learning Analytics
+        //Ελέγχεται το πλήθος της κάθε μεταβλητής ώστε να υπάρχει σωστή διατύπωση σε ενικό ή πληθυντικό αντίστοιχα
         if(x==2 && lathos!==1){
         sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους ' + s2 + ' που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
        }
@@ -103,7 +106,7 @@ Game.gameover.prototype = {
         
     },
     
-   
+   //Καλείται όταν πατηθεί το κουμπί Play Again
   actionOnClick2:function(){
     i2=1;
      },

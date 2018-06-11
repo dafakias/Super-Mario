@@ -1,8 +1,8 @@
 //var game = {};
 
- 
+//Αυτό είναι το state της κυρίως πίστας 
 
-
+//Αυτή είναι η συνάρτηση που καθορίζει τις ιδιότητες των μανιταριών-εχθρών
 EnemyBird = function(index,game,x,y){
   this.bird = game.add.sprite(x,y,'turtle');
     this.bird.scale.setTo(0.15);
@@ -25,30 +25,24 @@ var enemy4;
 
 Game.Level1 = function(game){};
 
-var map;
-var layer;
-var player;
-var controls = {};
-var playerSpeed = 150;
+var map;//Η μεταβλητή που έχει τον χάρτη του παιχνιδιόυ
+var layer;//Το layer του χάρτη
+var player;//Η μεταβλητή του χαρακτήρα (Mario ή Luigi)
+var controls = {};// Ο πίνακας που κρατάει τα πλήκτρα που χρησιμοποιεί ο χρήστης
+var playerSpeed = 150;//Η ταχύτητα που έχει ο χαρακτήρας του χρήστη
 var jumpTimer = 0;
 var shootTime = 0;
-var bullets;
-var min = 2;
-var max = 6;
-var x;
-var xText;
-var r;
-var tixi;
-var fly=0;
-var score = 0;
-var scoreText;
-var life = 3;
-var lifeText;
-var heart;
-var heart2;
-var coins;
-var coinNumber36;
-var coinNumber1;
+var bullets;//Περιέχει της σφαίρες του weapon της shooting λειτουργίας
+var x;//Ο αριθμός που επιλέγει να παίξει ο χρήστης(2,3,5,10)
+var xText;//Η μεταβλητή που πραουσιάζει το x στη οθόνη
+var fly=0;//Ελέγχει αν ο παίκτης βρίσκεται στον αέρα μέσω του έλικα
+var score = 0;//Η μεταβλητή που κρατάει το score
+var scoreText;//Η μεταβλητή που παρουσιάζει το score στην οθόνη
+var life = 3;//Οι ζωές του χρήστη. Ξεκινάει το παιχνίδι έχοντας 3 ζωές
+var lifeText;// Η μεταβλητή που παρουσιάζει τις ζωές στην οθόνη
+var heart;//Περιέχει το sptite του εικονιδίου των ζωών
+var heart2;//Περιέχει το sprite της ζωής που κερδίζει ο χρήστης μέσα στο παιχνίδι
+var coinNumber36;//Η κάθε μεταβλητή CoinNumber αντιστοιχεί στο sprite του αντίστοιχου αριθμού
 var coinNumber10;
 var coinNumber9;
 var coinNumber4;
@@ -118,104 +112,105 @@ var coinNumber180;
 var coinNumber190;
 var coinNumber200;
 var coinNumber300;
-var div2;
-var div3;
-var div5;
-var div10;
-var flame;
-var flame2;
-var goomba;
-var elevator;
-var propel;
-var brick;
-var brick2;
-var brick3;
-var raccoon;
-var key;
-var lathos = 0;
-var sum2 = 0;
-var sum3 = 0;
-var sum5 = 0;
-var sum10 = 0;
-var music;
-var victory;
-var lose;
-var backround;
-var telos;
-var flag;
-var luckybox;
-var luckybox2;
-var audioCoin;
-var audioStomp;
-var helicopter;
-var break1;
-var hit;
-var hitenemy;
-var fall;
-var lathos2;
-var lathos3;
-var lathos5;
-var lathos10;
+var div2;//Περιέχει το sprite 'Βρες τους αριθμούς που διαιρούνται με το 2' που εμφανίζεται στην αρχή
+var div3;//Περιέχει το sprite 'Βρες τους αριθμούς που διαιρούνται με το 3' που εμφανίζεται στην αρχή
+var div5;//Περιέχει το sprite 'Βρες τους αριθμούς που διαιρούνται με το 5' που εμφανίζεται στην αρχή
+var div10;//Περιέχει το sprite 'Βρες τους αριθμούς που διαιρούνται με το 10' που εμφανίζεται στην αρχή
+var flame;//Περιέχει το sprite της 1ης φλόγας-εχθρού 
+var flame2;//Περιέχει το sprite της 2ης φλόγας-εχθρού
+var goomba;//Περιέχει το sprite του goomba-εχθρού
+var elevator;//Περιέχει το sprite του ασανσέρ
+var propel;//Περιέχει το sprite του έλικα
+var brick;//Περιέχει το sprite του 1ου τούβλου
+var brick2;//Περιέχει το sprite του 2οθ τούβλου
+var brick3;//Περιέχει το sprite της κινούμενης γέφυρας
+var raccoon;//Περιέχει το sprite του ρακούν-εχθρού
+var key;//Πειρέχει το sprite του κλειδιού
+var lathos = 0;//Ο μετρητής των λανθασμένων επιλογών του χρήστη
+var sum2 = 0;//Ο μετρητής των σωστών επιλογών του χρήστης για τον αριθμό 2
+var sum3 = 0;//Ο μετρητής των σωστών επιλογών του χρήστης για τον αριθμό 3
+var sum5 = 0;//Ο μετρητής των σωστών επιλογών του χρήστης για τον αριθμό 5
+var sum10 = 0;//Ο μετρητής των σωστών επιλογών του χρήστης για τον αριθμό 10
+var music;//Περιέχει το αρχείο της μουσικής του παιχνιδιού
+var victory;//Περιέχει το αρχείο του ήχου νίκης
+var lose;//Περιέχει το αρχείο του ήχου ήττας
+var backround;//Περιέχει το 1ο backround
+var telos;//Η μεταβλητή που ελέγχει αν ο χρήστης ήρθε σε επαφή με την πόρτα ή το κλειδί
+var flag;////Περιέχει το sprite της πόρτας
+var luckybox;//Περιέχει το sprite του 1ου luckybox
+var luckybox2;//Περιέχει το sprite του 2ου luckybox
+var audioCoin;//Περιέχει τον ήχο της σωστής επιλογής αριθμού
+var audioStomp;//Περιέχει τον ήχο της λάθος επιλογής αριθμού
+var helicopter;//Περιέχει τον ήχο του έλικα
+var break1;//Περιέχει τον ήχο σπασίματος του τούβλου
+var hit;//Περιέχει τον ήχο σύγκρουσης του χαρακτήρα με το luckybox
+var hitenemy;//Περιέχει τον ήχο εξουδετέρωσης εχθρού
+var fall;//Περιέχει τον ήχο πτώσης
+var lathos2;//Περιέχει το sprite του μηνύματος λάθους για τον αριθμό 2
+var lathos3;//Περιέχει το sprite του μηνύματος λάθους για τον αριθμό 3
+var lathos5;//Περιέχει το sprite του μηνύματος λάθους για τον αριθμό 5
+var lathos10;//Περιέχει το sprite του μηνύματος λάθους για τον αριθμό 10
 var kappa = 0;
-var water;
-var backround2;
-var l5 = 0;
-var l2 = 0;
-var l3 = 0;
-var l10 = 0;
-var thesix;
-var thesiy;
-var thesi2x;
-var thesi2y;
-var thesi3x;
-var thesi3y;
-var thesi5x;
-var thesi5y;
-var thesi10x;
-var thesi10y;
-var weapon;
+var water;//Περιέχει το sprite του νερού
+var backround2;//Περιέχει το 2ο backround
+var l5 = 0;//Ελέγχει αν η λάθος επιλογή αφορά τον αριθμό 5
+var l2 = 0;//Ελέγχει αν η λάθος επιλογή αφορά τον αριθμό 2
+var l3 = 0;//Ελέγχει αν η λάθος επιλογή αφορά τον αριθμό 3
+var l10 = 0;//Ελέγχει αν η λάθος επιλογή αφορά τον αριθμό 10
+var thesi2x;//Πίνακας με τις x συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 2
+var thesi2y;//Πίνακας με τις y συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 2
+var thesi3x;//Πίνακας με τις x συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 3
+var thesi3y;//Πίνακας με τις y συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 3
+var thesi5x;//Πίνακας με τις x συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 5
+var thesi5y;//Πίνακας με τις y συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 5
+var thesi10x;//Πίνακας με τις x συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 10
+var thesi10y;//Πίνακας με τις y συντεταγμένες των διαθέσιμων θέσεων για τους αριθμούς του 10
+var weapon;//Περιέχει το weapon της λειτουργίας shooting
 var c;
-var s2 = 1;
-var s3 = 2;
-var s5 = 2;
-var s10 = 1;
-var hint;
-var hint2;
-var hint3;
-var hint5;
-var hint10;
-var teleport;
-var teleport2;
-var facing = 'right';
+var tixi;
+var s2 = 1;//Μετρητής των συνολικών σωστών διαθέσιμων αριθμών για το 2
+var s3 = 2;//Μετρητής των συνολικών σωστών διαθέσιμων αριθμών για το 3
+var s5 = 2;//Μετρητής των συνολικών σωστών διαθέσιμων αριθμών για το 5
+var s10 = 1;//Μετρητής των συνολικών σωστών διαθέσιμων αριθμών για το 10
+//Όλοι ξεκινάνε από το 1 λόγω του extra αριθμού που μπορεί να κερδίσει ο χρήστης.
+//Το s3 και το s5 ξεκινάνε από το 2 γιατί τα 2 luckybox έχουν έναν αριθμό από το καθένα
+var hint;//Περιέχει το sprite του hintbox
+var hint2;//Περιέχει το sptite της κρυμμένης βοήθειας για το 2
+var hint3;//Περιέχει το sptite της κρυμμένης βοήθειας για το 3
+var hint5;//Περιέχει το sptite της κρυμμένης βοήθειας για το 5
+var hint10;//Περιέχει το sptite της κρυμμένης βοήθειας για το 10
+var teleport;//Περιέχει το sprite για την 1η κολώνα τηλεμεταφοράς
+var teleport2;//Περιέχει το sprite για την 2η κολώνα τηλεμεταφοράς
+var facing = 'right';//Χρησιμοποιείται στην σωστή φορά του χαρακτήρα όταν τρέχει και στην φορά της σφαίρας του shooting
 var bullet2;
-var heart3;
-var apotelesmata = []
-var heartbonus;
-var hs = 0;
+var heart3;//Περιέχει το sprite της 2ης ζωής που μπορεί να πάρει ο χρήστης μέσα στο παιχνίδι
+var apotelesmata = []//Ο πίνακας που κρατάει τους συγκεκριμένους λάθους αριθμούς που επέλεξε ο παίκτης
+var heartbonus;//Περιέχει το spite της κατάκτησης του bonus ζωής
+var hs = 0;//Αν γίνει 1, εμφανίζεται το bonus ζωής
 var ok=0;
-var wk=0;
+var wk=0;//Μετρητής του πλήθος λάθος σκοτωμένων αριθμών μέσω του shooting
 var wk2=0;
 var wk3=0;
 var wk5=0;
 var wk10=0;
-var lathosekkinisi = false;
-var epil2 = 0;
-var epil3 = 0;
-var epil5 = 0;
-var epil10 = 0;
-var portal;
-var arxi =0;
-var newx=0;
-var newy=0;
-var teleport3;
-var teleport4;
-var teleport5;
-var teleport6;
-var epilogi2;
-var epilogi3;
-var epilogi5;
-var epilogi10;
-var mariodark;
+var lathosekkinisi = false;//Όταν γίνει true, ο παίκτης μεταφέρεται στη  πίστα λάθους
+var epil2 = 0;//Γίνεται 1 όταν ο αντίστοιχος αριθμός διαιρείται με το 2
+var epil3 = 0;//Γίνεται 1 όταν ο αντίστοιχος αριθμός διαιρείται με το 3
+var epil5 = 0;//Γίνεται 1 όταν ο αντίστοιχος αριθμός διαιρείται με το 5
+var epil10 = 0;//Γίνεται 1 όταν ο αντίστοιχος αριθμός διαιρείται με το 10
+var portal;//Περιέχει το sprite της κολώνας που μεταφέρει τον χρήστη στην  πίστα λάθους
+var arxi =0;//Όταν γίνει 1 ρυθμίζονται οι αντίστοιχες μεταβλητές για την  πίστα λάθους
+var newx=0;//Αποθηκεύεται η θέση x του χαρακτήρα ώστε να συνεχίσει από το ίδο σημεία μετά την  πίστα λάθους
+var newy=0;//Αποθηκεύεται η θέση y του χαρακτήρα ώστε να συνεχίσει από το ίδο σημεία μετά την  πίστα λάθους
+var teleport3;//Περιέχει το sprite της 1η κολώνας της πίστας λάθους
+var teleport4;//Περιέχει το sprite της 2η κολώνας της πίστας λάθους
+var teleport5;//Περιέχει το sprite της 3η κολώνας της πίστας λάθους
+var teleport6;//Περιέχει το sprite της 4η κολώνας της πίστας λάθους
+var epilogi2;//Περιέχει το sprite του αριθμού 2 που χρησιμοποιείται στην πίστα λάθους
+var epilogi3;//Περιέχει το sprite του αριθμού 3 που χρησιμοποιείται στην πίστα λάθους
+var epilogi5;//Περιέχει το sprite του αριθμού 5 που χρησιμοποιείται στην πίστα λάθους
+var epilogi10;//Περιέχει το sprite του αριθμού 10 που χρησιμοποιείται στην πίστα λάθους
+var mariodark;//Περιέχει το backround της πίστας λάθους
 var number;
 var numberText;
 
@@ -223,19 +218,24 @@ Game.Level1.prototype = {
     
     create:function(game){
        this.stage.backgroundColor = "#000000";
-        
+       
+        //Ορισμός των backround 
         backround = this.add.tileSprite(0,0,4000,800,'backround');
         backround2 = this.add.tileSprite(3800,0,4100,800,'backround3');
         mariodark = this.add.tileSprite(8200,0,1400,800,'mariodark');
+        
+        //Ορισμός των sprite ενημέρωσης του χρήστη για το ποιους αριθμούς πρέπει να βρει
         div2 = this.add.sprite(500,100,'div2');
         div3 = this.add.sprite(500,100,'div3');
         div5 = this.add.sprite(500,100,'div5');
         div10 = this.add.sprite(500,100,'div10');
+        //Τα sprite είναι αόρατα και γίνεται ορατό μόνο το αντίστοιχο κάθε φορά
         div2.visible = false;
         div3.visible = false;
         div5.visible = false;
         div10.visible = false;
         
+        //Ορισμός των sprite κρυμμένης βοήθειας
         hint2 = this.add.sprite(3150,250,'hint2');
         hint2.scale.setTo(0.6);
         hint3 = this.add.sprite(3150,250,'hint3');
@@ -244,6 +244,7 @@ Game.Level1.prototype = {
         hint5.scale.setTo(0.6);
         hint10 = this.add.sprite(3150,250,'hint10');
         hint10.scale.setTo(0.6);
+        //Τα sprite είναι αρχικά αόρατα και γίνεται ορατό το αντίστοιχο μόνο όταν ο χρήστης βρει το hintbox
         hint2.visible = false;
         hint3.visible = false;
         hint5.visible = false;
@@ -251,15 +252,18 @@ Game.Level1.prototype = {
         
          
 
-
+        //Αύξηση του TILE_BIAS ώστε να αποφευχθεί το bug να βρίσκεται ο χαρακτήρας κάτω από το έδαφος
         this.physics.arcade.TILE_BIAS =32;
+        //Ορισμός της βαρύτητας
         this.physics.arcade.gravity.y = 1400;
         
+        //Ορισμός του χάρτη και των στοιχείων του
         map = this.add.tilemap('map');
         map.addTilesetImage('GoldBricks','tileset');
         layer = map.createLayer('Tile Layer 1');
         layer.resizeWorld();
         
+       //Ορισμός collision ώστε να μην διαπερνά ο χαρακτήρας τα αντίστοιχα tiles
         map.setCollisionBetween(28,29);
         map.setCollisionBetween(59,60);
         map.setCollisionBetween(19,20);
@@ -267,28 +271,17 @@ Game.Level1.prototype = {
         map.setCollisionBetween(43,44);
         map.setTileIndexCallback(3,this.resetPlayer,this);
         map.setTileIndexCallback(9,this.resetPlayer2,this);
+        //Όταν ο χαρακτήρας ακουμπάει το tile 1 σταματάει να εφάπτεται με τον έλικα
         map.setTileIndexCallback(1,this.notFly);
         map.setTileIndexCallback(56,this.getCoin,this);
        
         
       
-        //map.setTileIndexCallback(63,this.getCoin3,this);
-        //map.setTileIndexCallback(64,this.getCoin4,this);
-        //map.setTileIndexCallback(55,this.getCoin5,this);
-        //map.setTileIndexCallback(54,this.getCoin6,this);
-        //map.setTileIndexCallback(38,this.getCoin7,this);
-        //map.setTileIndexCallback(48,this.getCoin8,this);
-        //map.setTileIndexCallback(47,this.getCoin9,this);
-        //map.setTileIndexCallback(40,this.getCoin10,this);
-        //map.setTileIndexCallback(61,this.getCoin11,this);
-        //map.setTileIndexCallback(46,this.getCoin12,this);
-        //map.setTileIndexCallback(39,this.getCoin13,this);
-        //map.setTileIndexCallback(9,this.showCoin25,this);
+       
         
-        map.setTileIndexCallback(4,this.speedPowerup,this);
+        //map.setTileIndexCallback(4,this.speedPowerup,this);
         
-        //music = this.add.audio('song');
-       // music.play();
+        //Ορισμός ήχων
         victory = this.add.audio('victory');
         lose = this.add.audio('lose');
         audioCoin = this.add.audio('coin');
@@ -299,8 +292,7 @@ Game.Level1.prototype = {
         hit = this.add.audio('hit');
         hitenemy = this.add.audio('hitenemy');
         
-        //coins = game.add.group();
-        //map.createFromObjects('Object Layer 1',1,'coin',0,true,false,coins);
+        //Για pl=1 φορτώνεται ο Mario και για pl=2 φορτώνεται ο Luigi και τα αντίστοιχα animations
         if(pl==1){
             player = this.add.sprite(100,500,'super');
             player.anchor.setTo(0.5,0.5);
@@ -317,12 +309,13 @@ Game.Level1.prototype = {
         player.anchor.setTo(0.5,0.5);
        
         this.physics.arcade.enable(player);
+        //H κάμερα ακολουθεί τον χαρακτήρα και ο χαρακτήρας δεν μπορεί να βγει πέρα από τα όρια του παιχνιδιού
         this.camera.follow(player);
         player.body.collideWorldBounds = true;
         
         
         
-        
+        //Ορισμός διάφορων sprite και των ιδιοτήτων τους
         flame = this.add.sprite(930,600,'flame');
         flame.anchor.setTo(0.5,0.5);
         flame.animations.add('walk');
@@ -384,13 +377,13 @@ Game.Level1.prototype = {
         propel.body.collideWorldBounds = true;
         
         
-        
+        //Ορισμός των κειμένων των μεταβλητών που εμφανίζονται στην οθόνη
         scoreText = game.add.text(15,200,'Score:0',{fontSize: '32px',fill : '#000'});
         xText = game.add.text(15,100,'x=',{fontSize: '32px',fill : '#000'});
         lifeText = game.add.text(50,300,'l=',{fontSize: '32px',fill : '#000'});
+        xText.text = 'x= ' + x;
         
-        
-        
+        //Ορισμός των πλήκτρων που μπορεί να χρησιμοποιήσει ο χρήστης
         controls = {
             right: this.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
             left: this.input.keyboard.addKey(Phaser.Keyboard.LEFT),
@@ -399,39 +392,19 @@ Game.Level1.prototype = {
             down:this.input.keyboard.addKey(Phaser.Keyboard.DOWN),
         };
         
-        
+        //Ορισμός των τεσσάρων μανιταριών-εχθρών στις αντίστοιχες θέσεις. Οι ιδιότητες τους φαίνονται τέρμα πάνω
         enemy1 = new EnemyBird(0,game,player.x+50,player.y +120);
         enemy2 = new EnemyBird(0,game,player.x+1030,player.y +120);
         enemy3 = new EnemyBird(0,game,player.x+1750,player.y +120);
         enemy4 = new EnemyBird(0,game,player.x+2150,player.y +120);
         
-        //bullets = game.add.group();
-        
-        //bullets.enableBody = true;
-        //bullets.physicsBodyType = Phaser.Physics.ARCADE;
-        //bullets.createMultiple(5,'bullet');
-        //bullets.setAll('anchor.x',0.5);
-        //bullets.setAll('anchor.y',0.5);
-        //bullets.setAll('outOfBoundsKill',true);
-        //bullets.setAll('checkWorldBounds',true);
+       
         
         tixi = Math.floor(Math.random() * 2 + 1);
         
-       // r = Math.floor(Math.random() * 4) + 1;
-        //if(r==1){
-            //x=2;
-        //}
-        //if(r==2){
-        //    x=3;
-        //}
-        //if(r==3){
-        //    x=5;
-        //}
-        //if(r==4){
-        //    x=10;
-        //}
-        xText.text = 'x= ' + x;
+      
         
+        //Παρουσίαση του αντίστοιχου μηνύματος'Βρες τους αριθμούς που διαιρούνται με το 2,3,5,10 για 6 δευτερόλεπτα'
         if(x==2){
             div2.visible = true;
             this.time.events.add(Phaser.Timer.SECOND * 6, function(){
@@ -462,24 +435,16 @@ Game.Level1.prototype = {
         
         lifeText.text =  life;
        
-        
+        //Κάνουμε της μεταβλητές που φαίνονται στην οθόνη να ακολουθούν την κάμερα
         xText.fixedToCamera = true;
         scoreText.fixedToCamera = true;
         lifeText.fixedToCamera = true;
         
+        //Ορισμός των spirte των ζωών
         heart = this.add.sprite(25,320,'heart');
         heart.anchor.setTo(0.5,0.5);
         heart.scale.setTo(0.5);
         heart.fixedToCamera = true;
-        
-    
-        //this.coinNumber1 = this.game.add.sprite(100, 50, 'coin25');
-        
-        //this.coinNumber2 = this.game.add.sprite(170,50,'coin9');
-        
-        //this.coinNumber3 = this.game.add.sprite(240,50,'coin4');
-        
-        //this.coinNumber4 = this.game.add.sprite(310,50,'coin1');
         
         heart2 = this.add.sprite(1080,400,'heart');
         heart2.scale.setTo(0.5);
@@ -491,6 +456,7 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(heart3);
         heart3.body.allowGravity = false;
         
+        //Ορισμός των πινάκων που περιέχουν τις συντεταγμένες των διαθέσιμων θέσεων των αντίστοιχων αριθμών
         thesi2x = [580,7400,1680,2750,7400,4920,5030,5500,5680,6750,7400,7400,7400,7400,7400,7400]
         thesi2y = [610,900,610,610,900,610,100,580,350,350,900,900,900,900,900,900]
         
@@ -502,21 +468,20 @@ Game.Level1.prototype = {
         
         thesi10x = [800,1750,1950,2450,3600,3650,4620,5360,7040,6900,7400,7400,7400,7400,7400,1470,3870,7150,330,1480,7400]
         thesi10y = [480,420,610,230,410,100,280,160,610,350,900,900,900,900,900,420,100,350,420,610,900]
-       // thesix = [
-           // 310,380,580,800,1180,1300,1470,1480,1600,1680,1750,1950,2150,2350,2450,2750,2790,3450,3600,3650,3800,3870,4320,4620,4900,4990,5000,5250,5320,5480,5500,6100,5520,5680,5840,6200,6350,6650,6840,7300
-        //]
-        //thesiy = [
-           // 380,550,550,480,550,380,380,550,380,550,380,550,550,550,230,550,290,100,410,100,410,100,330,280,410,100,580,380,130,130,580,250,390,390,390,580,250,400,400,580
-        //]
+       
+            //Κλήση της συνάρτησης που μεταθέτει τυχαία τα στοιχεία των παραπάνω πινάκων 
             this.shuffle(thesi2x,thesi2y);
             this.shuffle(thesi3x,thesi3y);
             this.shuffle(thesi5x,thesi5y);
             this.shuffle(thesi10x,thesi10y);
 
-        //if(tixi==1){
+        
        
             h= Math.floor(Math.random() * 25);
         
+        //Ορισμός όλων των spirtes των αριθμών και τοποθέτηση τους στους πίνακες
+        //Με το if γνωρίζουμε ποιοι αριθμοί θα βρίσκονται εντός της πίστας και έτσι αυξάνουμε τους μετρητές των συνολικών
+        //σωστών αριθμών του αντίστοιχου αριθμού
         coinNumber110 = this.game.add.sprite(thesi10x[11],thesi10y[11],'coin110');
         if(thesi10y[11]!=900){
             s2 +=1;
@@ -842,7 +807,8 @@ Game.Level1.prototype = {
             s3 +=1;
         }
         
-         coinNumber110.anchor.setTo(0.5,0.5);
+        //Ορισμός των ιδιοτήτων των όλων των αριθμών 
+        coinNumber110.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber110);
         coinNumber110.body.allowGravity = false;
         
@@ -891,6 +857,7 @@ Game.Level1.prototype = {
         coinNumber36.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber36);
         coinNumber36.body.allowGravity = false;
+        
         coinNumber50.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(coinNumber50);
         coinNumber50.body.allowGravity = false;
@@ -1114,7 +1081,7 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(coinNumber100);
         coinNumber100.body.allowGravity = false;
        
-        
+        //Ορισμός κάποιων ακόμα sprite και των ιδιοτήτων τους
         luckybox = this.game.add.sprite(2050,450,'luckybox');
         this.physics.arcade.enable(luckybox);
         luckybox.body.allowGravity = false;
@@ -1161,6 +1128,8 @@ Game.Level1.prototype = {
         brick3.body.immovable = true;
         this.add.tween(brick3).to({x: brick3.x + 150},5000,'Linear',true,0,100,true);
         
+        //Ορισμός των sprite εκαπιδευτικού μηνύματος λάθους τα οποία ακολουθούν την κάμερα και 
+        //γίνονται ορατά μόνο όταν ο χρήστης κάνει λάθος επιλογή και του παρουσιαστεί το αντίστοιχο
         lathos2 = this.add.sprite(900,100,'lathos2');
         lathos3 = this.add.sprite(900,100,'lathos3');
         lathos5 = this.add.sprite(900,100,'lathos5');
@@ -1210,7 +1179,8 @@ Game.Level1.prototype = {
         teleport6.body.allowGravity = false;
         teleport6.body.immovable = true;
         
-       if(x!=2){
+        //Έλεγχος μη εμφάνισης του αριθμού που παίζει ο χρήστης ως απάντηση στην πίστα λάθους
+        if(x!=2){
         epilogi2 = this.game.add.sprite(8800,400,'epilogi2');
         epilogi2.anchor.setTo(0.5,0.5);
         this.physics.arcade.enable(epilogi2);
@@ -1246,6 +1216,7 @@ Game.Level1.prototype = {
         this.physics.arcade.enable(flag);
         flag.body.allowGravity = false;
         
+        //Shooting λειτουργία
         weapon = this.game.add.weapon(1,'bullet2');
         weapon.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
         weapon.bulletLifespan = 400;
@@ -1259,6 +1230,7 @@ Game.Level1.prototype = {
         
     update:function(){
         
+        //Έλεγχος συγκρούσεων και κλήση αντίστοιχων συναρτήσεων αν χρειάζεται να πραγματοποιηθεί κάποια ενέργεια 
         this.physics.arcade.collide(player,layer);
         this.physics.arcade.collide(propel,layer);
         this.physics.arcade.collide(player,enemy1.bird,this.resetPlayer);
@@ -1282,12 +1254,13 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,water,this.flame);
         this.physics.arcade.collide(player,raccoon,this.raccoon);
         
+        //Θέλουμε ο χαρακτήρας να μην έχει ταχύτητα όσο δεν πατάμε κάποιο πλήκτρο
         player.body.velocity.x = 0;
         
         
         
        
-        
+        //Έλεγχος συγκούσεων κυρίως του χαρακτήρα με τους αριθμούς και κλήση αντίστοιχης συνάρτηση για έλεγχο
         this.physics.arcade.collide(player,coinNumber36,this.killCoin);
         this.physics.arcade.collide(player,coinNumber50,this.killCoin50);
         this.physics.arcade.collide(player,coinNumber10,this.killCoin10);
@@ -1363,7 +1336,7 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(player,coinNumber200,this.killCoin200);
         this.physics.arcade.collide(player,coinNumber300,this.killCoin300);
         
-        
+        //Έλεγχος συγκούσεων της σφαίρας του shooting και κλήση συναρτήσεων
          this.physics.arcade.collide(weapon.bullets,coinNumber36,this.weaponCoin36);
         this.physics.arcade.collide(weapon.bullets,coinNumber50,this.weaponCoin50);
         this.physics.arcade.collide(weapon.bullets,coinNumber10,this.weaponCoin10);
@@ -1431,19 +1404,23 @@ Game.Level1.prototype = {
         this.physics.arcade.collide(weapon.bullets,coinNumber190,this.weaponCoin190);
         this.physics.arcade.collide(weapon.bullets,coinNumber200,this.weaponCoin200);
         this.physics.arcade.collide(weapon.bullets,coinNumber300,this.weaponCoin300);
-        
+        //Έλεγχος σύγκρουσης του χαρακτήρα με την πόρτα ή το κλειδί στο τέλος της πίστας
         this.physics.arcade.collide(player,flag,this.killFlag);
          this.physics.arcade.collide(player,key,this.killFlag);
         
+        //Έλεγχος σύγκρουσης του χαρακτήρα με τους αριθμούς 2,3,5,10 στην πίστα λάθους
         this.physics.arcade.collide(player,epilogi2,this.check2);
         this.physics.arcade.collide(player,epilogi3,this.check3);
         this.physics.arcade.collide(player,epilogi5,this.check5);
         this.physics.arcade.collide(player,epilogi10,this.check10);
+        //Έλεγχος σύγκρουσης χαρακτήρα με κολώνες της πίστας λάθους ώστε να μην τις διαπερνά
         this.physics.arcade.collide(player,teleport3);
         this.physics.arcade.collide(player,teleport4);
         this.physics.arcade.collide(player,teleport5);
         this.physics.arcade.collide(player,teleport6);
         
+        //Γίνεται 1 όταν ο χρήστης βρει την σωστή απάντηση στην πίστα λάθους
+        //Ορισμός απαραίτητων στοιχείων για την μεταφορά από την πίστα λάθους στην κυριώς πίστα 
         if(arxi==1){
             arxi=0;
             epil2=0;
@@ -1477,12 +1454,13 @@ Game.Level1.prototype = {
             //this.state.start('Level1');
         }
         
+        //Εμφάνιση μηνύματος λάθους στην πίστα λάθους
         if(lathosekkinisi==true){
            this.physics.arcade.gravity.y = 1000;
              numberText.text = 'Ο αριθμός ' + number + ' δεν διαιρείται με το ' + x + ' αλλά με \n κάποιον από τους παρακάτω. Προσπάθησε \n να τον βρεις για να προχωρήσεις ';
         }
         
-        
+        //Εμφάνιση του αντίστοιχου εκπαιδευτικού μηνύματος λάθους ανάλογα με τον αριθμό για 2 sec
         if(l5==1){
              this.time.events.add(Phaser.Timer.SECOND * 2, function(){
             lathos5.visible = false;
@@ -1518,7 +1496,7 @@ Game.Level1.prototype = {
         }
         
         
-        
+        //Το hs γίνεται ένα όταν ο χρήστης βρει σωστά τους πρώτους 5 αριθμούς και εμφανίζει το sprite του bonus
         if(hs==1){
              this.time.events.add(Phaser.Timer.SECOND * 3, function(){
             heartbonus.visible = false;
@@ -1527,7 +1505,9 @@ Game.Level1.prototype = {
         }
       
           
-     
+        //Το telos γίνεται 1 όταν ο χαρακτήρας έρθει σε επαφή με την πόρτα ή το κλειδί
+        //Τότε ανάλογα με τα αποτελέσματα φορτώνεται το αντίστοιχο state και μηδενίζονται 
+        //κάποιες μεταβλητές για την αποφυγή προβλήματος στην επανεκκίνηση του παιχνιδιού
         if(telos==1){
             music.stop();
             if(sum2>=10 || sum3>=10 || sum5>=10 || sum10>=10){
@@ -1545,7 +1525,7 @@ Game.Level1.prototype = {
             //sum3=0;
             //sum5=0;
         }
-        
+        //Αντίστοιχα όταν μηδενιστούν οι ζωές του χρήστη φορτώνεται το αντίστοιχο state
         if(life==0){
             music.stop();
             lose.play();
@@ -1560,8 +1540,9 @@ Game.Level1.prototype = {
          
  
         
-        
+        //Έλεγχος των πλήκτρων που πατάει ο χρήστης και εκτέλεση των κατάλληλων ενεργειών
         if(controls.right.isDown){
+            //Το fly ελέγχει αν ο χρήστης βρίσκεται στον έλικα ώστε να μην περπατάει αλλά να πετάει
             if(fly==1){
                 player.body.allowGravity = false;
                 propel.body.allowGravity = false;
@@ -1622,8 +1603,7 @@ Game.Level1.prototype = {
         }
         
         if(controls.shoot.isDown){
-          //  this.shootBullet();
-            //weapon.fire();
+          //Έλεγχος φοράς σφαίρας shooting
             if(facing == 'right'){
                 weapon.fireAngle = Phaser.ANGLE_RIGHT;
                 weapon.fire();
@@ -1634,33 +1614,13 @@ Game.Level1.prototype = {
             }
         }
         
+        //Ορισμός συγκεκριμένου frame του animation του χαρακτήρα αν είναι ακίνητος
         if(player.body.velocity.x == 0 && player.body.velocity.y ==0){
             player.animations.play('idle');
         }
         
-        //if(checkOverlap(player,enemy1.bird)){
-          //  this.resetPlayer();
-       // }
-        
-       // if(controls.shoot.isDown){
-        //    this.shootBullet();
-       // }
-        
-        //if(checkOverlap(bullets,enemy1.bird)){
-          //  enemy1.bird.kill();
-            
-        //}
-        
-     
-        //}
-        
-        // if(checkOverlap(bullets,this.coinNumber2)){
-          //  if(x==3){
-            //this.coinNumber2.kill();
-             //   score += 100;
-       // this.sound.play('coin');
-            //}
-        //}
+        //Το wk γίνεται 5 όταν ο χρήστης σκοτώσει 5 λάθος αριθμούς
+        //Τότε γίνεται ορατός ο extra αριθμός
         if(wk==5){
             coinNumber300.visible=true;
            }
@@ -1669,19 +1629,15 @@ Game.Level1.prototype = {
     },
     
    
-    
+   //Οι weaponCoin συναρτήσεις καλούνται όταν η shooting σφαίρα συγκρουστεί με τον αντίστοιχο αριθμό
+    //Έτσι ο αριθμός σκοτώνεται, ο χρήστης κερδίζει μια ζωή και
+    //ο μετρητής wk αυξάνεται κατά 1 ώστε αν γίνει 5, να εμφανιστεί ο extra αριθμός
     weaponCoin36:function(coinNumber36){
         coinNumber36.kill();
         if(x==5 || x==10){
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin362:function(coinNumber362){
@@ -1690,12 +1646,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin10:function(coinNumber10){
@@ -1704,9 +1654,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==3){
-                wk3=1;
-            }
         }
     },
      weaponCoin50:function(coinNumber50){
@@ -1715,9 +1662,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==3){
-                wk3=1;
-            }
         }
     },
      weaponCoin9:function(coinNumber9){
@@ -1726,15 +1670,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
      weaponCoin4:function(coinNumber4){
@@ -1743,15 +1678,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==3){
-                wk3=1;
-            }
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin452:function(coinNumber452){
@@ -1760,12 +1686,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin25:function(coinNumber25){
@@ -1774,15 +1694,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
-            if(wk==5 && x==3){
-                wk3=1;
-            }
         }
     },
     weaponCoin102:function(coinNumber102){
@@ -1791,9 +1702,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==3){
-                wk3=1;
-            }
         }
     },
     weaponCoin15:function(coinNumber15){
@@ -1802,12 +1710,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin27:function(coinNumber27){
@@ -1816,15 +1718,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin8:function(coinNumber8){
@@ -1833,15 +1726,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==3){
-                wk3=1;
-            }
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin24:function(coinNumber24){
@@ -1850,12 +1734,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin12:function(coinNumber12){
@@ -1864,12 +1742,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin92:function(coinNumber92){
@@ -1878,15 +1750,6 @@ Game.Level1.prototype = {
              life +=1;
                 lifeText.text = life;
             wk +=1;
-            if(wk==5 && x==2){
-                wk2=1;
-            }
-            if(wk==5 && x==5){
-                wk5=1;
-            }
-            if(wk==5 && x==10){
-                wk10=1;
-            }
         }
     },
     weaponCoin352:function(coinNumber352){
@@ -2297,6 +2160,8 @@ Game.Level1.prototype = {
             wk +=1;
            
     },
+    //Καλούνται όταν ο χαρακτήρας συκγρουστεί με το επάνω μέρος μιας κολώνας και τον μεταφέρουν 
+    //δίπλα από την 2η κολώνα. Έτσι λειτουργεί η τηλεμεταφορά
     teleport:function(player,teleport){
         if(player.body.touching.down){
             player.reset(6200,560);
@@ -2319,7 +2184,7 @@ Game.Level1.prototype = {
             player.animations.play('jump');
             this.sound.play('jump');
     },
-    
+    //Σκοτώνουν τον αντίστοιχο εχθρό και παίζουν τον ήχο εξόντωσης εχθρού
     killenemy:function(enemy1){
         enemy1.kill();
         hitenemy.play();
@@ -2335,6 +2200,9 @@ Game.Level1.prototype = {
         hitenemy.play();
     },
     
+    //Οι reset καλούνται όταν ο χρήστης 'σκοτωθεί' από κάποιον εχθρό
+    //Ο χακτήρας μεταφέρεται σε προκαθορισμένο σημείο ,
+    //ανάλογα με το σημείο που βρίσκεται στην πίστα χωρίς να γυρνά στην αρχή
     resetPlayer2:function(){
         if(player.x<=1000){
                  player.reset(100,560);
@@ -2469,18 +2337,18 @@ Game.Level1.prototype = {
             }
             if(player.x>6400){
                 player.reset(6400,150);
-            };
+            }
         life = life -1;
          lifeText.text = life;
         lose.play();
         }
     },
-    
+   //Καλείται όταν ο χρήστης έρθει σε επαφή με την πόρτα ή το κλειδί  
     killFlag:function(){       
        telos = 1;
         
     },
-    
+    //Καλείται όταν ο χρήστης έρθει σε επαφή με τα τούβλα και αυτά σκοτώνονται
     break:function(){
         break1.play();
         brick.kill();
@@ -2494,7 +2362,9 @@ Game.Level1.prototype = {
      break3:function(){
         kappa = 1;
     },
-   
+   //Καλείται όταν ο χαρακτήρας έρθει σε επαφή με το κάτω μέρος του έλικα
+    //και τους συνδέει ώστε να κινούνται μαζί και 
+    //να καταφέρει ο χαρακτήρας να ανέβει ψηλότερα
     propel:function(player,propel){
      if(player.body.touching.up){
         fly = 1;
@@ -2504,7 +2374,8 @@ Game.Level1.prototype = {
 
      }
     },
-    
+    //Καλείται όταν ο χαρακτήρας έρθει σε επαφή με τα αντίστοιχα tiles ώστε να αποκολληθεί από τον έλικα
+    //και να ξαναπάρει τις ιδιότητες που είχε όσο δεν πετούσε
     notFly:function(){
         fly = 0;
         player.body.allowGravity = true;
@@ -2512,6 +2383,8 @@ Game.Level1.prototype = {
         helicopter.stop();
     },
     
+   //Καλείται όταν ο χαρακτήρας πατήσει πάνω στο ασανσέρ και αυτό χάνει την βαρύτητά του ώστε να κατεβάσει
+    //κάτω τον χαρακτήρα
     elevator:function(player,elevator){
         elevator.body.allowGravity= true;
         
@@ -2580,6 +2453,14 @@ Game.Level1.prototype = {
         
     },
     
+    //Οι KillCoin καλούνται όταν ο χρήστης συγκρουστεί με τον αντίστοιχο αριθμό και γίνονται ορισμένοι έλεγχοι
+    //Αρχικά αν ο αριθμός είναι σωστός, μεταφέρεται πάνω, αυξάνεται το score και παίζεται ο ήχος
+    //Επίσης αυξάνεται ο αντίστοιχος μετρητής σωστής επιλογής αριθμού και ελέγχεται αν το πλήθος του γίνεται 5
+    //ώστε να ενεργοποιηθεί το εκπαιδευτικό bonus ζωής.
+    //Αν ο αριθμός είναι λάθος, ο αριθμός εισάγεται στον πίνακα συγκεκριμένων λάθος αποτελεσμάτων, σκοτώνεται
+    //και παίζεται ο ήχος λάθους. Ο χαρακτήρας μεταφέρεται στην πίστα λάθους και εμφανίζεται το αντίστοιχο
+    //εκπαιδευτικό μήνυμα λάθους. Τέλος αποθηκεύονται οι συντεταγμένες του ώστε να επιστρέψει στο ίδιο σημείο
+    //και γίνονται 1 οι μεταβλητές που θα αποτελέσουν σωστή επιλογή στην πίστα λάθους.
     killCoin12:function(player,coinNumber12){
        
         if(x==2 || x==3){
@@ -2627,10 +2508,6 @@ Game.Level1.prototype = {
         }
     },
     
-    weaponCoin:function(c){
-        c.kill();
-        },
-  
      killCoin6:function(player,coinNumber6){
        
         if(x==2 || x==3){
@@ -2679,7 +2556,8 @@ Game.Level1.prototype = {
         }
     },
     
-     killheart2:function(player,heart2){
+    //Καλούνται όταν ο χρήστης πάρει κάποια από τις διαθέσιμες ζωές 
+    killheart2:function(player,heart2){
        
        life = life + 1;
        lifeText.text = life;
@@ -2697,11 +2575,13 @@ Game.Level1.prototype = {
         
     },
     
-     luckybox:function(player,luckybox){
+    //Καλείται όταν ο χαρακτήρας συγκρουστεί με το 1ο luckybox και εμφανίζει το κρυμμένο αριθμό 
+    luckybox:function(player,luckybox){
        coinNumber92.visible = true;
          hit.play();
          },
-    
+    //Καλέιται όταν ο χρήστης βρει το hintbox με την κρυμμένη βοήθεια και την εμφανίζει ανάλογα με τον αριθμό
+    //που παίζει ο χρήστης
     hint:function(player,hint){
         hint.kill();
         if(x==2){
@@ -2750,6 +2630,7 @@ Game.Level1.prototype = {
             apotelesmata.push('50');
            // life = life - 1;
            // lifeText.text = life;
+            number=50;
             audioStomp.play();
             coinNumber50.kill();
             lathos +=1;
@@ -5035,21 +4916,6 @@ Game.Level1.prototype = {
         }
       },       
      
-    
-    getCoin4:function(){
-       
-        if(x==1){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
-        }
-    },
-    
     killCoin10:function(player,coinNumber10){
         
         if(x==2 || x==5 || x==10){
@@ -5184,20 +5050,6 @@ Game.Level1.prototype = {
                 lathos10.visible = true;
                 l10=1;
             }
-        }
-    },
-    
-    getCoin7:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==3 || x==9){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
         }
     },
     
@@ -5427,63 +5279,7 @@ Game.Level1.prototype = {
         }
     },
     
-    getCoin9:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==2 || x==3 || x==6){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
-        }
-    },
-    
-    getCoin10:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==2 || x==3 || x==6 || x==4){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
-        }
-    },
-    
-    getCoin11:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==2 || x==4){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
-        }
-    },
-    
-    getCoin12:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        if(x==2 || x==3 || x==6){
-         score += 100;
-            scoreText.text = 'Score: ' + score;
-         this.sound.play('coin');
-        }
-        else{
-            life = life - 1;
-            lifeText.text = life;
-            this.sound.play('stomp');
-        }
-    },
-    
-    killCoin24:function(player,coinNumber24){
+      killCoin24:function(player,coinNumber24){
         if(x==2 || x==3){
             coinNumber24.reset(coinNumber24.x,25);
         score += 100;
@@ -5666,6 +5462,7 @@ Game.Level1.prototype = {
         }
     },
     
+    //Καλούνται όταν ο χρήστης βρει την σωστή απάντηση στην πίστα λάθους και
     check2:function(){
         epilogi2.kill();
         if(epil2==1){
@@ -5707,6 +5504,8 @@ Game.Level1.prototype = {
         }
     },
     
+    //Καλείται για την αναμετάθεση των στοιχείων των πινάκων που έχουν τις συντεταγμένες των θέσεων των αριθμών
+    //Χρησιμοποιώντας την Math.random εξασφαλίζουμε την τυχαιότητα
     shuffle:function(a,b){
         var j,x,i,y;
         for(i = a.length-1; i>0; i--){
@@ -5727,51 +5526,18 @@ Game.Level1.prototype = {
     
    
     
-    speedPowerup:function(){
-        map.putTile(-1,layer.getTileX(player.x), layer.getTileY(player.y));
-        playerSpeed +=50;
-       
-        
-        this.time.events.add(Phaser.Timer.SECOND * 2, function(){
-            playerSpeed -=50;
-        });
-    },
     
-    //showCoin25:function(){
-       // this.coinNumber1 = this.game.add.sprite(120, 80, 'coin25');
-    //},
-   hitcoin:function(player,tile){
-    tile.aplpha=0.2;
-     
-    layer.dirty = true;
-      
-    return false;
-},
     
-    shootBullet:function(){
-      if(this.time.now > shootTime){
-        bullet = bullets.getFirstExists(false);
-            if(bullet){
-                bullet.reset(player.x,player.y);
-                bullet.body.velocity.x = +600;
-                shootTime = this.time.now + 900;
-                bullet.body.allowGravity = false;
-          
-          }
+   
+  
     
-      }
-    }
+   
+    
     
     
 }
 
-//function checkOverlap(spriteA,spriteB){
-    
-  //  var boundsA = spriteA.getBounds();
-    //var boundsB = spriteB.getBounds();
-    
-   //return Phaser.Rectangle.intersects(boundsA,boundsB); 
-//}
+
 
 
 

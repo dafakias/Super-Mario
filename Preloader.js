@@ -17,6 +17,7 @@ Game.Preloader.prototype = {
         this.load.setPreloadSprite(this.preloadBar);
         
         //LOAD ALL ASSETS
+        //Σε αυτό το state γίνεται η φόρτωση όλων των assets (εικόνες, ήχοι, χάρτες)
         
         this.load.tilemap('map','assets/FirstLevel.json',null,Phaser.Tilemap.TILED_JSON);
         this.load.image('tileset','assets/GoldBricks.png');

@@ -1,26 +1,26 @@
 Game.loss = function(game){
     
 };
+//Αποτελεί το state που ενεργοποιείται όταν ο χρήστης βρει την πόρτα ή φτάσει 0 ζωές
 
+var lossScreen;;//Μεταβλητή του spite της αντίστοιχης εικόνας ανάλογα με τον αριθμό
+var button;//Κουμπί Play Again
+var i;//Μεταβλητή ελέγχου αν πατήθηκε το κουμπί Play Again
+var music;//Περιέχει τον ήχο
 
-var lossScreen;
-var button;
-var i;
-var music;
-
-var sum2Text;
-var sum3Text;
-var sum5Text;
-var sum10Text;
-var apotelesmataText;
-var pinakas;
+var sum2Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 2
+var sum3Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 3
+var sum5Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 5
+var sum10Text;//Περιέχει το κείμενο που θα εμφανιστεί στην οθόνη για το 10
+var apotelesmataText;;//Περιέχει το κείμενο που αποτελείται από τον πίνακα συγκεκριμένων λάθος αριθμών
+var pinakas;//Περιέχει τους συγκεκριμένους λάθος αριθμούς
 var titlescreen2;
 
 Game.loss.prototype = {
     create:function(game){
          music = this.add.audio('song');
        
-            
+        //Επιλογή της κατάλληλης εικόνας ανάλογα με τον αριθμό    
         if(life==0){
         lossScreen = this.add.tileSprite(0,0,3200,800,'lossScreen');
         }
@@ -60,7 +60,8 @@ Game.loss.prototype = {
     },
     
     update:function(game){
-         
+          //Αν πατηθεί το Play Again, o χρήστης μεταφέρεται στο state του αρχικού μενού 
+        //Επίσης γίνονται μηδενισμοί κάποιων μεταβλητών για αποφυγή προβλήματος στην επανεκκίνηση της πίστας
         if(i==1){
             this.state.start('MainMenu');
             sum2=0;
@@ -79,6 +80,8 @@ Game.loss.prototype = {
             n=17;
             
         }
+        //Εμφάνιση των αποτελεσμάτων σύμφωνα με τα Learning Analytics
+        //Ελέγχεται το πλήθος της κάθε μεταβλητής ώστε να υπάρχει σωστή διατύπωση σε ενικό ή πληθυντικό αντίστοιχα
        if(x==2 && sum2!==1 && lathos!==1){
         sum2Text.text = 'Βρήκες σωστά ' + sum2 + ' αριθμούς από\nτους ' + s2 + ' που διαιρούνται με το 2! \n Αλλά επέλεξες λάθος ' + lathos + ' αριθμούς';
        }
@@ -133,7 +136,8 @@ Game.loss.prototype = {
         
         
     },
-   
+      
+    //Καλείται όταν πατηθεί το κουμπί Play Again
      actionOnClick:function(){
     i=1;
      },
